@@ -8,3 +8,9 @@ feature: Publicar um post
     When eu preencho o titulo "title" e o texto "Codigo qualquer"
     And clico no botao publicar
     Then eu vejo que o post foi publicado no meu mural
+
+  Scenario: Apagando uma postagem
+    Given que eu estou no mural do meu perfil
+    And a postagem com titulo "title" existe
+    When eu clico no botao deletar o artigo "title"
+    Then a postagem some do meu mural
