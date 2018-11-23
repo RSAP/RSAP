@@ -11,9 +11,9 @@ feature: Publicar um post
 
   Scenario: Apagando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
-    When eu clico no botao deletar a postagem "title"
-    Then a postagem some do meu mural
+    And a postagem com titulo "Nova Postagem" e o texto "Codigo qualquer" existe
+    When eu clico no botao deletar a postagem "Nova Postagem"
+    Then a postagem "Nova Postagen" some do meu mural
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
