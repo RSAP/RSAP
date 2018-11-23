@@ -23,11 +23,11 @@ feature: Publicar um post
 
   Scenario: Editando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
-    And eu aperto em visualizar a postagem
-    When eu clico no botao de editar a postagem
-    And eu preencho os campos titulo "Novo" e texto "Codigo novo"
-    Then eu vejo que o post foi atualizado
+    And a postagem com titulo "Postagem Antiga" e o texto "Codigo qualquer" existe
+    And eu aperto em visualizar o post "Postagem Antiga"
+    When eu clico no botao de editar o post "Postagem Antiga"
+    And eu preencho os campos do titulo com "Novo titulo" e o texto com "Codigo novo"
+    Then eu vejo que o post "Postagem Antiga" foi atualizado para "Novo titulo"
 
 Scenario: Criando post em branco
   Given que eu estou no mural do meu perfil
