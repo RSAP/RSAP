@@ -11,12 +11,12 @@ feature: Publicar um post
 
   Scenario: Apagando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "title" existe
+    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
     When eu clico no botao deletar a postagem "title"
     Then a postagem some do meu mural
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "title" existe
+    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
     When eu clico em visualizar o post
     Then uma tela com o post aparece
