@@ -21,10 +21,15 @@ feature: Publicar um post
     When eu clico em visualizar o post
     Then uma tela com o post aparece
 
-    Scenario: Editando uma postagem
-      Given que eu estou no mural do meu perfil
-      And a postagem com titulo "title" e o texto "Codigo qualquer" existe
-      And eu aperto em visualizar a postagem
-      When eu clico no botao de editar a postagem
-      And eu preencho os campos titulo "Novo" e texto "Codigo novo"
-      Then eu vejo que o post foi atualizado
+  Scenario: Editando uma postagem
+    Given que eu estou no mural do meu perfil
+    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
+    And eu aperto em visualizar a postagem
+    When eu clico no botao de editar a postagem
+    And eu preencho os campos titulo "Novo" e texto "Codigo novo"
+    Then eu vejo que o post foi atualizado
+
+Scenario: Criando post em branco
+  Given que eu estou no mural do meu perfil
+  When eu clico no botao Publicar
+  Then eu vejo uma mensagem de erro campos invalidos
