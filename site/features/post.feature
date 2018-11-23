@@ -17,9 +17,9 @@ feature: Publicar um post
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "title" e o texto "Codigo qualquer" existe
-    When eu clico em visualizar o post
-    Then uma tela com o post aparece
+    And a postagem com titulo "Postagem Existente" e o texto "Codigo qualquer" existe
+    When eu clico em visualizar o post "Postagem Existente"
+    Then surge um tela exibindo o titulo, texto e comentarios do post "Postagem Existente"
 
   Scenario: Editando uma postagem
     Given que eu estou no mural do meu perfil
