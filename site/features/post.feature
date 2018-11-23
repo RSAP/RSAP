@@ -13,7 +13,7 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     And a postagem com titulo "Nova Postagem" e o texto "Codigo qualquer" existe
     When eu clico no botao deletar a postagem "Nova Postagem"
-    Then a postagem "Nova Postagen" some do meu mural
+    Then a postagem "Nova Postagem" some do meu mural
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
@@ -31,5 +31,5 @@ feature: Publicar um post
 
 Scenario: Criando post em branco
   Given que eu estou no mural do meu perfil
-  When eu clico no botao Publicar
-  Then eu vejo uma mensagem de erro campos invalidos
+  When eu clico no botao Publicar sem preencher nenhum campo
+  Then eu vejo um erro de campos invalidos
