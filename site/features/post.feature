@@ -5,9 +5,9 @@ feature: Publicar um post
 
   Scenario: Criando uma nova postagem
     Given que eu estou no mural do meu perfil
-    When eu preencho o titulo "title" e o texto "Codigo qualquer"
+    When eu preencho o titulo "Nova Postagem" e o texto "Codigo qualquer"
     And clico no botao publicar
-    Then eu vejo que o post foi publicado no meu mural
+    Then eu vejo que o post "Nova Postagem" foi publicado no meu mural
 
   Scenario: Apagando uma postagem
     Given que eu estou no mural do meu perfil
