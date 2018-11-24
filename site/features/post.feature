@@ -119,3 +119,13 @@ feature: Publicar um post
           e o texto com "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
       Then eu vejo que o post "Programacao dinamica" foi atualizado para o novo titulo "Programacao dinamica (Atualizado)"
            e o novo video "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
+
+    Scenario: Editando um post com novos titulo invalido
+      Given que eu estou no mural do meu perfil
+      And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total
+          - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e
+            heranca" existe
+      And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
+      When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
+      And eu preencho o titulo "Jav" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
+      Then eu vejo um erro de campos invalidos
