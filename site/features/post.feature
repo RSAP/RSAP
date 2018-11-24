@@ -73,3 +73,13 @@ feature: Publicar um post
     When eu preencho o titulo "Video tutorial: exceptions em Java" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg"
     And clico no botao de publicar nova postagem
     Then eu vejo que o post "Video tutorial: exceptions em Java" possui um player do video "https://www.youtube.com/watch?v=ld2C4GcAtsg"
+
+  Scenario: Postando uma imagem do computador
+    Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
+    When eu preencho o titulo "Erro comum do rails"
+    And clico no botao de enviar imagem do computador
+    And seleciono a imagem "..\site\img\erro.png"
+    And clico no botao de selecionar
+    And clico no botao de publicar nova postagem
+    Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
