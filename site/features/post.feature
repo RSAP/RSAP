@@ -101,3 +101,11 @@ feature: Publicar um post
       And clico no botao de publicar nova postagem
       Then eu vejo que o post "Video tutorial: exceptions em Java" possui dois links "https://www.youtube.com/watch?v=ld2C4GcAtsg"
            e "https://www.youtube.com/watch?v=Xt0CpwJT5yY"
+
+    Scenario: Visualizando posts de outro usuario
+      Given que eu estou no perfil do usuario "Carlos Antonio"
+      And o mural dele possui o post com titulo "Java eh a melhor linguagem de programacao"
+          e o texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao"
+      When eu clico em visualizar o post "Java eh a melhor linguagem de programacao"
+      Then surge um tela exibindo o titulo "Java eh a melhor linguagem de programacao",
+           texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao" e comentarios do post
