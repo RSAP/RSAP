@@ -14,7 +14,7 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     And a postagem com titulo "Soma em assembly" e o texto ";;lang=asm6502<br> .text add $t0, $t1, $t2" existe
     When eu clico no botao deletar a postagem "Soma em assembly"
-    Then a postagem "Soma em assembly" foi deletada e sumiu automaticamente do meu mural
+    Then a postagem "Soma em assembly" é deletada e some automaticamente do meu mural
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
