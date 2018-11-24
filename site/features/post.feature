@@ -93,3 +93,11 @@ feature: Publicar um post
     And clico no botao de selecionar
     And clico no botao de publicar nova postagem
     Then eu vejo que um erro de extensao de arquivo invalido
+
+    Scenario: Postando mais de um video do youtube
+      Given que eu estou no mural do meu perfil
+      And eu clico no botao novo post
+      When eu preencho o titulo "Videos sobre exceptions" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg e https://www.youtube.com/watch?v=Xt0CpwJT5yY"
+      And clico no botao de publicar nova postagem
+      Then eu vejo que o post "Video tutorial: exceptions em Java" possui dois links "https://www.youtube.com/watch?v=ld2C4GcAtsg"
+           e "https://www.youtube.com/watch?v=Xt0CpwJT5yY"
