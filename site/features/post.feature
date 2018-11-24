@@ -38,6 +38,7 @@ feature: Publicar um post
 
   Scenario: Criando post em branco
     Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
     When eu clico no botao Publicar sem preencher nenhum campo
     Then eu vejo um erro de campos invalidos
 
@@ -57,4 +58,11 @@ feature: Publicar um post
     And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
     When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
     And eu não preencho os campos do titulo e do texto
+    Then eu vejo um erro de campos invalidos
+
+  Scenario: Postando um titulo com menos de 4 caracteres
+    Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
+    When eu preencho o titulo "C" e o texto "C é uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
+    And clico no botao de publicar nova postagem
     Then eu vejo um erro de campos invalidos
