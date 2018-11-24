@@ -49,4 +49,12 @@ feature: Publicar um post
     And eu clico no link "https://github.com/mrjonio/rsap" da nova postagem "Link para o meu repositorio no github"
     Then eu sou redirecionado para "https://github.com/mrjonio/rsap"
 
-  
+  Scenario: Editando um post com novos dados em branco
+    Given que eu estou no mural do meu perfil
+    And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total
+        - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e
+        heranca" existe
+    And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
+    When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
+    And eu não preencho os campos do titulo e do texto
+    Then eu vejo um erro de campos invalidos
