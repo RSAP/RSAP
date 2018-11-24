@@ -24,7 +24,7 @@ feature: Publicar um post
     When eu clico em visualizar o post "Importando bibliotecas em C"
     Then surge um tela exibindo o titulo "Importando bibliotecas em C", texto "As bibliotecas em C são utilizadas da seguinte maneira:
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
-        #include <NomeDaBiblioteca.h>" e comentarios do post
+        ;;lang=c<br> #include <NomeDaBiblioteca.h>" e comentarios do post
 
   Scenario: Editando uma postagem
     Given que eu estou no mural do meu perfil
