@@ -83,3 +83,13 @@ feature: Publicar um post
     And clico no botao de selecionar
     And clico no botao de publicar nova postagem
     Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
+
+  Scenario: Postando arquivos do computador
+    Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
+    When eu preencho o titulo "Erro comum do rails"
+    And clico no botao de enviar imagem do computador
+    And seleciono o arquivo "..\site\img\erro.txt"
+    And clico no botao de selecionar
+    And clico no botao de publicar nova postagem
+    Then eu vejo que um erro de extensao de arquivo invalido
