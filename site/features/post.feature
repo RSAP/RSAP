@@ -5,13 +5,14 @@ feature: Publicar um post
 
   Scenario: Criando uma nova postagem
     Given que eu estou no mural do meu perfil
-    When eu preencho o titulo "Exemplo de classe em Java" e o texto "public class Exemplo{ public int atributo}"
+    And eu clico no botao novo post
+    When eu preencho o titulo "Exemplo de classe em Java" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
     And clico no botao de publicar nova postagem
     Then eu vejo que o post "Exemplo de classe em Java" foi publicado no meu mural com a devida formatacao
 
   Scenario: Apagando uma postagem
     Given que eu estou no mural do meu perfil
-    And a postagem com titulo "Soma em assembly" e o texto ".text add $t0, $t1, $t2" existe
+    And a postagem com titulo "Soma em assembly" e o texto ";;lang=asm6502<br> .text add $t0, $t1, $t2" existe
     When eu clico no botao deletar a postagem "Soma em assembly"
     Then a postagem "Soma em assembly" foi deletada e sumiu automaticamente do meu mural
 
@@ -19,7 +20,7 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     And a postagem com titulo "Importando bibliotecas em C" e o texto "As bibliotecas em C são utilizadas da seguinte maneira:
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
-        #include <NomeDaBiblioteca.h>" existe
+        ;;lang=c<br> #include <NomeDaBiblioteca.h>" existe
     When eu clico em visualizar o post "Importando bibliotecas em C"
     Then surge um tela exibindo o titulo "Importando bibliotecas em C", texto "As bibliotecas em C são utilizadas da seguinte maneira:
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
@@ -39,3 +40,13 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     When eu clico no botao Publicar sem preencher nenhum campo
     Then eu vejo um erro de campos invalidos
+
+  Scenario: Postando um link
+    Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
+    When eu preencho o titulo "Link para o meu repositorio no github" e o texto "https://github.com/mrjonio/rsap"
+    And clico no botao de publicar nova postagem
+    And eu clico no link "https://github.com/mrjonio/rsap" da nova postagem "Link para o meu repositorio no github"
+    Then eu sou redirecionado para "https://github.com/mrjonio/rsap"
+
+  
