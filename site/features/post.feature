@@ -66,3 +66,10 @@ feature: Publicar um post
     When eu preencho o titulo "C" e o texto "C é uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
     And clico no botao de publicar nova postagem
     Then eu vejo um erro de campos invalidos
+
+  Scenario: Postando um video do youtube
+    Given que eu estou no mural do meu perfil
+    And eu clico no botao novo post
+    When eu preencho o titulo "Video tutorial: exceptions em Java" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg"
+    And clico no botao de publicar nova postagem
+    Then eu vejo que o post "Video tutorial: exceptions em Java" possui um player do video "https://www.youtube.com/watch?v=ld2C4GcAtsg"
