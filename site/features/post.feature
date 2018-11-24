@@ -109,3 +109,13 @@ feature: Publicar um post
       When eu clico em visualizar o post "Java eh a melhor linguagem de programacao"
       Then surge um tela exibindo o titulo "Java eh a melhor linguagem de programacao",
            texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao" e comentarios do post
+
+    Scenario: Editar video de um post
+      Given que eu estou no mural do meu perfil
+      And a postagem com titulo "Programacao dinamica" e o video "https://www.youtube.com/watch?v=ZprpEfLCIfk "" existe
+      And eu aperto em visualizar o post "Programacao dinamica"
+      When eu clico no botao de editar o post "Programacao dinamica"
+      And eu preencho os campos do titulo com "Programacao dinamica (Atualizado)"
+          e o texto com "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
+      Then eu vejo que o post "Programacao dinamica" foi atualizado para o novo titulo "Programacao dinamica (Atualizado)"
+           e o novo video "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
