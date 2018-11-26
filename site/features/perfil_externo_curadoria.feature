@@ -40,3 +40,11 @@ feature: Link para outros perfis
     When eu busco pelo perfil externo pelo nome "Github"
     Then eu sou redirecionado para uma pagina mostrando o nome do perfil "Github" a descricao do perfil "Link para o meu perfil do github"
         e o link do perfil "https://github.com/mrjonio"
+
+  Scenario: Adicionando perfil externo sem nome
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    When eu clico em adicionar novo perfil externo
+    And preencho os campos de descricao com "Link para o meu perfil do facebook"
+        e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
+    And clico em salvar perfil externo
+    Then eu vejo uma mensagem de erro campos invalidos
