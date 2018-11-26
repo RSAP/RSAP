@@ -48,3 +48,11 @@ feature: Link para outros perfis
         e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
     Then eu vejo uma mensagem de erro campos invalidos
+
+  Scenario: Adicionando perfil externo sem link
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    When eu clico em adicionar novo perfil externo
+    And preencho os campos de nome com "Facebook" descricao com "Link para o meu perfil do facebook"
+        e nao preencho o campo de link
+    And clico em salvar perfil externo
+    Then eu vejo uma mensagem de erro campos invalidos
