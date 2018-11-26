@@ -13,7 +13,7 @@ feature: Link para outros perfis
     Then eu vejo que o perfil externo com nome "Facebook" com descricao "Link para o meu perfil do facebook"
         e com o link "https://www.facebook.com/junior.escott" foi adicionado ao meus perfis externos
 
-  Scenario: Removendo um perfil externo
+  Scenario: Removendo um perfil externo existente
     Given que eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio"
@@ -21,3 +21,14 @@ feature: Link para outros perfis
     And clico no botao de remover perfil externo do perfil externo com nome "Github"
     Then eu vejo que o perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio" foi removido da area de perfis externos do meu perfil automaticamente
+
+  Scenario: Editando um perfil externo existente
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    And eu possuo um perfil externo com nome "Twitter" com descricao "Link para o meu perfil do twitter"
+      e com o link "https://github.com/mrjonio"
+    When eu busco pelo perfil externo pelo nome "Twitter"
+    And clico no botao de editar perfil externo do perfil externo "Twitter"
+    And preencho os campos de nome com nome "Twitter" de descricao com "Link para o meu perfil do twitter (Atualizado)"
+        e de link com o link "https://twitter.com/supremejuniorsk"
+    And clico no botar de salvar
+    Then eu percebo que o perfil externo "Twitter" foi atualizado com a nova descricao e o novo link
