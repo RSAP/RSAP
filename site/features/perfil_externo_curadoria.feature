@@ -63,3 +63,14 @@ feature: Link para outros perfis
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
     Then eu vejo uma mensagem de erro campos invalidos
+
+  Scenario: Editando perfil externo com nome invalido
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
+        e com o link "https://github.com/mrjonio"
+    When eu busco pelo perfil externo pelo nome "Github"
+    And clico no botao de editar perfil externo do perfil externo "Github"
+    And preencho os campos de descricao com "Link para o meu perfil do facebook"
+        e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
+    And clico em salvar perfil externo
+    Then eu vejo uma mensagem de erro campos invalidos
