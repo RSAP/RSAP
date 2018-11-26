@@ -32,3 +32,11 @@ feature: Link para outros perfis
         e de link com o link "https://twitter.com/supremejuniorsk"
     And clico no botar de salvar
     Then eu percebo que o perfil externo "Twitter" foi atualizado com a nova descricao e o novo link
+
+  Scenario: Buscando um perfil externo pelo nome
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
+        e com o link "https://github.com/mrjonio"
+    When eu busco pelo perfil externo pelo nome "Github"
+    Then eu sou redirecionado para uma pagina mostrando o nome do perfil "Github" a descricao do perfil "Link para o meu perfil do github"
+        e o link do perfil "https://github.com/mrjonio"
