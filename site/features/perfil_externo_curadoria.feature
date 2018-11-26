@@ -56,3 +56,10 @@ feature: Link para outros perfis
         e nao preencho o campo de link
     And clico em salvar perfil externo
     Then eu vejo uma mensagem de erro campos invalidos
+
+  Scenario: Adicionando perfil externo em branco
+    Given que eu estou na aba de perfis externos do meu perfil da rede social
+    When eu clico em adicionar novo perfil externo
+    And eu nao preencho nenhum dos campos
+    And clico em salvar perfil externo
+    Then eu vejo uma mensagem de erro campos invalidos
