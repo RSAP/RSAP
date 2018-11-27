@@ -51,8 +51,8 @@ Feature: Usuario
 		And eu clico em registrar usuario
 		Then eu devo ver que o meu email eh invalido
 
-	Scenario: Erro ao registrar usuario com email já existente no sistema
-		Given Exite um usuario registrado com o email "matheus@email.com"		
+	Scenario: Erro ao registrar usuario com email ja existente no sistema
+		Given Exite um usuario registrado com o email "matheus@email.com"
 		When eu estou na pagina de registro
 		And eu preencho os campos de nome com "Outro Matheus", email com "matheus@email.com", senha com "senha muito dificil", confirmacao de senha com "senha muito dificil", descricao com "Ele nao era ele e so"
 		And eu clico em registrar usuario
