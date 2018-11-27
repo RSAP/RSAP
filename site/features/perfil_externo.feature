@@ -17,7 +17,7 @@ feature: Perfis externos
     Given eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio"
-    When eu clico no botao de remover perfil externo do perfil externo com nome "Github"
+    When eu clico para remover o perfil externo com nome "Github"
     Then eu vejo que o perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio" foi removido da area de perfis externos do meu perfil automaticamente
 
@@ -25,7 +25,7 @@ feature: Perfis externos
     Given eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Twitter" com descricao "Link para o meu perfil do twitter"
       e com o link "https://github.com/mrjonio"
-    When eu clico no botao de editar perfil externo do perfil externo "Twitter"
+    When eu clico para editar o perfil externo com nome "Twitter"
     And preencho os campos de nome com nome "Twitter" de descricao com "Link para o meu perfil do twitter (Atualizado)"
         e de link com o link "https://twitter.com/supremejuniorsk"
     And clico no botar de salvar
@@ -58,7 +58,7 @@ feature: Perfis externos
     Given eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio"
-    When eu clico no botao de editar perfil externo do perfil externo "Github"
+    When eu clico para editar o perfil externo com nome "Github"
     And preencho os campos de descricao com "Link para o meu perfil do facebook"
         e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
@@ -68,7 +68,7 @@ feature: Perfis externos
     Given eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio"
-    When eu clico no botao de editar perfil externo do perfil externo "Github"
+    When eu clico para editar o perfil externo com nome "Github"
     And preencho os campos de nome com "Github (novo)" com "Link para o meu novo perfil do Github"
         e nao preencho o campo de link
     And clico em salvar perfil externo
@@ -78,21 +78,21 @@ feature: Perfis externos
     Given eu estou na aba de perfis externos do meu perfil da rede social
     And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
         e com o link "https://github.com/mrjonio"
-    When eu clico no botao de editar perfil externo do perfil externo "Github"
+    When eu clico para editar o perfil externo com nome "Github"
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
     Then eu vejo uma mensagem de erro campos invalidos
 
-  Scenario: Editando um perfil externo de um perfil de outro usuario
+  Scenario: Editando um perfil externo de outro usuario
     Given eu estou no mural do meu perfil
     And o perfil do usuario "Mateus Baltazar" existe
     When eu tento editar o perfil externo do perfil do usuario "Mateus Baltazar"
     Then eu vejo uma mensagem de erro acesso negado
 
-  Scenario: Excluido um perfil externo de um perfil de outro usuario
+  Scenario: Excluido um perfil externo de outro usuario
     Given eu estou no mural do meu perfil
     And o perfil do usuario "Mateus Baltazar" existe
-    When eu tento excluir o perfil externo do perfil do usuario "Mateus Baltazar"
+    When eu tento excluir o perfil externo do usuario "Mateus Baltazar"
     Then eu vejo uma mensagem de erro acesso negado
 
   Scenario: Acessando perfil externo de um perfil amigo
@@ -102,8 +102,8 @@ feature: Perfis externos
     And o perfil do usuario "Mateus Baltazar" possui um perfil externo com nome "Github"
     When eu acesso o perfil do usuario "Mateus Baltazar"
     And clico em perfis externos do perfil do usuario "Mateus Baltazar"
-    And eu clico em visualizar o perfil externo com nome "Github" do perfil do usuario "Mateus Baltazar"
-    Then eu vejo o perfil externo externo de nome "Github" do perfil do usuario "Mateus Baltzar"
+    And eu clico em visualizar o perfil externo com nome "Github" do usuario "Mateus Baltazar"
+    Then eu vejo o perfil externo externo de nome "Github" do usuario "Mateus Baltzar"
 
   Scenario: Editando perfil externo de um perfil inexistente
     Given eu estou no mural do meu perfil
@@ -112,17 +112,19 @@ feature: Perfis externos
 
   Scenario: Excluindo perfil externo de um perfil inexistente
     Given eu estou no mural do meu perfil
-    When eu tento excluir o perfil externo do perfil de um usuario que nao existe
+    When eu tento excluir o perfil externo de um usuario que nao existe
     Then eu vejo uma mensagem de erro usuario inexistente
 
   Scenario: Editar perfil externo sem estar logado na rede social
     Given eu estou na pagina inicial da rede
+    And eu nao estou logado em meu perfil da rede social
     And o perfil do usuario "Carlos Antonio" esta cadastrado
-    When eu tento editar o perfil externo do perfil do usuario "Carlos Antonio"
+    When eu tento editar o perfil externo do usuario "Carlos Antonio"
     Then eu sou redirecionado para a pagina de login da rede
 
   Scenario: Excluir perfil externo sem estar logado na rede social
     Given eu estou na pagina inicial da rede social
+    And eu nao estou logado em meu perfil da rede social
     And o perfil do usuario "Carlos Antonio" esta cadastrado
-    When eu tento excluir o perfil externo do perfil do usuario "Carlos Antonio"
+    When eu tento excluir o perfil externo do usuario "Carlos Antonio"
     Then eu sou redirecionado para a pagina de login da rede
