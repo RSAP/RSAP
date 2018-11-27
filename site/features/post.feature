@@ -7,14 +7,15 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Exemplo de classe em Java" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
-    And clico no botao de publicar nova postagem
-    Then eu vejo que o post "Exemplo de classe em Java" foi publicado no meu mural com a devida formatacao
+    And eu clico no botao de publicar nova postagem
+    Then eu vejo que o post "Exemplo de classe em Java" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
+         foi publicado no meu mural com a devida formatacao
 
   Scenario: Apagando uma postagem
     Given que eu estou no mural do meu perfil
     And a postagem com titulo "Soma em assembly" e o texto ";;lang=asm6502<br> .text add $t0, $t1, $t2" existe
-    When eu clico no botao deletar a postagem "Soma em assembly"
-    Then a postagem "Soma em assembly" é deletada e some automaticamente do meu mural
+    When eu clico no botao deletar a postagem com o titulo "Soma em assembly"
+    Then a postagem com o titulo "Soma em assembly" eh deletada e some automaticamente do meu mural
 
   Scenario: Visualizando uma postagem
     Given que eu estou no mural do meu perfil
@@ -22,7 +23,7 @@ feature: Publicar um post
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
         ;;lang=c<br> #include <NomeDaBiblioteca.h>" existe
     When eu clico em visualizar o post "Importando bibliotecas em C"
-    Then surge um tela exibindo o titulo "Importando bibliotecas em C", texto "As bibliotecas em C são utilizadas da seguinte maneira:
+    Then eu vejo uma tela exibindo o titulo "Importando bibliotecas em C", texto "As bibliotecas em C são utilizadas da seguinte maneira:
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
         ;;lang=c<br> #include <NomeDaBiblioteca.h>" e comentarios do post
 
@@ -46,7 +47,7 @@ feature: Publicar um post
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Link para o meu repositorio no github" e o texto "https://github.com/mrjonio/rsap"
-    And clico no botao de publicar nova postagem
+    And eu clico no botao de publicar nova postagem
     And eu clico no link "https://github.com/mrjonio/rsap" da nova postagem "Link para o meu repositorio no github"
     Then eu sou redirecionado para "https://github.com/mrjonio/rsap"
 
@@ -57,48 +58,48 @@ feature: Publicar um post
         heranca" existe
     And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
     When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
-    And eu não preencho os campos do titulo e do texto
+    And eu nao preencho os campos do titulo e do texto
     Then eu vejo um erro de campos invalidos
 
   Scenario: Postando um titulo com menos de 4 caracteres
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "C" e o texto "C é uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
-    And clico no botao de publicar nova postagem
+    And eu clico no botao de publicar nova postagem
     Then eu vejo um erro de campos invalidos
 
   Scenario: Postando um video do youtube
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Video tutorial: exceptions em Java" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg"
-    And clico no botao de publicar nova postagem
+    And eu clico no botao de publicar nova postagem
     Then eu vejo que o post "Video tutorial: exceptions em Java" possui um player do video "https://www.youtube.com/watch?v=ld2C4GcAtsg"
 
   Scenario: Postando uma imagem do computador
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Erro comum do rails"
-    And clico no botao de enviar imagem do computador
-    And seleciono a imagem "..\site\img\erro.png"
-    And clico no botao de selecionar
-    And clico no botao de publicar nova postagem
+    And eu clico no botao de enviar imagem do computador
+    And eu seleciono a imagem "..\site\img\erro.png"
+    And eu clico no botao de selecionar
+    And eu clico no botao de publicar nova postagem
     Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
 
   Scenario: Postando arquivos do computador
     Given que eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Erro comum do rails"
-    And clico no botao de enviar imagem do computador
-    And seleciono o arquivo "..\site\img\erro.txt"
-    And clico no botao de selecionar
-    And clico no botao de publicar nova postagem
+    And eu clico no botao de enviar imagem do computador
+    And eu seleciono o arquivo "..\site\img\erro.txt"
+    And eu clico no botao de selecionar
+    And eu clico no botao de publicar nova postagem
     Then eu vejo que um erro de extensao de arquivo invalido
 
     Scenario: Postando mais de um video do youtube
       Given que eu estou no mural do meu perfil
       And eu clico no botao novo post
       When eu preencho o titulo "Videos sobre exceptions" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg e https://www.youtube.com/watch?v=Xt0CpwJT5yY"
-      And clico no botao de publicar nova postagem
+      And eu clico no botao de publicar nova postagem
       Then eu vejo que o post "Video tutorial: exceptions em Java" possui dois links "https://www.youtube.com/watch?v=ld2C4GcAtsg"
            e "https://www.youtube.com/watch?v=Xt0CpwJT5yY"
 
@@ -107,7 +108,7 @@ feature: Publicar um post
       And o mural dele possui o post com titulo "Java eh a melhor linguagem de programacao"
           e o texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao"
       When eu clico em visualizar o post "Java eh a melhor linguagem de programacao"
-      Then surge um tela exibindo o titulo "Java eh a melhor linguagem de programacao",
+      Then eu vejo uma tela exibindo o titulo "Java eh a melhor linguagem de programacao",
            texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao" e comentarios do post
 
     Scenario: Editar video de um post

@@ -1,4 +1,4 @@
-feature: Link para outros perfis
+feature: Perfis externos
   As a usuario da rede social
   I want to linkar ao meu perfil da rede social, outros perfis provenientes
             de outras redes sociais ou sites
