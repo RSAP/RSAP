@@ -4,7 +4,7 @@ feature: Publicar um post
   So that eu precise apenas preencher as informacoes da postagem
 
   Scenario: Criando uma nova postagem
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Exemplo de classe em Java" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
     And eu clico no botao de publicar nova postagem
@@ -12,13 +12,13 @@ feature: Publicar um post
          foi publicado no meu mural com a devida formatacao
 
   Scenario: Apagando uma postagem
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And a postagem com titulo "Soma em assembly" e o texto ";;lang=asm6502<br> .text add $t0, $t1, $t2" existe
     When eu clico no botao deletar a postagem com o titulo "Soma em assembly"
     Then a postagem com o titulo "Soma em assembly" eh deletada e some automaticamente do meu mural
 
   Scenario: Visualizando uma postagem
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And a postagem com titulo "Importando bibliotecas em C" e o texto "As bibliotecas em C são utilizadas da seguinte maneira:
         Digita-se '#include' e depois, entre  <> coloca-se o nome da biblioteca seguido de um .h exemplo:
         ;;lang=c<br> #include <NomeDaBiblioteca.h>" existe
@@ -28,7 +28,7 @@ feature: Publicar um post
         ;;lang=c<br> #include <NomeDaBiblioteca.h>" e comentarios do post
 
   Scenario: Editando uma postagem
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And a postagem com titulo "Comandos do rails" e o texto "Rodar servidor: bin/rails server" existe
     And eu aperto em visualizar o post "Comandos do rails"
     When eu clico no botao de editar o post "Comandos do rails"
@@ -38,13 +38,13 @@ feature: Publicar um post
         bin/rails server, para usuarios do windows o comando eh: ruby bin/rails server"
 
   Scenario: Criando post em branco
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu clico no botao Publicar sem preencher nenhum campo
     Then eu vejo um erro de campos invalidos
 
   Scenario: Postando um link
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Link para o meu repositorio no github" e o texto "https://github.com/mrjonio/rsap"
     And eu clico no botao de publicar nova postagem
@@ -52,7 +52,7 @@ feature: Publicar um post
     Then eu sou redirecionado para "https://github.com/mrjonio/rsap"
 
   Scenario: Editando um post com novos dados em branco
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total
         - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e
         heranca" existe
@@ -62,21 +62,21 @@ feature: Publicar um post
     Then eu vejo um erro de campos invalidos
 
   Scenario: Postando um titulo com menos de 4 caracteres
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
-    When eu preencho o titulo "C" e o texto "C é uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
+    When eu preencho o titulo "C" e o texto "C eh uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
     And eu clico no botao de publicar nova postagem
     Then eu vejo um erro de campos invalidos
 
   Scenario: Postando um video do youtube
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Video tutorial: exceptions em Java" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg"
     And eu clico no botao de publicar nova postagem
     Then eu vejo que o post "Video tutorial: exceptions em Java" possui um player do video "https://www.youtube.com/watch?v=ld2C4GcAtsg"
 
   Scenario: Postando uma imagem do computador
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Erro comum do rails"
     And eu clico no botao de enviar imagem do computador
@@ -86,7 +86,7 @@ feature: Publicar um post
     Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
 
   Scenario: Postando arquivos do computador
-    Given que eu estou no mural do meu perfil
+    Given eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu preencho o titulo "Erro comum do rails"
     And eu clico no botao de enviar imagem do computador
@@ -96,7 +96,7 @@ feature: Publicar um post
     Then eu vejo que um erro de extensao de arquivo invalido
 
     Scenario: Postando mais de um video do youtube
-      Given que eu estou no mural do meu perfil
+      Given eu estou no mural do meu perfil
       And eu clico no botao novo post
       When eu preencho o titulo "Videos sobre exceptions" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg e https://www.youtube.com/watch?v=Xt0CpwJT5yY"
       And eu clico no botao de publicar nova postagem
@@ -104,7 +104,7 @@ feature: Publicar um post
            e "https://www.youtube.com/watch?v=Xt0CpwJT5yY"
 
     Scenario: Visualizando posts de outro usuario
-      Given que eu estou no perfil do usuario "Carlos Antonio"
+      Given eu estou no perfil do usuario "Carlos Antonio"
       And o mural dele possui o post com titulo "Java eh a melhor linguagem de programacao"
           e o texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao"
       When eu clico em visualizar o post "Java eh a melhor linguagem de programacao"
@@ -112,8 +112,8 @@ feature: Publicar um post
            texto "Java possui inumeras ferramentas, que a tornam a melhor linguagem de programacao" e comentarios do post
 
     Scenario: Editar video de um post
-      Given que eu estou no mural do meu perfil
-      And a postagem com titulo "Programacao dinamica" e o video "https://www.youtube.com/watch?v=ZprpEfLCIfk "" existe
+      Given eu estou no mural do meu perfil
+      And a postagem com titulo "Programacao dinamica" e o video "https://www.youtube.com/watch?v=ZprpEfLCIfk" existe
       And eu aperto em visualizar o post "Programacao dinamica"
       When eu clico no botao de editar o post "Programacao dinamica"
       And eu preencho os campos do titulo com "Programacao dinamica (Atualizado)"
@@ -122,7 +122,7 @@ feature: Publicar um post
            e o novo video "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
 
     Scenario: Editando um post com novos titulo invalido
-      Given que eu estou no mural do meu perfil
+      Given eu estou no mural do meu perfil
       And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total
           - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e
             heranca" existe
