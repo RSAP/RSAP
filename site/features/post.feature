@@ -121,7 +121,7 @@ feature: Publicar um post
       Then eu vejo que o post "Programacao dinamica" foi atualizado para o novo titulo "Programacao dinamica (Atualizado)"
            e o novo video "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
 
-    Scenario: Editando um post com novos titulo invalido
+    Scenario: Editando um post com novo titulo invalido
       Given eu estou no mural do meu perfil
       And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total
           - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e
