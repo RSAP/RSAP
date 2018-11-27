@@ -11,6 +11,6 @@ O **RSAP** foi também idealizado para utilização em conjunto com as maratonas
 
 
 #### Integrantes do time:
-   - Carlos Ântônio
+   - Carlos Antônio
    - Mateus Baltazar
    - Matheus Machado
