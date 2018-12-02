@@ -1,49 +1,40 @@
 Feature: Perfis externos
   As a usuario da rede social
-  I want to conectar ao meu perfil da rede social, outros perfis provenientes
-            de outras redes sociais ou sites
+  I want to conectar ao meu perfil da rede social, outros perfis provenientes de outras redes sociais ou sites
   So that eu possa melhorar a descricao sobre mim na rede social
 
   Scenario: Adicionando perfil externo
     Given eu estou na aba de perfis externos do meu perfil da rede social
     When eu clico em adicionar novo perfil externo
-    And preencho os campos de nome com nome "Facebook" de descricao com "Link para o meu perfil do facebook"
-        e de link com o link "https://www.facebook.com/junior.escott"
+    And preencho os campos de nome com nome "Facebook" de descricao com "Link para o meu perfil do facebook" e de link com o link "https://www.facebook.com/junior.escott"
     And clico em salvar perfil externo
-    Then eu vejo que o perfil externo com nome "Facebook" com descricao "Link para o meu perfil do facebook"
-        e com o link "https://www.facebook.com/junior.escott" foi adicionado ao meus perfis externos
+    Then eu vejo que o perfil externo com nome "Facebook" com descricao "Link para o meu perfil do facebook" e com o link "https://www.facebook.com/junior.escott" foi adicionado ao meus perfis externos
 
   Scenario: Removendo um perfil externo existente
     Given eu estou na aba de perfis externos do meu perfil da rede social
-    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
-        e com o link "https://github.com/mrjonio"
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github" e com o link "https://github.com/mrjonio"
     When eu clico para remover o perfil externo com nome "Github"
-    Then eu vejo que o perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
-        e com o link "https://github.com/mrjonio" foi removido da area de perfis externos do meu perfil automaticamente
+    Then eu vejo que o perfil externo com nome "Github" com descricao "Link para o meu perfil do github" e com o link "https://github.com/mrjonio" foi removido da area de perfis externos do meu perfil automaticamente
 
   Scenario: Editando um perfil externo existente
     Given eu estou na aba de perfis externos do meu perfil da rede social
-    And eu possuo um perfil externo com nome "Twitter" com descricao "Link para o meu perfil do twitter"
-      e com o link "https://github.com/mrjonio"
+    And eu possuo um perfil externo com nome "Twitter" com descricao "Link para o meu perfil do twitter" e com o link "https://github.com/mrjonio"
     When eu clico para editar o perfil externo com nome "Twitter"
-    And preencho os campos de nome com nome "Twitter" de descricao com "Link para o meu perfil do twitter (Atualizado)"
-        e de link com o link "https://twitter.com/supremejuniorsk"
+    And preencho os campos de nome com nome "Twitter" de descricao com "Link para o meu perfil do twitter (Atualizado)" e de link com o link "https://twitter.com/supremejuniorsk"
     And clico no botar de salvar
     Then eu percebo que o perfil externo "Twitter" foi atualizado com a nova descricao e o novo link
 
   Scenario: Adicionando perfil externo sem nome
     Given eu estou na aba de perfis externos do meu perfil da rede social
     When eu clico em adicionar novo perfil externo
-    And preencho os campos de descricao com "Link para o meu perfil do facebook"
-        e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
+    And preencho os campos de descricao com "Link para o meu perfil do facebook" e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
 	Then eu vejo a mensagem de erro "Nome em branco"
 
   Scenario: Adicionando perfil externo sem link
     Given eu estou na aba de perfis externos do meu perfil da rede social
     When eu clico em adicionar novo perfil externo
-    And preencho os campos de nome com "Facebook" descricao com "Link para o meu perfil do facebook"
-        e nao preencho o campo de link
+    And preencho os campos de nome com "Facebook" descricao com "Link para o meu perfil do facebook" e nao preencho o campo de link
     And clico em salvar perfil externo
 	Then eu vejo a mensagem de erro "Link em branco"
 
@@ -57,28 +48,23 @@ Feature: Perfis externos
 
   Scenario: Editando perfil externo com nome invalido
     Given eu estou na aba de perfis externos do meu perfil da rede social
-    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
-        e com o link "https://github.com/mrjonio"
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github" e com o link "https://github.com/mrjonio"
     When eu clico para editar o perfil externo com nome "Github"
-    And preencho os campos de descricao com "Link para o meu perfil do facebook"
-        e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
+    And preencho os campos de descricao com "Link para o meu perfil do facebook" e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
 	Then eu vejo a mensagem de erro "Nome invalido"
 
   Scenario: Editando perfil externo com link invalido
     Given eu estou na aba de perfis externos do meu perfil da rede social
-    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
-        e com o link "https://github.com/mrjonio"
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github" e com o link "https://github.com/mrjonio"
     When eu clico para editar o perfil externo com nome "Github"
-    And preencho os campos de nome com "Github (novo)" com "Link para o meu novo perfil do Github"
-        e nao preencho o campo de link
+    And preencho os campos de nome com "Github (novo)" com "Link para o meu novo perfil do Github" e nao preencho o campo de link
     And clico em salvar perfil externo
 	Then eu vejo a mensagem de erro "Link invalido"
 
   Scenario: Editando perfil externo com novos dados em branco
     Given eu estou na aba de perfis externos do meu perfil da rede social
-    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github"
-        e com o link "https://github.com/mrjonio"
+    And eu possuo um perfil externo com nome "Github" com descricao "Link para o meu perfil do github" e com o link "https://github.com/mrjonio"
     When eu clico para editar o perfil externo com nome "Github"
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
