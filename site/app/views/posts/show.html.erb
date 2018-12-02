@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @post.titulo %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @post.categoria %>
+</p>
+
+<p>
+  <strong>Texto:</strong>
+  <%= @post.texto %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post), id: "edita-#{@post.titulo}" %> |
+<%= link_to 'Back', '/home' %>

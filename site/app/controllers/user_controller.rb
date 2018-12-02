@@ -9,6 +9,16 @@ class UserController < ApplicationController
       @user = User.find(params[:id])
    end
 
+   def home
+	   @user = User.find(current_user.id)
+	   @posts =Post.where(user_id: current_user.id)
+   end
+
+   def mural
+	   @user = User.find(params[:id])
+	   @posts = Post.where(user_id: params[:id])
+   end
+
    private
 
    # Use strong_parameters for attribute whitelisting
