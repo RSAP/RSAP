@@ -1,4 +1,4 @@
-feature: Perfis externos
+Feature: Perfis externos
   As a usuario da rede social
   I want to conectar ao meu perfil da rede social, outros perfis provenientes
             de outras redes sociais ou sites
@@ -37,7 +37,7 @@ feature: Perfis externos
     And preencho os campos de descricao com "Link para o meu perfil do facebook"
         e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Nome em branco"
 
   Scenario: Adicionando perfil externo sem link
     Given eu estou na aba de perfis externos do meu perfil da rede social
@@ -45,14 +45,15 @@ feature: Perfis externos
     And preencho os campos de nome com "Facebook" descricao com "Link para o meu perfil do facebook"
         e nao preencho o campo de link
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Adicionando perfil externo em branco
     Given eu estou na aba de perfis externos do meu perfil da rede social
     When eu clico em adicionar novo perfil externo
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Nome em branco"
+	And eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Editando perfil externo com nome invalido
     Given eu estou na aba de perfis externos do meu perfil da rede social
@@ -62,7 +63,7 @@ feature: Perfis externos
     And preencho os campos de descricao com "Link para o meu perfil do facebook"
         e de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Nome invalido"
 
   Scenario: Editando perfil externo com link invalido
     Given eu estou na aba de perfis externos do meu perfil da rede social
@@ -72,7 +73,7 @@ feature: Perfis externos
     And preencho os campos de nome com "Github (novo)" com "Link para o meu novo perfil do Github"
         e nao preencho o campo de link
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Link invalido"
 
   Scenario: Editando perfil externo com novos dados em branco
     Given eu estou na aba de perfis externos do meu perfil da rede social
@@ -81,19 +82,20 @@ feature: Perfis externos
     When eu clico para editar o perfil externo com nome "Github"
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
-    Then eu vejo uma mensagem de erro campos invalidos
+	Then eu vejo a mensagem de erro "Nome em branco"
+	And eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Editando um perfil externo de outro usuario
     Given eu estou no mural do meu perfil
     And o perfil do usuario "Mateus Baltazar" existe
     When eu tento editar o perfil externo do perfil do usuario "Mateus Baltazar"
-    Then eu vejo uma mensagem de erro acesso negado
+	Then eu vejo a mensagem de erro "Acesso negado"
 
   Scenario: Excluido um perfil externo de outro usuario
     Given eu estou no mural do meu perfil
     And o perfil do usuario "Mateus Baltazar" existe
     When eu tento excluir o perfil externo do usuario "Mateus Baltazar"
-    Then eu vejo uma mensagem de erro acesso negado
+	Then eu vejo a mensagem de erro "Acesso negado"
 
   Scenario: Acessando perfil externo de um perfil amigo
     Given eu estou no mural do meu perfil
@@ -108,12 +110,12 @@ feature: Perfis externos
   Scenario: Editando perfil externo de um perfil inexistente
     Given eu estou no mural do meu perfil
     When eu tento editar o perfil externo do perfil de um usuario que nao existe
-    Then eu vejo uma mensagem de erro usuario inexistente
+	Then eu vejo a mensagem de erro "Perfil inexistente"
 
   Scenario: Excluindo perfil externo de um perfil inexistente
     Given eu estou no mural do meu perfil
     When eu tento excluir o perfil externo de um usuario que nao existe
-    Then eu vejo uma mensagem de erro usuario inexistente
+	Then eu vejo a mensagem de erro "Perfil inexistente"
 
   Scenario: Editar perfil externo sem estar logado na rede social
     Given eu estou na pagina inicial da rede
