@@ -1,8 +1,10 @@
 <h1>Pages#home</h1>
 <% if current_user %>
-<p>Teu nick: <%= current_user.getNick %></p>
-<%= link_to 'Deslogar', destroy_user_session_path, method: :delete %>
+   <p>Teu nick: <%= current_user.getNick %></p>
+   <%= image_tag current_user.avatar.url(:thumb) %>
+   <br>
+   <%= link_to 'Deslogar', destroy_user_session_path, method: :delete %>
 <% else %>
-<%= link_to "Registrar-se", new_user_registration_path %>
-<%= link_to "Logar", new_user_session_path %>
+   <%= link_to "Registrar-se", new_user_registration_path %>
+   <%= link_to "Logar", new_user_session_path %>
 <% end %>
