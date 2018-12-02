@@ -1,3 +1,4 @@
+@AmizadesTeste
 Feature: Amizades
 	As a usuario
 	I want to ser capaz de encontrar o perfil de outros usuarios para gerar relacionamentos e ver informacoes

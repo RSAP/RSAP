@@ -1,3 +1,4 @@
+@PerfilExternoTeste
 Feature: Perfis externos
   As a usuario da rede social
   I want to conectar ao meu perfil da rede social, outros perfis provenientes de outras redes sociais ou sites
