@@ -1,103 +1,67 @@
-Given("Eu estou na pagina inicial") do
+Given("eu estou na pagina inicial") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu clico para registrar") do
+When("eu clico para registrar") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu estou na pagina de registro") do
+When("eu estou na pagina de registro") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu preencho o campo de nome com {string}") do |nome|
+When("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4, string5|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu preencho o campo de email com {string}") do |email|
+When("eu clico em registrar usuario") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu preencho o campo de senha com {string}") do |senha|
+Then("eu devo ver que o meu registro foi bem sucedido") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu preencho o campo de confirmacao de senha com {string}") do |confirmar_senha|
+Given("eu estou na pagina de registro") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu preencho o campo de descricao com {string}") do |descricao|
+Given("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4, string5|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu clico em registrar") do
+Given("eu clico em registrar usuario") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu registro foi bem sucedido") do
+Then("eu vejo a mensagem de erro {string}") do |string|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu nome tem que ser maior que {int} caracteres") do |numChar|
+Given("eu preencho os campos de email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu nome não pode ser vazio") do
+When("eu preencho os campos de nome com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu nome tem que ser menor que {int} caracteres") do |numChar|
+Given("Exite um usuario registrado com o email {string}") do |string|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu nome não pode conter nenhum caracter especial") do
+When("eu preencho os campos de nome com {string}, email com {string}, descricao com {string}") do |string, string2, string3|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu email não pode estar em branco") do
+When("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, descricao com {string}") do |string, string2, string3, string4|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then("Eu devo ver que o meu email é invalido") do
+When("eu faco o upload de uma foto {string} para o perfil") do |string|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-When("Eu volto para a pagina de registro") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que o meu email já foi cadastrado anteriormente") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que o campo senha e o campo confirmacao entá em branco") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que eu devo confirmar minha senha") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que a minha senha tem que ter pelos menos {int} caracteres") do |numChar|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que as minhas senhas não batem") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que minhas senha não batem e não podem ter menos que {int} caracteres") do |numChar|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("Eu faço o upload de uma foto para o perfil") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("Eu faço o upload de um arquivo que não seja imagem para o perfil") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu devo ver que o formato da imagem é invalido") do
+When("eu faco o upload de um arquivo que nao seja imagem para o perfil") do
   pending # Write code here that turns the phrase above into concrete actions
 end

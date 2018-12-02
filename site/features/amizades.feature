@@ -1,3 +1,4 @@
+@AmizadesTeste
 Feature: Amizades
 	As a usuario
 	I want to ser capaz de encontrar o perfil de outros usuarios para gerar relacionamentos e ver informacoes
@@ -39,26 +40,26 @@ Feature: Amizades
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na pagina de perfil do usuario "Matheus"
 		When eu envio uma solicitacao para um usuario inexistente
-		Then eu vejo que o usuario solicitado nao existe
+		Then eu vejo a mensagem de erro "Usuario inexistente"
 
 	Scenario: Erro ao solicitar amizade a mim mesmo
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou no meu proprio perfil
 		When eu solicito amizade a mim mesmo
-		Then eu vejo que eu nao posso solicitar amizade a mim mesmo
+		Then eu vejo a mensagem de erro "Voce nao pode solicitar amizade a si mesmo"
 
 	Scenario: Erro ao cancelar solicitacao de amizade a mim mesmo
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou no meu proprio perfil
 		When eu cancelo a solicitacao de amizade a mim mesmo
-		Then eu vejo que eu nao posso cancelar uma solicitacao enviada a mim mesmo
+		Then eu vejo a mensagem de erro "Voce nao pode cancelar uma solitacao que nao existe"
 
 	Scenario: Erro ao solicitar amizade de usuario que ja eh amigo
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na pagina de perfil do usuario "Matheus"
 		When eu vejo que o usuario "Matheus" ja eh meu amigo
 		And eu envio uma solicitacao de amizade para o usuario "Matheus"
-		Then eu vejo que ja somos amigos e por isso nao foi solicitada a amizade
+		Then eu vejo a mensagem de erro "Voce nao pode solicitar amizade de alguem que ja eh seu amigo"
 
 	Scenario: Erro ao solicitar amizade novamente enquanto uma solicitacao ja esta pendente
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -66,13 +67,13 @@ Feature: Amizades
 		When eu solicito a amizade do usuario "Matheus"
 		And eu estou na pagina de perfil do usuario "Matheus"
 		And eu solicito a amizade do usuario "Matheus"
-		Then eu vejo que ja existe uma solicitacao pendente e por isso nao eh solicitado novamente
+		Then eu vejo a mensagem de erro "Voce nao pode solicitar amizade enquanto houver uma solitacao pendente"
 
 	Scenario: Erro ao cancelar solicitacao de um usuario inexistente
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu vejo minha lista de amizades
  		When eu cancelo uma solicitacao para um usuario inexistente
-		Then eu vejo que nao existe uma solicitacao para um usuario que nao existe
+		Then eu vejo a mensagem de erro "Voce nao pode cancelar uma solitacao que nao existe"
 
 	Scenario: Aceitar solicitacao de amizade
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -95,27 +96,27 @@ Feature: Amizades
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de solicitacoes de amizade para mim
 		When eu aceito um pedido de amizade feito por um usuario que nao existe
-		Then eu vejo que nao posso ser solicitado por um usuario que nao existe
+		Then eu vejo a mensagem de erro "Voce nao pode aceitar uma solitacao que nao existe"
 
 	Scenario: Erro ao aceitar solicitacao de amizade de usuario que nao solicitou
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de solicitacoes de amizade para mim
 		When eu vejo que o usuario "Matheus" nao esta na lista de solicitacoes de amizade para mim
 		And eu aceito um pedido de amizade feito pelo usuario "Matheus"
-		Then eu vejo que nao eh possivel aceitar solicitacoes inexistentes
+		Then eu vejo a mensagem de erro "Voce nao pode aceitar uma solitacao que nao existe"
 
 	Scenario: Erro ao recusar solicitacao de amizade de usuario inexistente
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de solicitacoes de amizade para mim
 		When eu recuso um pedido de amizade feito por um usuario que nao existe
-		Then eu vejo que nao posso ser solicitado por um usuario que nao existe
+		Then eu vejo a mensagem de erro "Voce nao pode recusar uma solitacao que nao existe"
 
 	Scenario: Erro ao recusar solicitacao de amizade de usuario que nao solicitou
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de solicitacoes de amizade para mim
 		When eu vejo que o usuario "Matheus" nao esta na lista de solicitacoes de amizade para mim
 		And eu recuso um pedido de amizade feito pelo usuario "Matheus"
-		Then eu vejo que nao posso ser solicitado por um usuario que nao me solicitou
+		Then eu vejo a mensagem de erro "Voce nao pode recusar uma solitacao que nao existe"
 
 	Scenario: Desfazer amizade
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -130,11 +131,11 @@ Feature: Amizades
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de amizades
 		When eu desfaco amizade com um usuario inexistente
-		Then eu vejo que nao existe amizade com usuario inexistente
+		Then eu vejo a mensagem de erro "Voce nao pode desfazer amizade com usuario que nao existe"
 
 	Scenario: Erro ao desfazer amizade com usuario que nao eh amigo
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na minha lista de amizades
 		When eu vejo que o usuario "Matheus" nao esta na minha lista de amizades
 		And eu desfaco amizade com um usuario "Matheus"
-		Then eu vejo que nao eh possivel uma vez que nao somos amigos
+		Then eu vejo a mensagem de erro "Voce nao pode desfazer amizade com usuario que nao eh seu amigo"

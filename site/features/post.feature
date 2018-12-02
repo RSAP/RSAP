@@ -1,4 +1,5 @@
-feature: Postagem
+@PostTeste
+ Feature: Postagem
   As a usuario da rede social
   I want to ter a possibilidade de fazer, apagar, editar postagens no meu perfil e visualizar postagens minhas e de amigos
   So that eu possa interagir com outros usuarios na rede social
@@ -40,7 +41,8 @@ feature: Postagem
     And eu estou no mural do meu perfil
     And eu clico no botao novo post
     When eu clico no botao Publicar sem preencher nenhum campo
-    Then eu vejo um erro de campos invalidos
+	  Then eu vejo a mensagem de erro "Titulo em branco"
+	  And eu vejo a mensagem de erro "Texto em branco"
 
   Scenario: Postando um link
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -55,10 +57,11 @@ feature: Postagem
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     And eu estou no mural do meu perfil
     And a postagem com titulo "Visibilidade de atributos em JAVA" e o texto "- public: para atributos com visibilidade total - private: para atributos com visibilidade apenas na classe e - protected: para atributos com visibilidade de pacote e heranca" existe
-    And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
-    When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
-    And eu nao preencho os campos do titulo e do texto
-    Then eu vejo um erro de campos invalidos
+    And eu aperto em visualizar o post com titulo "Visibilidade de atributos em JAVA"
+    When eu clico no botao de editar o post com titulo "Visibilidade de atributos em JAVA"
+    And eu limpo os campos do titulo e do text
+	  Then eu vejo a mensagem de erro "Titulo em branco"
+	  And eu vejo a mensagem de erro "Texto em branco"
 
   Scenario: Postando um titulo com menos de 4 caracteres
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -66,7 +69,7 @@ feature: Postagem
     And eu clico no botao novo post
     When eu preencho o titulo "C" e o texto "C eh uma linguagem de programacao bem antiga, foi dela que derivou-se o JAVA"
     And eu clico no botao de publicar nova postagem
-    Then eu vejo um erro de campos invalidos
+	  Then eu vejo a mensagem de erro "Titulo muito curto (deve ser maior que 4 caracteres)"
 
   Scenario: Postando um video do youtube
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -87,7 +90,7 @@ feature: Postagem
     And eu clico no botao de publicar nova postagem
     Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
 
-  Scenario: Postando arquivos do computador
+  Scenario: Postando arquivos que deveriam ser imagens do computador
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     And eu estou no mural do meu perfil
     And eu clico no botao novo post
@@ -96,7 +99,7 @@ feature: Postagem
     And eu seleciono o arquivo "..\site\img\erro.txt"
     And eu clico no botao de selecionar
     And eu clico no botao de publicar nova postagem
-    Then eu vejo que um erro de extensao de arquivo invalido
+	  Then eu vejo a mensagem de erro "Imagem invalida"
 
   Scenario: Postando mais de um video do youtube
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -128,4 +131,5 @@ feature: Postagem
     And eu aperto em visualizar o post "Visibilidade de atributos em JAVA"
     When eu clico no botao de editar o post "Visibilidade de atributos em JAVA"
     And eu preencho o titulo "Jav" e o texto ";;lang=java<br> public class Exemplo{ public int atributo}"
-    Then eu vejo um erro de campos invalidos
+    Then eu vejo a mensagem de erro "Titulo muito curto (deve ser maior que 4 caracteres)"
+
