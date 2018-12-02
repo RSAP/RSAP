@@ -1,0 +1,16 @@
+<h1>Meu perfil</h1>
+
+<p>ID: <%= @user.id %></p>
+<p>Nome: <%= @user.nome %></p>
+<p>Nick: <%= @user.getNick %></p>
+<p>Email: <%= @user.email %></p>
+<p>Descrição: <%= @user.descricao %></p>
+
+<!-- Se n estiver com foto, coloca uma padrão -->
+<% if @user.getAvatarThumb.split('missing').last.to_s != ".png" %>
+   <p>Foto: <%= image_tag @user.getAvatarThumb %></p>
+<%else%>
+   <div> <p>Foto: <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </div>
+<%end%>
+
+<%= link_to 'Deslogar', destroy_user_session_path, method: :delete %>
