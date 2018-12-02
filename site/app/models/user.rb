@@ -5,14 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
    #=============================
-   has_attached_file :avatar, styles: { medium: "400x400>", thumb: "80x80>" }
+   has_attached_file :avatar, styles: {
+      medium: "400x400>",
+      thumb: "80x80>"
+   }
    #, default_url: "/images/:style/missing.png"
 
    #Upload de apenas imagens (do tipo image)
    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
-   has_attached_file :avatar
    # Validate content type
    validates_attachment_content_type :avatar, content_type: /\Aimage/
    # Validate filename
@@ -27,8 +29,12 @@ class User < ApplicationRecord
       return self.email.split('@')[0].capitalize
    end
 
-   # def getAvatar
-   #    return self.avatar
-   # end
+   def getAvatarThumb
+      return self.avatar.url(:thumb)
+   end
+
+   def getAvatarMedium
+      return self.avatar.url(:medium)
+   end
 
 end

@@ -4,6 +4,11 @@ class UserController < ApplicationController
       @user = User.create(user_params)
    end
 
+   #Para view de ver perfil
+   def show
+      @user = User.find(params[:id])
+   end
+
    private
 
    # Use strong_parameters for attribute whitelisting
@@ -12,5 +17,5 @@ class UserController < ApplicationController
    def user_params
       params.require(:user).permit(:avatar)
    end
-   
+
 end
