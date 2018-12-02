@@ -5,6 +5,17 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#======================================
+#Instalações feitas depois do preparo
+#======================================
+#Sistema de Login
+gem 'devise'
+
+#Sistema de upload de imagem
+#(Requisita o ImageMagick [programa]
+gem "paperclip", "~> 6.0.0"
+#======================================
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'

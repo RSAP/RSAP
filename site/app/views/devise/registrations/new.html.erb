@@ -1,0 +1,47 @@
+<h2>Registro</h2>
+
+<!-- <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> -->
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+
+  <%= devise_error_messages! %>
+
+  <div class="field">
+     <%= f.label :nome %><br>
+     <%= f.text_field :nome, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :senha %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirme_a_senha %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+     <%= f.label :descricao %><br>
+     <%= f.text_field :descricao, autofocus: true %>
+  </div>
+
+  <!-- Upload de imagem -->
+  <div class="field">
+    <%= f.file_field :avatar %>
+  </div
+
+  <div class="actions">
+    <%= f.submit "Registrar" %>
+  </div>
+<% end %>
+<% end %>
+
+<%= render "devise/shared/links" %>
