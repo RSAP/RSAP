@@ -12,12 +12,15 @@
 
 <p>
   <strong>Texto:</strong>
-  <%= @post.texto %>
+  <div id="textoC"></div>
+  <script type="text/javascript">
+	interpretar(`<%= @post.texto.to_s %>`, "textoC")
+  </script>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @post.user %>
+  <%= @post.user.getNick %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post), id: "edita-#{@post.titulo}" %> |
