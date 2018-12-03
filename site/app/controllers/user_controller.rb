@@ -1,12 +1,24 @@
 class UserController < ApplicationController
 
    def create
+      # redirect_to new_user_registration (flash: "algo está errado!")
       @user = User.create(user_params)
+      if @user.id?
+         redirect_to root_path
+      else
+         redirect_to root_path
+         redirect_back fallback_location: root_path
+      end
    end
 
    #Para view de ver perfil
    def show
       @user = User.find(params[:id])
+   end
+
+   def erro
+      @msg = 'opa'
+      render 'erro/erro'
    end
 
    private
