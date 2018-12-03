@@ -1,27 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @post.titulo %>
-</p>
+<%= render 'post_render', post: @post %>
 
-<p>
-  <strong>Categoria:</strong>
-  <%= @post.categoria %>
-</p>
-
-<p>
-  <strong>Texto:</strong>
-  <div id="textoC"></div>
-  <script type="text/javascript">
-	interpretar(`<%= @post.texto.to_s %>`, "textoC")
-  </script>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user.getNick %>
-</p>
 
 <%= link_to 'Edit', edit_post_path(@post), id: "edita-#{@post.titulo}" %> |
 <%= link_to 'Back', '/home' %>

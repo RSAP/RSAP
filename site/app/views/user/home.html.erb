@@ -1,13 +1,12 @@
-<%= link_to 'New Post', new_post_path %><br><br>
+<%= link_to 'New Post', new_post_path %><br>
 
 <% @posts.each do |post| %>
-  <tr>
-	<td><span>titulo: </span><%= post.titulo %></td><br>
-	<td><span>categoria: </span><%= post.categoria %></td><br>
-	<td><span>texto: </span><%= post.texto %></td><br>
-	<td><span>usuario: </span><%= post.user.getNick %></td><br>
-	<td><%= link_to 'Show', post %></td>
-	<td><%= link_to 'Edit', edit_post_path(post) %></td>
-	<td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Tem certeza?' } %></td><br><br>
-  </tr>
+	<%= @post = post %>
+
+	<tr>
+		<%= render 'post_render', post: @post %>
+		<td><%= link_to 'Show', post %></td>
+		<td><%= link_to 'Edit', edit_post_path(post) %></td>
+		<td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Tem certeza?' } %></td><br><br>
+	</tr>
 <% end %>

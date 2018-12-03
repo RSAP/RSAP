@@ -1,0 +1,44 @@
+<p>
+	<strong>Titulo:</strong>
+	<%= @post.titulo %>
+</p>
+
+<p>
+	<strong>Categoria:</strong>
+	<%= @post.categoria %>
+</p>
+
+<p>
+	<strong>Texto:</strong>
+	<%= @post.texto.to_s %>
+	<div id="textoC"></div>
+	<script type="text/javascript">
+		//interpretar(``, "textoC")
+	</script>
+</p>
+
+<p>
+	<strong>User:</strong>
+	<%= @post.user.getNick %>
+</p>
+
+
+<% case @post.categoria
+when "Simples" %>
+
+	<% when "Questionario" %>
+	<h1>Ainda nao implementado</h1>
+	<% when "Imagem" %>
+		<div style="height: 400px;width: 50%;background-color: powderblue;" >
+			<%= image_tag @post.getImagem, id: 'imagemPost' %>
+		</div>
+	<% when "Slides" %>
+	<h1>Ainda nao implementado</h1>
+	<% when "Arquivo" %>
+	<h1>Ainda nao implementado</h1>
+	<% when "Link" %>
+	<h1>Ainda nao implementado</h1>
+	<% when "Youtube" %>
+	<h1>Ainda nao implementado</h1>
+
+	<% end %>

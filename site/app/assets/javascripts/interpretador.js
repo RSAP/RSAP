@@ -61,5 +61,13 @@ function habilitarTextArea() {
 			}
 		}
 	}
+}
 
+function mudarCategoria() {
+
+	var selectBox = document.getElementsByName("post[categoria]")[0];
+	var selected = selectBox.options[selectBox.selectedIndex].value;
+	var textarea = document.getElementById("imagemCategoria");
+	console.log(selected);
+	// if (selected === '1') { 	textarea.show(); } else { 	textarea.hide(); }
 }
