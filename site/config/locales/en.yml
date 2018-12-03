@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+   hello: "Hello world"
 
-  errors:
-    format: "%{message}"
+   errors:
+      format: "%{message}"

@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable
-         #, :validatable #(validate padrão do paperclip [ingles])
+  devise :registerable,
+   :recoverable,
+   :rememberable,
+   :database_authenticatable
+   #, :validatable #(validate padrão do devise [ingles])
 
 
    #Validacoes
@@ -37,11 +39,15 @@ class User < ApplicationRecord
    #, default_url: "/images/:style/missing.png"
 
    # Validate content type
-   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/, message: "Formato de foto invalido"
    # Validate filename
-   validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/]
+   validates_attachment_file_name :avatar, matches: [/png\Z/, /jpe?g\Z/], message: "Nome da foto invalido"
    # Explicitly do not validate
-   do_not_validate_attachment_file_type :avatar
+   # do_not_validate_attachment_file_type :avatar
+
+   # validate :avatar_is_a_image, :avatar_is_less_than_two_megabytes
+
+
    #=============================
 
 
