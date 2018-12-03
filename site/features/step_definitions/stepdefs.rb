@@ -7,14 +7,14 @@ module LoginHelper
 	def criarPost(titulo, texto, id)
 		visit '/'
 		visit '/mural/' + id.to_s
-		expect(page).to have_content(@nick)
+		expect(page).to have_content(@nick, wait: 15)
 		click_link 'Novo Post'
-		expect(page).to have_content('New Post')
+		expect(page).to have_content('New Post', wait: 15)
 		fill_in 'post[titulo]', :with=> titulo
 		fill_in 'post[texto]', :with=> texto
 		click_button 'Create Post'
-		expect(page).to have_content('Titulo: ' + titulo)
-		expect(page).to have_content('Texto: ' + texto)
+		expect(page).to have_content(titulo, wait: 15)
+		expect(page).to have_content(texto, wait: 15)
 		click_link 'Back'
 	end
 
@@ -22,14 +22,14 @@ module LoginHelper
 	def registrar(email, senha)
 		visit '/'
 		visit 'users/sign_up'
-		expect(page).to have_content('Registro')
+		expect(page).to have_content('Registro', wait: 15)
 		fill_in 'user[email]', :with=> email
 		fill_in 'user[password]', :with=> senha
 		fill_in 'user[password_confirmation]', :with=> senha
 		fill_in 'user[nome]', :with=> 'Testadeiro'
 		fill_in 'user[descricao]', :with=> 'Testando'
 		click_button 'Registrar'
-		expect(page).to have_content('Você está logado!!')
+		expect(page).to have_content('Você está logado!!', wait: 15)
 		@oldNick = @nick
 		@nick = email.capitalize.split('@').first
 	end
@@ -37,14 +37,14 @@ module LoginHelper
 	def registrarComNome(email, senha, nome)
 		visit '/'
 		visit 'users/sign_up'
-		expect(page).to have_content('Registro')
+		expect(page).to have_content('Registro', wait: 15)
 		fill_in 'user[email]', :with=> email
 		fill_in 'user[password]', :with=> senha
 		fill_in 'user[password_confirmation]', :with=> senha
 		fill_in 'user[nome]', :with=> nome
 		fill_in 'user[descricao]', :with=> 'Testando'
 		click_button 'Registrar'
-		expect(page).to have_content('Você está logado!!')
+		expect(page).to have_content('Você está logado!!', wait: 15)
 		@oldNick = @nick
 		@nick = email.capitalize.split('@').first
 	end
@@ -65,7 +65,7 @@ module LoginHelper
 	def login(email, senha)
 		visit '/'
 		visit 'users/sign_in'
-		expect(page).to have_content('Logar')
+		expect(page).to have_content('Logar', wait: 15)
 		fill_in 'user[email]', :with=> email
 		fill_in 'user[password]', :with=> senha
 		click_button 'Logar'
@@ -136,7 +136,7 @@ When("eu envio uma solicitacao para um usuario inexistente") do
 end
 
 Then("eu vejo a mensagem de erro {string}") do |erro|
-	expect(page).to have_content(erro)
+	expect(page).to have_content(erro, wait: 15)
 
 end
 
@@ -391,12 +391,12 @@ end
 Given("eu estou no mural do meu perfil") do
 	@link = '/mural/1'
 	visit @link
-	expect(page).to have_content(@nick)
+	expect(page).to have_content(@nick, wait: 15)
 end
 
 Given("eu clico no botao novo post") do
 	click_link 'Novo Post'
-	expect(page).to have_content('New Post')
+	expect(page).to have_content('New Post', wait: 15)
 end
 
 When("eu preencho o titulo {string} e o texto {string}") do |titulo, texto|
@@ -409,16 +409,16 @@ When("eu clico no botao de publicar nova postagem") do
 end
 
 Then("eu vejo que o post {string} e o texto {string} foi publicado no meu mural com a devida formatacao") do |titulo, texto|
-  expect(page).to have_content('Titulo: ' + titulo)
-  expect(page).to have_content('Texto: ' + texto)
-  #TODO: depois de implementar o interpretador, verificar se o vloco de codgo aparece
+	expect(page).to have_content(titulo, wait: 15)
+	expect(page).to have_content(texto, wait: 15)
+	#TODO: depois de implementar o interpretador, verificar se o vloco de codgo aparece
 end
 
 Given("a postagem com titulo {string} e o texto {string} existe") do |titulo, texto|
 	criarPost(titulo, texto, 1)
 	visit @link
-	expect(page).to have_content('titulo: ' + titulo)
-	expect(page).to have_content('texto: ' + texto)
+	expect(page).to have_content(titulo, wait: 15)
+	expect(page).to have_content(texto, wait: 15)
 end
 
 When("eu clico no botao deletar a postagem com o titulo {string}") do |titulo|
@@ -426,7 +426,7 @@ When("eu clico no botao deletar a postagem com o titulo {string}") do |titulo|
 end
 
 Then("a postagem com o titulo {string} eh deletada e some automaticamente do meu mural") do |titulo|
-	expect(page).to have_no_content(titulo)
+	expect(page).to have_no_content(titulo, wait: 15)
 end
 
 When("eu clico em visualizar o post {string}") do |titulo|
@@ -434,13 +434,13 @@ When("eu clico em visualizar o post {string}") do |titulo|
 end
 
 Then("eu vejo uma tela exibindo o titulo {string}, texto {string} e comentarios do post") do |titulo, texto|
-	expect(page).to have_content('Titulo: ' + titulo)
-	expect(page).to have_content('Texto: ' + texto)
+	expect(page).to have_content(titulo, wait: 15)
+	expect(page).to have_content(texto, wait: 15)
 end
 
 When("eu clico no botao de editar o post {string}") do |titulo|
 	click_link "edita-#{titulo}"
-	expect(page).to have_content('Editing Post')
+	expect(page).to have_content('Editing Post', wait: 15)
 end
 
 When("eu preencho os campos do titulo com {string} e o texto com {string}") do |titulo, texto|
@@ -453,8 +453,8 @@ When("eu clico no botao de atualizar post") do
 end
 
 Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo texto {string}") do |tituloAntigo, tituloNovo, textoNovo|
-	expect(page).to have_content('Titulo: ' + tituloNovo)
-	expect(page).to have_content('Texto: ' + textoNovo)
+	expect(page).to have_content(tituloNovo, wait: 15)
+	expect(page).to have_content(textoNovo, wait: 15)
 end
 
 When("eu clico no botao Publicar sem preencher nenhum campo") do
@@ -467,7 +467,7 @@ When("eu clico no link {string} da postagem {string}") do |link, postagem|
 end
 
 Then("eu sou redirecionado para {string}") do |url|
-	expect(current_path).to have_content(url)
+	expect(current_path).to have_content(url, wait: 15)
 end
 
 Given("eu aperto em visualizar o post com titulo {string}") do |string|
@@ -488,29 +488,31 @@ When("eu preencho o titulo {string}") do |titulo|
 end
 
 When("eu clico no botao de enviar imagem do computador") do
-  pending # Write code here that turns the phrase above into concrete actions
+	page.find_field('post[categoria]').find("option[value='Imagem']").select_option
 end
 
-When("eu seleciono a imagem {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+When("eu seleciono a imagem {string}") do |imagem|
+	attach_file("post[imagem]", Rails.root + "test/fixtures/" + imagem)
 end
 
 When("eu clico no botao de selecionar") do
-  pending # Write code here that turns the phrase above into concrete actions
+	#TODO: isso nao deveria existir
 end
 
-Then("eu vejo que o post {string} possui a imagem localizada em {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
+Then("eu vejo que o post {string} possui a imagem localizada em {string}") do |titulo, imagem|
+	expect(page).to have_content(titulo, wait: 15)
+	visit page.find('img#imagemPost')[:src]
+	page.status_code.should be 200
 end
 
-When("eu seleciono o arquivo {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+When("eu seleciono o arquivo {string}") do |arquivo|
+	attach_file("post[imagem]", Rails.root + "test/fixtures/" + arquivo)
 end
 
 Then("eu vejo que o post {string} possui dois links {string} e {string}") do |titulo, link1, link2|
-	expect(page).to have_content(titulo)
-	expect(page).to have_content(link1)
-	expect(page).to have_content(link2)
+	expect(page).to have_content(titulo, wait: 15)
+	expect(page).to have_content(link1, wait: 15)
+	expect(page).to have_content(link2, wait: 15)
 end
 
 Given("eu estou no perfil do usuario {string}") do |nome|
@@ -520,7 +522,7 @@ Given("eu estou no perfil do usuario {string}") do |nome|
 	#TODO: salvar em variavel de instancia?
 	login('carlosantonio@o-nucleo.com', 'rails123456')
 	visit 'user/2'
-	expect(page).to have_content(nome)
+	expect(page).to have_content(nome, wait: 15)
 end
 
 Given("o mural dele possui o post com titulo {string} e o texto {string}") do |titulo, texto|
@@ -535,8 +537,8 @@ Given("o mural dele possui o post com titulo {string} e o texto {string}") do |t
 
 	visit '/'
 	visit "mural/2"
-	expect(page).to have_content(titulo)
-	expect(page).to have_content(texto)
+	expect(page).to have_content(titulo, wait: 15)
+	expect(page).to have_content(texto, wait: 15)
 end
 
 Given("a postagem com titulo {string} e o video {string} existe") do |string, string2|

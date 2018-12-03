@@ -85,20 +85,20 @@ Feature: Postagem
 		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou no mural do meu perfil
 		And eu clico no botao novo post
-		When eu preencho o titulo "Erro comum do rails"
+		When eu preencho o titulo "Erro comum do rails" e o texto "sou descritivo"
 		And eu clico no botao de enviar imagem do computador
-		And eu seleciono a imagem "..\site\img\erro.png"
+		And eu seleciono a imagem "erro.png"
 		And eu clico no botao de selecionar
 		And eu clico no botao de publicar nova postagem
-		Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "..\site\img\erro.png"
+		Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "erro.png"
 
 	Scenario: Postando arquivos que deveriam ser imagens do computador
 		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou no mural do meu perfil
 		And eu clico no botao novo post
-		When eu preencho o titulo "Erro comum do rails"
+		When eu preencho o titulo "Erro comum do rails" e o texto "sou descritivo"
 		And eu clico no botao de enviar imagem do computador
-		And eu seleciono o arquivo "..\site\img\erro.txt"
+		And eu seleciono o arquivo "erro.txt"
 		And eu clico no botao de selecionar
 		And eu clico no botao de publicar nova postagem
 		Then eu vejo a mensagem de erro "Imagem invalida"
