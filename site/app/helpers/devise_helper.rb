@@ -7,6 +7,8 @@ module DeviseHelper
                       :count => resource.errors.count,
                       :resource => resource.class.model_name.human.downcase)
 
+   #error_messages_for 'model', :header_message => "You have some errors that prevented saving this model"
+
     html = <<-HTML
     <div id="error_explanation">
       <h2>#{sentence}</h2>
