@@ -94,7 +94,28 @@ Feature: Amizades
 		And eu vejo minha lista de amizades
 		Then eu vejo que o usuario "Matheus" nao esta mais na minha lista de amizades
 
-	Scenario: Desfazer uma amizade inexistente
+	Scenario: Recusar uma amizade inexistente
 		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
-		When eu tento apagar uma amizade inexistente
+		When eu tento recusar uma amizade inexistente
 		Then eu vejo a mensagem de erro "Essa amizade não existe!"
+
+	Scenario: Aceitar uma amizade inexistente
+		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
+		When eu tento aceitar uma amizade inexistente
+		Then eu vejo a mensagem de erro "Essa amizade não existe!"
+
+	Scenario: Recusar pedido de amizade feito entre outros usuarios
+		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
+		And o usuario "Matheus" com email "matheus@email.com" e senha "123456" existe
+		And o usuario "Baltazar" com email "baltazar@email.com" e senha "123456" existe
+		And o usuario "Baltazar" fez um pedido de amizade para o usuario "Matheus"
+		When eu tento recusar o pedido de amizade feito por "Matheus" para "Baltazar"
+		Then eu vejo a mensagem de erro "Você não tem permissão para fazer isso!"
+
+	Scenario: Aceitar pedido de amizade feito entre outros usuarios
+		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
+		And o usuario "Matheus" com email "matheus@email.com" e senha "123456" existe
+		And o usuario "Baltazar" com email "baltazar@email.com" e senha "123456" existe
+		And o usuario "Baltazar" fez um pedido de amizade para o usuario "Matheus"
+		When eu tento aceitar o pedido de amizade feito por "Matheus" para "Baltazar"
+		Then eu vejo a mensagem de erro "Você não tem permissão para fazer isso!"

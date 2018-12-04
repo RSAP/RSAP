@@ -24,12 +24,18 @@ class FriendshipsController < ApplicationController
 end
 
 	def update
-		@friendship = Friendship.find params[:request_id]
-		@friendship.update(accepted: true)
-		if @friendship.save
-			flash[:notice] = "Voces agora são amigos!"
+		@friendship = Friendship.find_by(id: params[:request_id])
+		if @friendship
+			if ((@friendship.user_id.eql? current_user.id) || (@friendship.friend_id.eql? current_user.id))
+				@friendship.update(accepted: true)
+				if @friendship.save
+					flash[:notice] = "Voces agora são amigos!"
+				end
+			else
+				flash[:notice] = "Você não tem permissão para fazer isso!"
+			end
 		else
-			flash[:notice] = "Ocorreu um erro ao tentar aceitar a solicitação de amizade"
+			flash[:notice] = "Essa amizade não existe!"
 		end
 	end
 

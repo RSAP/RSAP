@@ -233,6 +233,30 @@ def deslogar()
 		expect(page).to have_no_content(string)
 	end
 
-	When("eu tento apagar uma amizade inexistente") do
+	When("eu tento recusar uma amizade inexistente") do
 		visit '/user/1/pedidosAmizade/rejeitar/-1'
+	end
+
+	When ("eu tento aceitar uma amizade inexistente") do
+		visit '/user/1/pedidosAmizade/aceitar/-1'
+	end
+
+	And("o usuario {string} com email {string} e senha {string} existe") do |nome, email, senha|
+		deslogar()
+		registrarComNome(email, senha, nome)
+	end
+
+	And("o usuario {string} fez um pedido de amizade para o usuario {string}") do |user1, user2|
+		visit '/user/3/buscarPessoas/2/pedidoAmizade'
+		deslogar()
+	end
+
+	When("eu tento recusar o pedido de amizade feito por {string} para {string}") do |user1, user2|
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/pedidosAmizade/rejeitar/1'
+	end
+
+	When("eu tento aceitar o pedido de amizade feito por {string} para {string}") do |user1, user2|
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/pedidosAmizade/aceitar/1'
 	end
