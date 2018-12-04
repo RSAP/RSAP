@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   root to: "pages#home"
-  
+
+
   #Exemplo:
   #match 'diretorio na url' => 'controller e funcao', via: :get ou post
 
-  match 'user/:id' => 'user#show', via: :get
+  match 'user/show/:id' => 'user#show', via: :get
+
+  match 'user/edit/:id' => 'devise/registrations#edit', via: :get
 
   #provisOrio
   match 'erro' => "user#erro", via: :get

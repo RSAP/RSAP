@@ -11,6 +11,11 @@ class UserController < ApplicationController
       end
    end
 
+   def update
+      # @user = User.find(params[:id])
+      redirect_to edit_user_registration_path
+   end
+
    #Para view de ver perfil
    def show
       @user = User.find(params[:id])
