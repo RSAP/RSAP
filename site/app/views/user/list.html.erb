@@ -1,17 +1,18 @@
 <ul>
     <% @pendente.each do |request| %>
+		<% if (request.friend_id.eql? current_user.id) %>
 
-		<% if request.user_id.eql? current_user.id && request.accepted == false %>
-    	<li>
 		<% current_user.requested_friendships.each do |rq| %>
-			<% if rq.id.eql? request.friend_id %>
+			<% if rq.id.eql? request.user_id %>
+			    	<li>
 		   			<%= rq.nome %>
+					<%= link_to "Aceitar", controller: "friendships", action: "update", id: current_user.id, request_id: request.id%>
+					<%= link_to "Decline",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
+					</li>
 			<%end%>
 	  	<% end %>
-			<%= link_to "Aceitar", controller: "friendships", action: "update", id: current_user.id, request_id: request.id%>
-			<%= link_to "Decline",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
 		<%end%>
-		 </li>
+
   <% end %>
 
 
