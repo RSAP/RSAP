@@ -100,10 +100,62 @@ def deslogar()
 	end
 
 	And ("eu solicito amizade ao usuario {string}") do |string|
-		click_link 'Adicionar aos amigos'
+		visit '/user/1/buscarPessoas/2/pedidoAmizade'
 	end
 
 	Then("eu vejo que minha solicitacao foi enviada") do
 		expect(page).to have_content('Pedido de amizade eviado.')
 		expect(page).to have_content('Voltar')
+	end
+
+	And("eu estou na pagina de perfil do usuario {string}") do |string|
+		deslogar()
+		registrarComNome('matheus@email.com', '123456', string)
+		deslogar()
+		  #TODO: salvar em variavel de instancia?
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit 'user/1'
+		expect(page).to have_content('Meu Perfil')
+		expect(page).to have_content('Buscar um usuario')
+		click_link 'Buscar um usuario'
+		fill_in 'search', :with=> string
+		find('[name=buscar]').click
+		expect(page).to have_content(string)
+		click_link 'Visualizar'
+	end
+
+	When("eu envio uma solicitacao para um usuario inexistente") do
+		visit '-1/pedidoAmizade'
+	end
+
+	Then ("eu vejo a mensagem de erro {string}") do |string|
+		expect(page).to have_content(string)
+		expect(page).to have_content('Voltar')
+	end
+
+	And("eu estou no meu proprio perfil") do
+		visit 'user/1'
+	end
+
+	When("eu solicito amizade a mim mesmo") do
+		visit '1/buscarPessoas/1/pedidoAmizade'
+	end
+
+	When ("eu vejo que o usuario {string} ja eh meu amigo") do |string|
+		visit '/user/1/buscarPessoas/2'
+		click_link 'Adicionar aos amigos'
+		deslogar()
+		login('matheus@email.com', '123456')
+		visit '/user/2/buscarPessoas/1'
+		click_link 'Aceitar'
+		deslogar()
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/buscarPessoas/2'
+		expect(page).to have_no_content("Adicionar aos amigos")
+		expect(page).to have_content("Desfazer amizade")
+		expect(page).to have_content(string)
+	end
+
+	And("eu envio uma solicitacao de amizade para o usuario {string}") do |string|
+		visit '/user/1/buscarPessoas/2/pedidoAmizade'
 	end

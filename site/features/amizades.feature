@@ -71,9 +71,8 @@ Feature: Amizades
 	Scenario: Erro ao solicitar amizade novamente enquanto uma solicitacao ja esta pendente
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou na pagina de perfil do usuario "Matheus"
-		When eu solicito a amizade do usuario "Matheus"
-		And eu estou na pagina de perfil do usuario "Matheus"
-		And eu solicito a amizade do usuario "Matheus"
+		When eu solicito amizade ao usuario "Matheus"
+		And eu solicito amizade ao usuario "Matheus"
 		Then eu vejo a mensagem de erro "Voce nao pode solicitar amizade enquanto houver uma solitacao pendente"
 
 	Scenario: Erro ao cancelar solicitacao de um usuario inexistente
