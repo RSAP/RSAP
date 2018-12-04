@@ -1,6 +1,5 @@
 <h2>Registro</h2>
 
-<!-- <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> -->
 <!-- :novalidate => 'novalidate serve pra o browser nao validar os campos -->
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, :novalidate => 'novalidate'}) do |f| %>
 
@@ -14,7 +13,6 @@
   <div class="field">
     <%= f.label :email %><br/>
     <%= f.email_field :email, autofocus: true, autocomplete: "email"%>
-    <!-- <%= f.email_field :email, autocomplete: "email" %> -->
   </div> <br/>
 
   <div class="field">
@@ -42,7 +40,7 @@
      <br>
     <%= f.submit "Registrar" %>
   </div> <br/>
-<% end %>
+
 <% end %>
 
 <br>

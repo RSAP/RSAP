@@ -9,6 +9,8 @@ module DeviseHelper
 
    #error_messages_for 'model', :header_message => "You have some errors that prevented saving this model"
 
+   # TODO: fazer for para retirar os duplicados
+
     html = <<-HTML
     <div id="error_explanation">
       <h2>#{sentence}</h2>
