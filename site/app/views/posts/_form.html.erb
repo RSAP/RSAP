@@ -19,7 +19,7 @@
 
 <div class="field">
 	<%= form.label :categoria %>
-	<%= form.select :categoria, options_for_select([ ["Simples", "Simples"], ["Questionario", "Questionario"], ["Imagem", "Imagem"], ["Slides", "Slides"], ["Arquivo", "Arquivo"], ["Link", "Link"], ["Youtube", "Youtube"], ])%>
+	<%= form.select :categoria, options_for_select([ ["Simples", "Simples"], ["Questionario", "Questionario"], ["Imagem", "Imagem"], ["Slides", "Slides"], ["Arquivo", "Arquivo"], ["Link", "Link"], ["Youtube", "Youtube"], ], @post.categoria)%>
 	<%# #TODO: isso nao funciona e deveria funcionar :onchange => "mudarCategoria(this);" %>
 </div>
 
