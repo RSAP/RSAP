@@ -42,7 +42,7 @@ module LoginHelper
 		fill_in 'user[password]', :with=> senha
 		fill_in 'user[password_confirmation]', :with=> senha
 		fill_in 'user[nome]', :with=> 'Testadeiro'
-		fill_in 'user[descricao]', :with=> 'Testando'
+		fill_in 'user[descricao]', :with=> 'Testando123123'
 		click_button 'Registrar'
 		expect(page).to have_content('Você está logado!!', wait: 15)
 		@oldNick = @nick
@@ -57,7 +57,7 @@ module LoginHelper
 		fill_in 'user[password]', :with=> senha
 		fill_in 'user[password_confirmation]', :with=> senha
 		fill_in 'user[nome]', :with=> nome
-		fill_in 'user[descricao]', :with=> 'Testando'
+		fill_in 'user[descricao]', :with=> 'Testando123123'
 		click_button 'Registrar'
 		expect(page).to have_content('Você está logado!!', wait: 15)
 		@oldNick = @nick
@@ -89,15 +89,6 @@ module LoginHelper
 end
 
 World LoginHelper
-
-Given("eu estou logado no meu perfil da rede social com o email {string} e senha {string}") do |email, senha|
-	registrar(email, senha)
-end
-
-Then("eu vejo a mensagem de erro {string}") do |erro|
-	expect(page).to have_content(erro, wait: 15)
-
-end
 
 Given("eu estou no mural do meu perfil") do
 	@link = '/mural/1'
