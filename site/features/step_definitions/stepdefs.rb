@@ -230,5 +230,9 @@ def deslogar()
 	end
 
 	Then("eu vejo que o usuario {string} nao esta mais na minha lista de amizades") do |string|
-				expect(page).to have_no_content(string)
+		expect(page).to have_no_content(string)
+	end
+
+	When("eu tento apagar uma amizade inexistente") do
+		visit '/user/1/pedidosAmizade/rejeitar/-1'
 	end

@@ -14,8 +14,6 @@ class FriendshipsController < ApplicationController
 				@friendship = current_user.friendships.build(friend_id: params[:friend_id])
 				if @friendship.save
 					flash[:notice] = "Pedido de amizade eviado."
-				else
-					flash[:notice] = "Ocorreu um erro ao tentar fazer a solicitação de amizade"
 					end
 				end
 			end
@@ -36,9 +34,22 @@ end
 	end
 
 	def destroy
+			begin
 			@friendship = Friendship.find_by(id: params[:request_id])
-			@friendship.destroy
-			flash[:notice] = "Amizade desfeita."
-			redirect_to controller: 'user', action: 'show', id: current_user.id
+			if @friendship
+				if ((@friendship.user_id.eql? current_user.id) || (@friendship.friend_id.eql? current_user.id))
+					@friendship.destroy
+					if @friendship.save
+						flash[:notice] = "Amizade desfeita."
+					end
+				else
+					flash[:notice] = "Você não tem permissão para fazer isso!"
+				end
+				else
+				flash[:notice] = "Essa amizade não existe!"
+			end
+			rescue ActiveRecord::RecordNotFound
+				flash[:notice] = "Essa amizade não existe!"
+			end
+		end
 	end
-end
