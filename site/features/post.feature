@@ -50,6 +50,7 @@ Feature: Postagem
 		And eu estou no mural do meu perfil
 		And eu clico no botao novo post
 		When eu preencho o titulo "Link para o meu repositorio no github" e o texto "https://github.com/mrjonio/rsap"
+		And eu clico na categoria "Link"
 		And eu clico no botao de publicar nova postagem
 		And eu clico no link "https://github.com/mrjonio/rsap" da postagem "Link para o meu repositorio no github"
 		Then eu sou redirecionado para "https://github.com/mrjonio/rsap"
@@ -78,6 +79,7 @@ Feature: Postagem
 		And eu estou no mural do meu perfil
 		And eu clico no botao novo post
 		When eu preencho o titulo "Video tutorial: exceptions em Java" e o texto "https://www.youtube.com/watch?v=ld2C4GcAtsg"
+		And eu clico na categoria "Youtube"
 		And eu clico no botao de publicar nova postagem
 		Then eu vejo que o post "Video tutorial: exceptions em Java" possui um player do video "https://www.youtube.com/watch?v=ld2C4GcAtsg"
 
@@ -88,7 +90,6 @@ Feature: Postagem
 		When eu preencho o titulo "Erro comum do rails" e o texto "sou descritivo"
 		And eu clico no botao de enviar imagem do computador
 		And eu seleciono a imagem "erro.png"
-		And eu clico no botao de selecionar
 		And eu clico no botao de publicar nova postagem
 		Then eu vejo que o post "Erro comum do rails" possui a imagem localizada em "erro.png"
 
@@ -99,7 +100,6 @@ Feature: Postagem
 		When eu preencho o titulo "Erro comum do rails" e o texto "sou descritivo"
 		And eu clico no botao de enviar imagem do computador
 		And eu seleciono o arquivo "erro.txt"
-		And eu clico no botao de selecionar
 		And eu clico no botao de publicar nova postagem
 		Then eu vejo a mensagem de erro "Imagem invalida"
 
@@ -125,6 +125,7 @@ Feature: Postagem
 		And eu clico em visualizar o post "Programacao dinamica"
 		When eu clico no botao de editar o post "Programacao dinamica"
 		And eu preencho os campos do titulo com "Programacao dinamica (Atualizado)" e o texto com "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
+		And eu clico no botao de atualizar post
 		Then eu vejo que o post "Programacao dinamica" foi atualizado para o novo titulo "Programacao dinamica (Atualizado)" e o novo video "https://www.youtube.com/watch?v=SJSRKnxu9Ig"
 
 	Scenario: Editando um post com novo titulo invalido

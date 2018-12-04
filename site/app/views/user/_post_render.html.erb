@@ -30,31 +30,45 @@ when "Simples" %>
 	<h1>Ainda nao implementado</h1>
 	<% when "Imagem" %>
 		<div style="height: 400px;width: 50%;background-color: powderblue;" >
-			<%= image_tag @post.getImagem, id: 'imagemPost' %>
+			<%= image_tag @post.getImagem, id: "imagemPost" %>
 		</div>
 	<% when "Slides" %>
 	<h1>Ainda nao implementado</h1>
 	<% when "Arquivo" %>
 	<h1>Ainda nao implementado</h1>
 	<% when "Link" %>
-	<h1>Ainda nao implementado</h1>
-	<% when "Youtube" %>
+		<%
+			require "uri"
+			@links = URI.extract(@post.texto)
+		%>
 
-	<%
-		require "uri"
-		@links = URI.extract(@post.texto)
-	%>
 
-	<% @links.each do |lk| %>
-		<% if lk.include? "youtube"  %>
-			<% link = "http://www.youtube.com/embed/" + lk.split('=').last %>
-			<%= content_tag(:iframe, '', src: link.to_s,
-				width: 560, height: 315, frameborder: 0) %>
-		<% else %>
-			<% link = "http://www.youtube.com/embed/" + lk.split('/').last %>
-			<%= content_tag(:iframe, '', src: link.to_s,
-				width: 560, height: 315, frameborder: 0) %>
+		<% @links.each do |lk| %>
+			<div class="linkSimples">
+				<a href="<%= lk.to_s %>"> <%= lk.to_s %> </a>
+			</div>
 		<% end %>
 
-	<% end %>
-	<% end %>
+	<% when "Youtube" %>
+
+		<%
+			require "uri"
+			@links = URI.extract(@post.texto)
+		%>
+
+		<% @links.each do |lk| %>
+			<div class="iframeYT">
+			<% if lk.include? "youtube"  %>
+				<% link = "http://www.youtube.com/embed/" + lk.split('=').last %>
+				<%= content_tag(:iframe, '', src: link.to_s, id: "cod-#{lk.split('=').last}",
+					width: 560, height: 315, frameborder: 0) %>
+			<% else %>
+				<% if lk.include? "youtu.be"  %>
+					<% link = "http://www.youtube.com/embed/" + lk.split('/').last %>
+					<%= content_tag(:iframe, '', src: link.to_s, id: "cod-#{lk.split('/').last}",
+						width: 560, height: 315, frameborder: 0) %>
+				<% end %>
+			<% end %>
+			</div>
+		<% end %>
+<% end %>

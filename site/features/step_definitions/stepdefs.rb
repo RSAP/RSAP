@@ -18,6 +18,21 @@ module LoginHelper
 		click_link 'Back'
 	end
 
+	def criarPostCat(titulo, texto, id, categoria)
+		visit '/'
+		visit '/mural/' + id.to_s
+		expect(page).to have_content(@nick, wait: 15)
+		click_link 'Novo Post'
+		expect(page).to have_content('New Post', wait: 15)
+		fill_in 'post[titulo]', :with=> titulo
+		fill_in 'post[texto]', :with=> texto
+		page.find_field('post[categoria]').find("option[value=" + categoria + "]").select_option
+		click_button 'Create Post'
+		expect(page).to have_content(titulo, wait: 15)
+		expect(page).to have_content(texto, wait: 15)
+		visit @link
+	end
+
 
 	def registrar(email, senha)
 		visit '/'
@@ -79,313 +94,9 @@ Given("eu estou logado no meu perfil da rede social com o email {string} e senha
 	registrar(email, senha)
 end
 
-Given("existe um usuario registrado com nome {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para buscar um usuario") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu preencho o campo de nome com {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico em buscar") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu devo ver que existe um usuario chamado {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que existe um usuario chamado {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para ver o perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("Eu vejo a pagina do perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu procuro o usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o perfil contem o email {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu solicito a amizade do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que minha solicitacao foi enviada") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na pagina de perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu envio uma solicitacao para um usuario inexistente") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
 Then("eu vejo a mensagem de erro {string}") do |erro|
 	expect(page).to have_content(erro, wait: 15)
 
-end
-
-Given("eu estou no meu proprio perfil") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu solicito amizade a mim mesmo") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu cancelo a solicitacao de amizade a mim mesmo") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} ja eh meu amigo") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu envio uma solicitacao de amizade para o usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu estou na pagina de perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu vejo minha lista de amizades") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu cancelo uma solicitacao para um usuario inexistente") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} nao esta na lista de amizades") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu estou na minha lista de solicitacoes de amizade para mim") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} esta na lista de solicitacoes de amizade") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu aceito a solicitacao do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo minha lista de amizades") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o usuario {string} esta na lista de amizades") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na minha lista de solicitacoes de amizade para mim") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} esta na lista de solicitacoes de amizade para mim") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu recuso a solicitacao do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o usuario {string} nao esta na lista de solicitacoes de amizade para mim") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu aceito um pedido de amizade feito por um usuario que nao existe") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} nao esta na lista de solicitacoes de amizade para mim") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu aceito um pedido de amizade feito pelo usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu recuso um pedido de amizade feito por um usuario que nao existe") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu recuso um pedido de amizade feito pelo usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na minha lista de amizades") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para desfazer amizade com o usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu estou na pagina do meu perfil") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o usuario {string} nao esta na minha lista de amizades") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu desfaco amizade com um usuario inexistente") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu vejo que o usuario {string} nao esta na minha lista de amizades") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu desfaco amizade com um usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na aba de perfis externos do meu perfil da rede social") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico em adicionar novo perfil externo") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("preencho os campos de nome com nome {string} de descricao com {string} e de link com o link {string}") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("clico em salvar perfil externo") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o perfil externo com nome {string} com descricao {string} e com o link {string} foi adicionado ao meus perfis externos") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu possuo um perfil externo com nome {string} com descricao {string} e com o link {string}") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para remover o perfil externo com nome {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo que o perfil externo com nome {string} com descricao {string} e com o link {string} foi removido da area de perfis externos do meu perfil automaticamente") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para editar o perfil externo com nome {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("clico no botar de salvar") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu percebo que o perfil externo {string} foi atualizado com a nova descricao e o novo link") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("preencho os campos de descricao com {string} e de link com o link {string} e nao preencho o campo de nome") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("preencho os campos de nome com {string} descricao com {string} e nao preencho o campo de link") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu nao preencho nenhum dos campos") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("preencho os campos de nome com {string} com {string} e nao preencho o campo de link") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("o perfil do usuario {string} existe") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu tento editar o perfil externo do perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu tento excluir o perfil externo do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("o perfil do usuario {string} eh meu amigo na rede social") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("o perfil do usuario {string} possui um perfil externo com nome {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu acesso o perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("clico em perfis externos do perfil do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico em visualizar o perfil externo com nome {string} do usuario {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu vejo o perfil externo externo de nome {string} do usuario {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu tento editar o perfil externo do perfil de um usuario que nao existe") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu tento excluir o perfil externo de um usuario que nao existe") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na pagina inicial da rede") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu nao estou logado em meu perfil da rede social") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("o perfil do usuario {string} esta cadastrado") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu tento editar o perfil externo do usuario {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu sou redirecionado para a pagina de login da rede") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na pagina inicial da rede social") do
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Given("eu estou no mural do meu perfil") do
@@ -462,16 +173,16 @@ When("eu clico no botao Publicar sem preencher nenhum campo") do
 end
 
 When("eu clico no link {string} da postagem {string}") do |link, postagem|
-	#TODO: isso ta meio estranho
-	pending
+	expect(page).to have_content(postagem, wait: 15)
+	page.assert_selector('div.linkSimples', minimum: 1)
+	#find("a[href='#{link}']").click
+	#expect(current_path).to have_content(link, wait: 15)
+	#TODO: isso ta meio estranho e talvez nem de pra fazer
 end
 
 Then("eu sou redirecionado para {string}") do |url|
+	pending # Write code here that turns the phrase above into concrete actions
 	expect(current_path).to have_content(url, wait: 15)
-end
-
-Given("eu aperto em visualizar o post com titulo {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
 end
 
 When("eu limpo os campos do titulo e do text") do
@@ -479,8 +190,15 @@ When("eu limpo os campos do titulo e do text") do
 	fill_in 'post[texto]', :with=> ''
 end
 
-Then("eu vejo que o post {string} possui um player do video {string}") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
+Then("eu vejo que o post {string} possui um player do video {string}") do |titulo, video|
+	expect(page).to have_content(titulo, wait: 15)
+	#TODO: procurar pelo iframe com ocidog do video
+	page.assert_selector('div.iframeYT', minimum: 1)
+end
+
+When("eu clico na categoria {string}") do |categoria|
+	page.find_field('post[categoria]').find("option[value=" + categoria + "]").select_option
+
 end
 
 When("eu preencho o titulo {string}") do |titulo|
@@ -495,13 +213,10 @@ When("eu seleciono a imagem {string}") do |imagem|
 	attach_file("post[imagem]", Rails.root + "test/fixtures/" + imagem)
 end
 
-When("eu clico no botao de selecionar") do
-	#TODO: isso nao deveria existir
-end
-
 Then("eu vejo que o post {string} possui a imagem localizada em {string}") do |titulo, imagem|
 	expect(page).to have_content(titulo, wait: 15)
-	visit page.find('img#imagemPost')[:src]
+	idImagem = "img#imagemPost"
+	visit page.find(idImagem)[:src]
 	page.status_code.should be 200
 end
 
@@ -534,77 +249,20 @@ Given("o mural dele possui o post com titulo {string} e o texto {string}") do |t
 	deslogar()
 	login('carlosantonio@o-nucleo.com', 'rails123456')
 
-
 	visit '/'
 	visit "mural/2"
 	expect(page).to have_content(titulo, wait: 15)
 	expect(page).to have_content(texto, wait: 15)
 end
 
-Given("a postagem com titulo {string} e o video {string} existe") do |string, string2|
-  pending # Write code here that turns the phrase above into concrete actions
+Given("a postagem com titulo {string} e o video {string} existe") do |titulo, video|
+	criarPostCat(titulo, video, 1, "Youtube")
+	#TODO: procurar por iframe depois
+	page.assert_selector('div.iframeYT', minimum: 1)
+
 end
 
-Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo video {string}") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu estou na pagina inicial") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico para registrar") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu estou na pagina de registro") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4, string5|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu clico em registrar usuario") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("eu devo ver que o meu registro foi bem sucedido") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4, string5|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu clico em registrar usuario") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("eu preencho os campos de email com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu preencho os campos de nome com {string}, senha com {string}, confirmacao de senha com {string}, descricao com {string}") do |string, string2, string3, string4|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("Exite um usuario registrado com o email {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu preencho os campos de nome com {string}, email com {string}, descricao com {string}") do |string, string2, string3|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, descricao com {string}") do |string, string2, string3, string4|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu faco o upload de uma foto {string} para o perfil") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("eu faco o upload de um arquivo que nao seja imagem para o perfil") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo video {string}") do |tituloAntigo, tituloNovo, video|
+	expect(page).to have_content(tituloNovo, wait: 15)
+	page.assert_selector('div.iframeYT', minimum: 1)
 end
