@@ -15,11 +15,11 @@ Feature: Usuario
 
 	#Scenarios do nome
 
-	Scenario: Erro ao registrar usuario com nome menor que 5 caracteres
+	Scenario: Erro ao registrar usuario com nome menor que 4 caracteres
 		Given eu estou na pagina de registro
-		And eu preencho os campos de nome com "Yuri", email com "yuri@email.com", senha com "senha muito dificil", confirmacao de senha com "senha muito dificil", descricao com "Aopa"
+		And eu preencho os campos de nome com "Eva", email com "eva@email.com", senha com "senha muito dificil", confirmacao de senha com "senha muito dificil", descricao com "Aopa"
 		And eu clico em registrar usuario
-		Then eu vejo a mensagem de erro "Nome deve ter pelo menos 5 caracteres"
+		Then eu vejo a mensagem de erro "Nome deve ter pelo menos 4 caracteres"
 
 	Scenario: Erro ao registrar usuario com nome em branco
 		Given eu estou na pagina de registro
@@ -108,6 +108,6 @@ Feature: Usuario
 		When eu preencho os campos de nome com "Matheus", email com "matheus@email.com", senha com "senha muito dificil", confirmacao de senha com "senha muito dificil", descricao com "Eu sou eu e so"
 		And eu faco o upload de um arquivo que nao seja imagem para o perfil
 		And eu clico em registrar usuario
-		Then eu vejo a mensagem de erro "Imagem invalida"
+		Then eu vejo a mensagem de erro "Formato de foto invalido"
 
 	#TODO: Scenarios sobre edicao de perfil
