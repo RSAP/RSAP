@@ -159,3 +159,76 @@ def deslogar()
 	And("eu envio uma solicitacao de amizade para o usuario {string}") do |string|
 		visit '/user/1/buscarPessoas/2/pedidoAmizade'
 	end
+
+	And ("eu vejo minha lista de amizades") do
+		visit '/user/1/listarAmigos'
+	end
+
+	When("eu vejo que o usuario {string} nao esta na lista de amizades") do |string|
+		deslogar()
+		registrarComNome('matheus@email.com', '123456', string)
+		visit '/user/2/buscarPessoas/1/pedidoAmizade'
+		deslogar()
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/listarAmigos'
+		expect(page).to have_no_content(string)
+	end
+
+	And("eu estou na minha lista de solicitacoes de amizade para mim") do
+		visit '/user/1/pedidosAmizade'
+	end
+
+	And ("eu vejo que o usuario {string} esta na lista de solicitacoes de amizade") do |string|
+		expect(page).to have_content(string)
+		expect(page).to have_content('Aceitar')
+		expect(page).to have_content('Recusar')
+	end
+
+	And("eu aceito a solicitacao do usuario {string}") do |string|
+		click_link 'Aceitar'
+	end
+
+	Then ("eu vejo que o usuario {string} esta na lista de amizades") do |string|
+		expect(page).to have_content(string)
+		expect(page).to have_content('Visualizar')
+	end
+
+	And ("eu recuso a solicitacao do usuario {string}") do |string|
+		click_link 'Recusar'
+	end
+
+	Then("eu vejo que o usuario {string} nao esta na lista de solicitacoes de amizade para mim") do |string|
+		visit '/user/1/pedidosAmizade'
+		expect(page).to have_no_content(string)
+	end
+
+	When ("eu vejo que o usuario {string} esta na lista de solicitacoes de amizade para mim") do |string|
+		deslogar()
+		registrarComNome('matheus@email.com', '123456', string)
+		visit '/user/2/buscarPessoas/1/pedidoAmizade'
+		deslogar()
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/pedidosAmizade'
+		expect(page).to have_content(string)
+	end
+
+	When ("eu clico para visualizar o perfil do usuario {string}") do |string|
+		deslogar()
+		registrarComNome('matheus@email.com', '123456', string)
+		visit '/user/2/buscarPessoas/1/pedidoAmizade'
+		deslogar()
+		login('carlosantonio@o-nucleo.com', 'rails123456')
+		visit '/user/1/pedidosAmizade'
+		click_link 'Aceitar'
+		visit '/user/1/listarAmigos'
+		click_link 'Visualizar'
+		expect(page).to have_content('Desfazer amizade')
+	end
+
+	And("eu clico para desfazer amizade com o usuario {string}") do |string|
+		click_link 'Desfazer amizade'
+	end
+
+	Then("eu vejo que o usuario {string} nao esta mais na minha lista de amizades") do |string|
+				expect(page).to have_no_content(string)
+	end
