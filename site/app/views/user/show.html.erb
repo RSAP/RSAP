@@ -1,4 +1,16 @@
-<h1>Meu perfil</h1>
+<h1>Meu Perfil</h1>
+
+<ul>
+	<li>
+		<%= link_to "Buscar um usuario", controller: "user", action: "index", id: current_user.id%>
+	 </li>
+ <li>
+	 <%= link_to "Pedidos pendentes", controller: "user", action: "list", id: current_user.id%>
+  </li>
+  <li>
+	<%= link_to "Ver amigos", controller: "user", action: "listFriends", id: current_user.id%>
+   </li>
+</ul>
 
 <p>ID: <%= @user.id %></p>
 <p>Nome: <%= @user.nome %></p>
@@ -12,5 +24,7 @@
 <%else%>
    <div> <p>Foto: <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </div>
 <%end%>
+
+
 
 <%= link_to 'Deslogar', destroy_user_session_path, method: :delete %>
