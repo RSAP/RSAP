@@ -1,0 +1,34 @@
+<ul>
+    <% current_user.active_friends.each do |friend| %>
+	<li>
+		<tr>
+       <td> <%= friend.nome %> </td>
+	  <% if friend.getAvatarThumb.split('missing').last.to_s != ".png" %>
+	    <td>  <p> <%= image_tag friend.getAvatarThumb %></p> </td>
+	  <%else%>
+	     <div> <td> <p> <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </td> </div>
+	  <%end%>
+	  	<td><%= link_to 'Show', controller: "user", action: "viewUser", id: current_user.id, idUser: friend.id %></td>
+		</tr>
+    </li>
+  <% end %>
+  	</li>
+
+	<% current_user.received_friends.each do |friend| %>
+	<li>
+		<tr>
+	   <td> <%= friend.nome %> </td>
+	  <% if friend.getAvatarThumb.split('missing').last.to_s != ".png" %>
+		<td>  <p> <%= image_tag friend.getAvatarThumb %></p> </td>
+	  <%else%>
+		 <div> <td> <p> <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </td> </div>
+	  <%end%>
+		<td><%= link_to 'Show', controller: "user", action: "viewUser", id: current_user.id, idUser: friend.id %></td>
+		</tr>
+	</li>
+  <% end %>
+	</li>
+
+</ul>
+
+ <%= link_to "Voltar", controller: "user", action: "show", id: current_user.id%>
