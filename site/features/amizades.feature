@@ -126,12 +126,11 @@ Feature: Amizades
 
 	Scenario: Desfazer amizade
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
-		And eu estou na minha lista de amizades
-		When eu clico para ver o perfil do usuario "Matheus"
-		And eu clico para desfazer amizade com o usuario "Matheus"
-		And eu estou na pagina do meu perfil
 		And eu vejo minha lista de amizades
-		Then eu vejo que o usuario "Matheus" nao esta na minha lista de amizades
+		When eu clico para visualizar o perfil do usuario "Matheus"
+		And eu clico para desfazer amizade com o usuario "Matheus"
+		And eu vejo minha lista de amizades
+		Then eu vejo que o usuario "Matheus" nao esta mais na minha lista de amizades
 
 	Scenario: Erro ao desfazer amizade com usuario inexistente
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"

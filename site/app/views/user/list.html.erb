@@ -7,7 +7,7 @@
 			    	<li>
 		   			<%= rq.nome %>
 					<%= link_to "Aceitar", controller: "friendships", action: "update", id: current_user.id, request_id: request.id%>
-					<%= link_to "Decline",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
+					<%= link_to "Recusar",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
 					</li>
 			<%end%>
 	  	<% end %>
