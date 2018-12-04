@@ -21,18 +21,37 @@ class UserController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 	end
+  
+	def home
+		@user = User.find(current_user.id)
+		@posts =Post.where(user_id: current_user.id)
+	end
 
-   def home
-	   @user = User.find(current_user.id)
-	   @posts =Post.where(user_id: current_user.id)
-   end
+	def mural
+		@user = User.find(params[:id])
+		@posts = Post.where(user_id: params[:id])
+	end
+	def index
+		@user = User.search(params[:search])
+	end
 
-   def mural
-	   @user = User.find(params[:id])
-	   @posts = Post.where(user_id: params[:id])
-   end
+	def viewUser
+		@user = User.find(params[:idUser])
+		@pendente = Friendship.all
+	end
 
-   private
+
+	def list
+		@user = User.find(params[:id])
+		@pendente = Friendship.all
+	end
+
+	def listFriends
+		@user = User.find(params[:id])
+	end
+
+
+	private
 
 	def erro
 		@msg = 'opa'

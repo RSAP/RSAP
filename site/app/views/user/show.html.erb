@@ -1,4 +1,16 @@
-<h1>Meu perfil</h1>
+<h1>Meu Perfil</h1>
+
+<ul>
+	<li>
+		<%= link_to "Buscar um usuario", controller: "user", action: "index", id: current_user.id%>
+	 </li>
+ <li>
+	 <%= link_to "Pedidos pendentes", controller: "user", action: "list", id: current_user.id%>
+  </li>
+  <li>
+	<%= link_to "Ver amigos", controller: "user", action: "listFriends", id: current_user.id%>
+   </li>
+</ul>
 
 <p>ID: <%= @user.id %></p>
 <p>Nome: <%= @user.nome %></p>
