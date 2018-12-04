@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: "pages#home"
-
-
+  
   #Exemplo:
   #match 'diretorio na url' => 'controller e funcao', via: :get ou post
 
