@@ -25,15 +25,22 @@ Feature: Amizades
 	Scenario: Perfil deve conter o email do usuario
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And existe um usuario registrado com nome "Matheus"
-		When eu procuro o usuario "Matheus"
+		When eu clico para buscar um usuario
+		And eu preencho o campo de nome com "Matheus"
+		And eu clico em buscar
+		And eu vejo que existe um usuario chamado "Matheus"
 		And eu clico para ver o perfil do usuario "Matheus"
 		Then eu vejo que o perfil contem o email "matheus@email.com"
 
 	Scenario: Enviar solicitacao de amizade
 	  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And existe um usuario registrado com nome "Matheus"
-		When eu procuro o usuario "Matheus"
-		And eu solicito a amizade do usuario "Matheus"
+		When eu clico para buscar um usuario
+		And eu preencho o campo de nome com "Matheus"
+		And eu clico em buscar
+		And eu vejo que existe um usuario chamado "Matheus"
+		And eu clico para ver o perfil do usuario "Matheus"
+		And eu solicito amizade ao usuario "Matheus"
 		Then eu vejo que minha solicitacao foi enviada
 
 	Scenario: Erro ao solicitar um usuario inexistente
