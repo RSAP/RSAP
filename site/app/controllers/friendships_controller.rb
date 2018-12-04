@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
 	def create
+		begin
 		@user = User.find(params[:friend_id])
 		if  (((current_user.pending_friends).include? @user) || ((current_user.requested_friendships).include? @user))
 			redirect_to controller: 'user', action: 'list', id: current_user.id, notice: "Ocorreu um erro ao tentar fazer a solicitação de amizade"
@@ -7,12 +8,15 @@ class FriendshipsController < ApplicationController
 			@friendship = current_user.friendships.build(friend_id: params[:friend_id])
 			if @friendship.save
 				flash[:notice] = "Pedido de amizade eviado."
-				puts @friendship
 			else
-				redirect_to controller: 'user', action: 'list', id: current_user.id, notice: "Ocorreu um erro ao tentar fazer a solicitação de amizade"
+				flash[:notice] = "Ocorreu um erro ao tentar fazer a solicitação de amizade"
 			end
 		end
+		rescue ActiveRecord::RecordNotFound
+			flash[:notice] = "Usuario inexistente"
+		end
 	end
+
 
 	def update
 		@friendship = Friendship.find params[:request_id]
