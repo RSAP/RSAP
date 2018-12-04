@@ -39,6 +39,22 @@ when "Simples" %>
 	<% when "Link" %>
 	<h1>Ainda nao implementado</h1>
 	<% when "Youtube" %>
-	<h1>Ainda nao implementado</h1>
 
+	<%
+		require "uri"
+		@links = URI.extract(@post.texto)
+	%>
+
+	<% @links.each do |lk| %>
+		<% if lk.include? "youtube"  %>
+			<% link = "http://www.youtube.com/embed/" + lk.split('=').last %>
+			<%= content_tag(:iframe, '', src: link.to_s,
+				width: 560, height: 315, frameborder: 0) %>
+		<% else %>
+			<% link = "http://www.youtube.com/embed/" + lk.split('/').last %>
+			<%= content_tag(:iframe, '', src: link.to_s,
+				width: 560, height: 315, frameborder: 0) %>
+		<% end %>
+
+	<% end %>
 	<% end %>

@@ -36,6 +36,7 @@ class PostsController < ApplicationController
 	# PATCH/PUT /posts/1
 	# PATCH/PUT /posts/1.json
 	def update
+		#TODO: remover foto se antes era imagem e mudou a categoria
 		check_current_user(@post.user_id)
 		respond_to do |format|
 			if @post.update(post_params)
