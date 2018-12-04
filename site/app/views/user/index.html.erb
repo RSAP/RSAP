@@ -1,0 +1,28 @@
+<ul>
+<%= form_tag user_path, :action => 'index' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Buscando", :value => "Buscar", :name => "buscar"  %>
+      </p>
+  <% end %>
+</ul>
+
+<ul>
+    <% @user.each do |user| %>
+	 <% if !(user.eql? current_user) %>
+    <li>
+		<tr>
+       <td> <%= user.nome %> </td>
+	  <% if user.getAvatarThumb.split('missing').last.to_s != ".png" %>
+	    <td>  <p> <%= image_tag user.getAvatarThumb %></p> </td>
+	  <%else%>
+	     <div> <td> <p> <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </td> </div>
+	  <%end%>
+	  	<td><%= link_to 'Visualizar', controller: "user", action: "viewUser", id: current_user.id, idUser: user.id %></td>
+		</tr>
+    </li>
+	 <%end%>
+  <% end %>
+</ul>
+
+ <%= link_to "Voltar", controller: "user", action: "show", id: current_user.id%>
