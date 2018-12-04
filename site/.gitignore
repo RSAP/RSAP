@@ -21,3 +21,7 @@
 /yarn-error.log
 
 .byebug_history
+
+
+# ignorar as imagens dos usuarios.
+/public/system/users/avatars/000/000/*
