@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   match 'user/show/:id' => 'user#show', via: :get
 
-  match 'user/edit/:id' => 'devise/registrations#edit', via: :get
+  match 'users/' => 'user#sendToHome', via: :get
 
   #provisOrio
   match 'erro' => "user#erro", via: :get
