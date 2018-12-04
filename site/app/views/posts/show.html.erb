@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'post_render', post: @post %>
+
+
+<%= link_to 'Edit', edit_post_path(@post), id: "edita-#{@post.titulo}" %> |
+<%= link_to 'Back', :back %>

@@ -63,4 +63,8 @@ class User < ApplicationRecord
       return self.avatar.url(:medium)
    end
 
+   def getMeusPosts
+	   return self.posts
+   end
+
 end
