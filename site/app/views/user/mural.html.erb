@@ -1,0 +1,13 @@
+<h1>Mural do usuario <%= @user.getNick %> </h1>
+<%= link_to 'Novo Post', new_post_path %><br><br>
+
+<% @posts.each do |post| %>
+	<% @post = post %>
+	<tr>
+		<%= render 'post_render', post: @post %>
+		<td><%= link_to 'Show', post, id: "mostra-#{post.titulo}" %></td>
+		<td><%= link_to 'Edit', edit_post_path(post), id: "edita-#{post.titulo}" %></td>
+		<td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Tem certeza?' }, id: "deleta-#{post.titulo}" %></td><br><br>
+		<hr>
+	</tr>
+<% end %>
