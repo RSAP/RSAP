@@ -1,0 +1,53 @@
+<h1><p><%= @user.nome %></p></h1>
+
+<% if @user.getAvatarThumb.split('missing').last.to_s != ".png" %>
+   <p>Foto: <%= image_tag @user.getAvatarThumb %></p>
+<%else%>
+   <div> <p>Foto: <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </div>
+<%end%>
+<p>ID: <%= @user.id %></p>
+<p>Nick: <%= @user.getNick %></p>
+<p>Email: <%= @user.email %></p>
+<p>Descrição: <%= @user.descricao %></p>
+
+<ul>
+<% @pendente.each do |request| %>
+	<% if (((request.friend_id.eql? @user.id) || (request.friend_id.eql? current_user.id)) && (request.accepted == true)) %>
+    	<% current_user.active_friends.each do |friend| %>
+			<% if (friend.eql? @user) %>
+       			 <p> Voces sao amigos </p>
+	   			<%= link_to "Desfazer amizade",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %> </td>
+			<% end %>
+		<% end %>
+		<% current_user.received_friends.each do |friend| %>
+			<% if (friend.eql? @user) %>
+	    		 <p> Voces sao amigos </p>
+	   			<%= link_to "Desfazer amizade",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %></td>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>
+
+</ul>
+
+<% @pendente.each do |request| %>
+	<% if (request.friend_id.eql? @user.id) && (request.user_id.eql? current_user.id) %>
+		<% if (current_user.pending_friends).include? @user %>
+				<p> Pedido de amizade enviado </p>
+				<%= link_to "Cancelar Pedido",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
+		<%end%>
+	<%end%>
+	<% if (request.friend_id.eql? current_user.id) && (request.user_id.eql? @user.id) %>
+		<% if (current_user.requested_friendships).include? @user %>
+			<p> Este usuario que ser seu amigo </p>
+			<%= link_to "Aceitar", controller: "friendships", action: "update", id: current_user.id, request_id: request.id%>
+			<%= link_to "Decline",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %>
+		<%end%>
+	<%end%>
+<% end %>
+
+<% if ( !((current_user.pending_friends).include? @user) && !((current_user.requested_friendships).include? @user) && !((current_user.received_friends).include? @user) && !((current_user.active_friends).include? @user)) %>
+	<%= link_to "Adicionar aos amigos", controller: "friendships", action: "create", id: current_user.id, friend_id: @user.id%>
+<% end %>
+
+ <%= link_to "Voltar", controller: "user", action: "index", id: current_user.id%>
