@@ -62,26 +62,28 @@ And("eu preencho os campos de nome com {string}, senha com {string}, confirmacao
 	fill_in 'user[password_confirmation]', :with=> confirmacao
 	fill_in 'user[descricao]', :with => descricao
 end
+#Confirmacao em branco
 When("eu preencho os campos de nome com {string}, email com {string}, senha com {string}, descricao com {string}") do |nome, email, senha, descricao|
 	fill_in 'user[nome]', :with => nome
 	fill_in 'user[email]', :with => email
 	fill_in 'user[password]', :with=> senha
 	fill_in 'user[descricao]', :with => descricao
 end
+#Confirmacao e senha em branco
 When("eu preencho os campos de nome com {string}, email com {string}, descricao com {string}") do |nome, email, descricao|
 	fill_in 'user[nome]', :with => nome
 	fill_in 'user[email]', :with => email
 	fill_in 'user[descricao]', :with => descricao
 end
 
+#Upload de foto
 And("eu faco o upload de uma foto {string} para o perfil") do |nome|
 	attach_file("user[avatar]", Rails.root + "test/fixtures" + nome)
 end
-
+#upload de arquivo invalido
 And("eu faco o upload de um arquivo que nao seja imagem para o perfil") do
 	attach_file("user[avatar]", Rails.root + "test/fixtures/foto.txt")
 end
-
 
 When("eu clico em registrar usuario") do
    click_button 'Registrar'
