@@ -16,9 +16,20 @@ class UserController < ApplicationController
       @user = User.find(params[:id])
    end
 
+<<<<<<< HEAD
    def erro
       @msg = 'opa'
       render 'erro/erro'
+=======
+   def home
+	   @user = User.find(current_user.id)
+	   @posts =Post.where(user_id: current_user.id)
+   end
+
+   def mural
+	   @user = User.find(params[:id])
+	   @posts = Post.where(user_id: params[:id])
+>>>>>>> e5c91a3a22174a992af4d8cf249b56e8cd50e7d1
    end
 
    private
