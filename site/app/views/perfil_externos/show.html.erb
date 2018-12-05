@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @perfil_externo.nome %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @perfil_externo.link %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @perfil_externo.user.getNick %>
+</p>
+
+<%= link_to 'Editar', edit_perfil_externo_path(@perfil_externo) %> |
+<%= link_to 'Voltar', perfil_externos_path %>
