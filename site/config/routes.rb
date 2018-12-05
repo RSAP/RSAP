@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :perfil_externos
   root to: "pages#home"
 
 

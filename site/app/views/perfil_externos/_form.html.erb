@@ -1,0 +1,27 @@
+<%= form_with(model: perfil_externo, local: true) do |form| %>
+  <% if perfil_externo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(perfil_externo.errors.count, "error") %> prohibited this perfil_externo from being saved:</h2>
+
+      <ul>
+      <% perfil_externo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :perfil_externo_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link, id: :perfil_externo_link %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
