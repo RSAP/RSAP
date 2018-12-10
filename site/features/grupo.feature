@@ -40,6 +40,24 @@ Feature: Grupo
 		Then eu vejo a mensagem de erro "Nome em branco"
 		And eu vejo a mensagem de erro "Descricao muito curta"
 
+	Scenario: Buscar grupo
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
+		And eu estou na pagina do meu perfil
+		When eu clico no botao Grupos
+		And eu preencho o campo de busca com nome "Matematica Discreta"
+		And eu clico em Buscar
+		Then eu vejo o grupo que criei com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
+
+	Scenario: Ver grupos que participo
+		Given eu estou logado no sistema
+		And eu participo de um grupo com nome "Criptografia RSA"
+		And eu crio um grupo com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
+		And eu estou na pagina do meu perfil
+		When eu clico no botao Grupos
+		And eu clico no botao Meus grupos
+		Then eu vejo o grupo com nome "Matematica Discreta"
+		And eu vejo o grupo com nome "Criptografia RSA"
 
 	Scenario: Aceitar solicitacao de entrada em grupo
 		Given eu estou logado no sistema
@@ -80,8 +98,14 @@ Feature: Grupo
 		And eu clico em Sair do grupo
 		Then eu vejo a mensagem de erro "Voce eh o unico administrador do grupo. Um grupo nao pode ficar sem administrador."
 
-	#Tornar alguem administrador
-
+	Scenario: Tornar administrador outro integrante do grupo
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "Arquitetura-EaD" e descricao "Arquitetura - Educacao a Distancia"
+		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" existe
+		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" faz parte do meu grupo de nome "Arquitetura-EaD"
+		And eu estou na pagina que lista todos os usuarios que fazem parte do grupo
+		When eu clicar para tornar o usuario "Waldi Diax" administrador do grupo
+		Then eu vejo que o usuario "Waldi Diax" eh administrador do grupo
 
 	Scenario: Deletar grupo com sucesso
 		Given eu estou logado no sistema
@@ -89,6 +113,18 @@ Feature: Grupo
 		When eu clico em Apagar
 		And eu confirmo que quero apagar o grupo
 		Then eu vejo que o grupo foi apagado com sucesso
+
+	Scenario:
+		Given
+		When
+		Then
+		And
+
+	Scenario:
+		Given
+		When
+		Then
+		And
 
 	Scenario:
 		Given
