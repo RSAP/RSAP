@@ -62,18 +62,33 @@ Feature: Grupo
 		And eu nao vejo mais a solicitacao
 		And eu vejo que o usuario com nome "Matheus Carlos" nao faz parte do grupo
 
+	Scenario: Sair do grupo com sucesso
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "ES-2018.3" e descricao "Engenharia de Sotwar"
+		When eu clico em Sair do grupo
+		And eu confirmo que quero sair do grupo
+		Then eu vejo que nao participo mais do grupo
+		And vejo que o grupo foi apagado #Pois o grupo sO contia eu
 
-	Scenario:
-		Given
-		When
-		Then
-		And
+	Scenario: Sair do grupo composto por outros integrantes que nao sao administradores
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "Arquitetura-EaD" e descricao "Arquitetura - Educacao a Distancia"
+		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" existe
+		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" faz parte do meu grupo de nome "Arquitetura-EaD"
+		And o usuario com nome "Waldi Diax" nao eh administrador do grupo
+		When eu estiver na pagina principal do grupo "Arquitetura-EaD"
+		And eu clico em Sair do grupo
+		Then eu vejo a mensagem de erro "Voce eh o unico administrador do grupo. Um grupo nao pode ficar sem administrador."
 
-	Scenario:
-		Given
-		When
-		Then
-		And
+	#Tornar alguem administrador
+
+
+	Scenario: Deletar grupo com sucesso
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "PLP-EaD" e descricao "Educacao a Distancia"
+		When eu clico em Apagar
+		And eu confirmo que quero apagar o grupo
+		Then eu vejo que o grupo foi apagado com sucesso
 
 	Scenario:
 		Given
