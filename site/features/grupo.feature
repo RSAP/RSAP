@@ -1,7 +1,7 @@
 @GrupoTeste
 Feature: Grupo
-	As a usuario
-	I want to ter a possibilidade de criar, participar e gerenciar grupos
+	As a usuario da rede social
+	I want to a possibilidade de criar, participar e gerenciar grupos
 	So that possibilitando assim maior interacao com os demais usuarios do sistema
 
 	Scenario: Criacao de grupo
@@ -19,16 +19,17 @@ Feature: Grupo
 		When eu clico no botao Grupos
 		And eu clico no botao Novo Grupo
 		And eu preencho o campo nome com "ES" e nao preencho o campo descricao
-		And eu clico no botao Criar
+		And eu clico em Confirmar edicao
 		Then eu vejo a mensagem de erro "Nome muito curto"
 		And eu vejo a mensagem de erro "Descricao em branco"
 
 	Scenario: Editar grupo
 		Given eu estou logado no sistema
 		And eu crio um grupo com nome "ES-2018.3" e descricao "Engenharia de Sotwar"
+		And eu estou na pagina principal do grupo de nome "ES-2018.3"
 		When eu clico em Editar
 		And eu preencho o campo nome com "ES-2018.2" e descricao "Engenharia de Software"
-		And eu crico em Editar
+		And eu clico em Confirmar edicao
 		Then eu vejo o grupo com nome "ES-2018.2" e descricao "Engenharia de Software"
 
 	Scenario: Editar grupo com campos invalidos
@@ -36,9 +37,16 @@ Feature: Grupo
 		And eu crio um grupo com nome "ES-2018.3" e descricao "Engenharia de Sotwar"
 		When eu clico em Editar
 		And eu nao preencho o campo nome e preencho o campo descricao com "ES"
-		And eu crico em Editar
+		And eu clico em Confirmar edicao
 		Then eu vejo a mensagem de erro "Nome em branco"
 		And eu vejo a mensagem de erro "Descricao muito curta"
+
+	Scenario: Deletar grupo com sucesso
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "PLP-EaD" e descricao "Educacao a Distancia"
+		When eu clico em Apagar
+		And eu confirmo que quero apagar o grupo
+		Then eu vejo que o grupo foi apagado com sucesso
 
 	Scenario: Buscar grupo
 		Given eu estou logado no sistema
@@ -65,9 +73,10 @@ Feature: Grupo
 		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" existe
 		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" envia pela primeira vez a solicitacao
 			de entrada no grupo de nome "BCC-CS:GO"
-		When eu estiver na pagina de solicitacoes do grupo com nome "BCC-CS:GO"
-		And eu clico para aceitar a solicitacao do usuario com nome "Carlos Pimentel"
-		Then eu vejo que o usuario com nome "Carlos Pimentel" agora faz parte do grupo
+		When eu estiver na pagina de solicitacoes do grupo de nome "BCC-CS:GO"
+		And eu clico para aceitar a solicitacao do usuario de nome "Carlos Pimentel"
+		Then eu nao vejo que a solicitacao nao existe mais
+		And eu vejo que o usuario com nome "Carlos Pimentel" faz parte do grupo
 
 	Scenario: Recusar solicitacao de entrada em grupo
 		Given eu estou logado no sistema
@@ -75,9 +84,9 @@ Feature: Grupo
 		And o usuario com nome "Matheus Carlos" e email "methius@outlook.com.br" existe
 		And o usuario com nome "Matheus Carlos" e email "methius@outlook.com.br" envia pela primeira vez a solicitacao
 			de entrada no grupo de nome "BCC-CS:GO"
-		When eu estiver na pagina de solicitacoes do grupo com nome "BCC-CS:GO"
-		Then eu clico para recusar a solicitacao do usuario com nome "Matheus Carlos"
-		And eu nao vejo mais a solicitacao
+		When eu estiver na pagina de solicitacoes do grupo de nome "BCC-CS:GO"
+		And eu clico para recusar a solicitacao do usuario de nome "Matheus Carlos"
+		Then eu nao vejo que a solicitacao nao existe mais
 		And eu vejo que o usuario com nome "Matheus Carlos" nao faz parte do grupo
 
 	Scenario: Sair do grupo com sucesso
@@ -86,7 +95,7 @@ Feature: Grupo
 		When eu clico em Sair do grupo
 		And eu confirmo que quero sair do grupo
 		Then eu vejo que nao participo mais do grupo
-		And vejo que o grupo foi apagado #Pois o grupo sO contia eu
+		And eu vejo que o grupo foi apagado #Pois o grupo sO contia eu
 
 	Scenario: Sair do grupo composto por outros integrantes que nao sao administradores
 		Given eu estou logado no sistema
@@ -94,8 +103,8 @@ Feature: Grupo
 		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" existe
 		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" faz parte do meu grupo de nome "Arquitetura-EaD"
 		And o usuario com nome "Waldi Diax" nao eh administrador do grupo
-		When eu estiver na pagina principal do grupo "Arquitetura-EaD"
-		And eu clico em Sair do grupo
+		And eu estou na pagina principal do grupo "Arquitetura-EaD"
+		When eu clico em Sair do grupo
 		Then eu vejo a mensagem de erro "Voce eh o unico administrador do grupo. Um grupo nao pode ficar sem administrador."
 
 	Scenario: Remover usuario integrante do grupo
@@ -121,9 +130,9 @@ Feature: Grupo
 		And eu crio um grupo com nome "BCC-GameFest" e descricao "Evento de games na UAG!"
 		And eu estou na pagina principal do grupo
 		When eu clicar em Novo post
-		And eu preencher o campo titulo com "Counter-Strike", o campo texto com "CS sera jogado na quarta e sexta"
+		And eu preencher o campo titulo com "Counter-Strike" e o campo texto com "CS sera jogado na quarta e sexta"
 		And eu clico para criar o post
-		Then eu vejo no pagia principal do grupo o meu post com titulo "Counter Strike" e texto "CS sera jogado na quarta e sexta"
+		Then eu vejo na pagina principal do grupo o meu post com titulo "Counter Strike" e texto "CS sera jogado na quarta e sexta"
 
 	Scenario: Visualizar no grupo posts feitos por outros usuarios
 		Given o grupo com nome "Tutoria de Fisica" e descricao "Fisica - 2018.2" existe
@@ -134,10 +143,3 @@ Feature: Grupo
 		And eu participo do grupo "Tutoria de Fisica"
 		When eu estiver na pagina inicial do grupo
 		Then eu vejo o post que o usuario "Laisy Ferreira" fez com titulo "Atividade" e texto "Questoes de 1 a 21 da pagina 523"
-
-	Scenario: Deletar grupo com sucesso
-		Given eu estou logado no sistema
-		And eu crio um grupo com nome "PLP-EaD" e descricao "Educacao a Distancia"
-		When eu clico em Apagar
-		And eu confirmo que quero apagar o grupo
-		Then eu vejo que o grupo foi apagado com sucesso
