@@ -1,24 +1,11 @@
-# README
+## O que você precisa
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 2.3.3
 
-Things you may want to cover:
+* Rails 2.1.6[.1]
 
-* Ruby version
+* Bundle 1.17.1
 
-* System dependencies
+* Sqlite 3
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* ImageMagick 7.0
