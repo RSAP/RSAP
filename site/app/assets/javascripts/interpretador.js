@@ -9,13 +9,14 @@ function seletorLang(entrada) {
 }
 
 function interpretar(texto, conteiner) {
-	var linhas = texto.split("\n");
-	var saida = "";
-	var acabado = false;
-	var lang = "";
-	for (var i = 0; i < linhas.length; i++) {
-		if (linhas[i].includes(";;lang=")) {
-			lang = linhas[i].split(";;lang=")[1];
+	let linhas = texto.split("\n");
+	let saida = "";
+	let acabado = false;
+	let lang = "";
+	for (let i = 0; i < linhas.length; i++) {
+		let linhaAtual = linhas[i];
+		if (linhaAtual.includes(";;lang=")) {
+			lang = linhaAtual.split(";;lang=")[1];
 			lang = seletorLang(lang);
 			saida += "<pre class='language-";
 			saida += lang;
@@ -23,18 +24,18 @@ function interpretar(texto, conteiner) {
 			saida += lang;
 			saida += "'>";
 		} else {
-			var fim = false;
-			if (linhas[i].includes("\t")) {
+			let fim = false;
+			if (linhaAtual.includes("\t")) {
 				saida += "";
 			}
-			if (linhas[i].includes(";;endlang")) {
+			if (linhaAtual.includes(";;endlang")) {
 				acabado = true;
 				fim = true;
 				saida += " </pre></code>";
 			}
 
 			if (!fim) {
-				saida += linhas[i];
+				saida += linhaAtual;
 			}
 
 			saida += "<br>";
@@ -47,26 +48,26 @@ function interpretar(texto, conteiner) {
 }
 
 function habilitarTextArea() {
-
-	var textareas = document.getElementsByTagName("textarea");
-	var count = textareas.length;
-	for (var i = 0; i < count; i++) {
+	// esse codigo permite o uso da tecla tab em textareas
+	let textareas = document.getElementsByTagName("textarea");
+	let count = textareas.length;
+	for (let i = 0; i < count; i++) {
 		textareas[i].onkeydown = function(e) {
-			if (e.keyCode == 9 || e.which == 9) {
+			if (e.keyCode === 9 || e.which === 9) {
 				e.preventDefault();
-				var s = this.selectionStart;
+				let s = this.selectionStart;
 				this.value = this.value.substring(0, this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
 				this.selectionEnd = s + 1;
 			}
-		}
+		};
 	}
 }
 
 function mudarCategoria() {
 
-	var selectBox = document.getElementsByName("post[categoria]")[0];
-	var selected = selectBox.options[selectBox.selectedIndex].value;
-	var textarea = document.getElementById("imagemCategoria");
-	console.log(selected);
+	let selectBox = document.getElementsByName("post[categoria]")[0];
+	let selected = selectBox.options[selectBox.selectedIndex].value;
+	let textarea = document.getElementById("imagemCategoria");
+	// console.log(selected);
 	// if (selected === '1') { 	textarea.show(); } else { 	textarea.hide(); }
 }
