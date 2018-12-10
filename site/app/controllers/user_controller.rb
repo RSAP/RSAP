@@ -21,7 +21,7 @@ class UserController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 	end
-  
+
 	def home
 		@user = User.find(current_user.id)
 		@posts =Post.where(user_id: current_user.id)
@@ -61,9 +61,6 @@ class UserController < ApplicationController
 	def sendToHome
 		redirect_to root_path
 	end
-
-
-	private
 
 	# Use strong_parameters for attribute whitelisting
 	# Be sure to update your create() and update() controller methods.
