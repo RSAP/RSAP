@@ -62,25 +62,25 @@ class PostsController < ApplicationController
 
 	private
 
-		def check_current_user(id_externo)
-			id_atual = current_user.id
-			if id_atual != id_externo
-				raise "Sem permissao"
-			end
+	def check_current_user(id_externo)
+		id_atual = current_user.id
+		if id_atual != id_externo
+			raise "Sem permissao"
 		end
+	end
 
-		# Use callbacks to share common setup or constraints between actions.
-		def set_post
-			@post = Post.find(params[:id])
-		end
+	# Use callbacks to share common setup or constraints between actions.
+	def set_post
+		@post = Post.find(params[:id])
+	end
 
-		def post_nao_achado
-			#TODO: melhorar isso
-			redirect_to '/home'
-		end
+	def post_nao_achado
+		#TODO: melhorar isso
+		redirect_to '/home'
+	end
 
-		# Never trust parameters from the scary internet, only allow the white list through.
-		def post_params
-			params.require(:post).permit(:titulo, :categoria, :texto, :user_id, :imagem)
-		end
+	# Never trust parameters from the scary internet, only allow the white list through.
+	def post_params
+		params.require(:post).permit(:titulo, :categoria, :texto, :user_id, :imagem)
+	end
 end

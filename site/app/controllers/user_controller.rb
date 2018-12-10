@@ -1,6 +1,5 @@
 class UserController < ApplicationController
 
-
 	def create
 		# redirect_to new_user_registration (flash: "algo está errado!")
 		@user = User.create(user_params)
@@ -21,7 +20,7 @@ class UserController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 	end
-  
+
 	def home
 		@user = User.find(current_user.id)
 		@posts =Post.where(user_id: current_user.id)
@@ -39,7 +38,6 @@ class UserController < ApplicationController
 		@user = User.find(params[:idUser])
 		@pendente = Friendship.all
 	end
-
 
 	def list
 		@user = User.find(params[:id])
