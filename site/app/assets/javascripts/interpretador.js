@@ -3,7 +3,6 @@ function seletorLang(entrada) {
 	switch (entrada) {
 		case "c":
 			return "clike";
-			break;
 		default:
 			return entrada;
 	}
@@ -24,7 +23,7 @@ function interpretar(texto, conteiner) {
 			saida += lang;
 			saida += "'>";
 		} else {
-			var fim = false
+			var fim = false;
 			if (linhas[i].includes("\t")) {
 				saida += "";
 			}
@@ -49,7 +48,7 @@ function interpretar(texto, conteiner) {
 
 function habilitarTextArea() {
 
-	var textareas = document.getElementsByTagName('textarea');
+	var textareas = document.getElementsByTagName("textarea");
 	var count = textareas.length;
 	for (var i = 0; i < count; i++) {
 		textareas[i].onkeydown = function(e) {
