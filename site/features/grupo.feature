@@ -98,6 +98,15 @@ Feature: Grupo
 		And eu clico em Sair do grupo
 		Then eu vejo a mensagem de erro "Voce eh o unico administrador do grupo. Um grupo nao pode ficar sem administrador."
 
+	Scenario: Remover usuario integrante do grupo
+		Given o grupo com nome "Arquitetura-EaD" e descricao "Arquitetura - Educacao a Distancia" existe
+		And eu sou administrador do grupo de nome "Arquitetura-EaD"
+		And o usuario com nome "Waldi Diax" e email "wdiax@yahoo.com.br" faz parte do grupo de nome "Arquitetura-EaD"
+		And eu estou na pagina que lista os integrantes do grupo
+		When eu clicar para remover o usuario "Waldi Diax"
+		And eu confirmar a remocao
+		Then eu vejo que o usuario com nome "Waldi Diax" nao faz mais parte do grupo
+
 	Scenario: Tornar administrador outro integrante do grupo
 		Given eu estou logado no sistema
 		And eu crio um grupo com nome "Arquitetura-EaD" e descricao "Arquitetura - Educacao a Distancia"
@@ -107,27 +116,28 @@ Feature: Grupo
 		When eu clicar para tornar o usuario "Waldi Diax" administrador do grupo
 		Then eu vejo que o usuario "Waldi Diax" eh administrador do grupo
 
+	Scenario: Realizar post no grupo
+		Given eu estou logado no sistema
+		And eu crio um grupo com nome "BCC-GameFest" e descricao "Evento de games na UAG!"
+		And eu estou na pagina principal do grupo
+		When eu clicar em Novo post
+		And eu preencher o campo titulo com "Counter-Strike", o campo texto com "CS sera jogado na quarta e sexta"
+		And eu clico para criar o post
+		Then eu vejo no pagia principal do grupo o meu post com titulo "Counter Strike" e texto "CS sera jogado na quarta e sexta"
+
+	Scenario: Visualizar no grupo posts feitos por outros usuarios
+		Given o grupo com nome "Tutoria de Fisica" e descricao "Fisica - 2018.2" existe
+		And o usuario com nome "Laisy Ferreira" e email "laisyriscafaca@live.com" existe
+		And o usuario "Laisy Ferreira" faz parte do grupo "Tutoria de Fisica"
+		And o usuario "Laisy Ferreira" fez um post no grupo "Tutoria de Fisica" com titulo "Atividade" e
+			texto "Questoes de 1 a 21 da pagina 523"
+		And eu participo do grupo "Tutoria de Fisica"
+		When eu estiver na pagina inicial do grupo
+		Then eu vejo o post que o usuario "Laisy Ferreira" fez com titulo "Atividade" e texto "Questoes de 1 a 21 da pagina 523"
+
 	Scenario: Deletar grupo com sucesso
 		Given eu estou logado no sistema
 		And eu crio um grupo com nome "PLP-EaD" e descricao "Educacao a Distancia"
 		When eu clico em Apagar
 		And eu confirmo que quero apagar o grupo
 		Then eu vejo que o grupo foi apagado com sucesso
-
-	Scenario:
-		Given
-		When
-		Then
-		And
-
-	Scenario:
-		Given
-		When
-		Then
-		And
-
-	Scenario:
-		Given
-		When
-		Then
-		And
