@@ -154,7 +154,7 @@ When("eu clico no botao de atualizar post") do
 	click_button 'Update Post'
 end
 
-Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo texto {string}") do |tituloAntigo, tituloNovo, textoNovo|
+Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo texto {string}") do |_tituloAntigo, tituloNovo, textoNovo|
 	expect(page).to have_content(tituloNovo, wait: 15)
 	expect(page).to have_content(textoNovo, wait: 15)
 end
@@ -163,7 +163,7 @@ When("eu clico no botao Publicar sem preencher nenhum campo") do
 	click_button 'Create Post'
 end
 
-When("eu clico no link {string} da postagem {string}") do |link, postagem|
+When("eu clico no link {string} da postagem {string}") do |_link, postagem|
 	expect(page).to have_content(postagem, wait: 15)
 	page.assert_selector('div.linkSimples', minimum: 1)
 	#find("a[href='#{link}']").click
@@ -181,7 +181,7 @@ When("eu limpo os campos do titulo e do text") do
 	fill_in 'post[texto]', :with=> ''
 end
 
-Then("eu vejo que o post {string} possui um player do video {string}") do |titulo, video|
+Then("eu vejo que o post {string} possui um player do video {string}") do |titulo, _video|
 	expect(page).to have_content(titulo, wait: 15)
 	#TODO: procurar pelo iframe com ocidog do video
 	page.assert_selector('div.iframeYT', minimum: 1)
@@ -204,7 +204,7 @@ When("eu seleciono a imagem {string}") do |imagem|
 	attach_file("post[imagem]", Rails.root + "test/fixtures/" + imagem)
 end
 
-Then("eu vejo que o post {string} possui a imagem localizada em {string}") do |titulo, imagem|
+Then("eu vejo que o post {string} possui a imagem localizada em {string}") do |titulo, _imagem|
 	expect(page).to have_content(titulo, wait: 15)
 	idImagem = "img#imagemPost"
 	visit page.find(idImagem)[:src]
@@ -253,7 +253,7 @@ Given("a postagem com titulo {string} e o video {string} existe") do |titulo, vi
 
 end
 
-Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo video {string}") do |tituloAntigo, tituloNovo, video|
+Then("eu vejo que o post {string} foi atualizado para o novo titulo {string} e o novo video {string}") do |_tituloAntigo, tituloNovo, video|
 	expect(page).to have_content(tituloNovo, wait: 15)
 	page.assert_selector('div.iframeYT', minimum: 1)
 end
