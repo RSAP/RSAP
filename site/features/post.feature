@@ -39,7 +39,6 @@ Feature: Postagem
 	Scenario: Criando post em branco
 		Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
 		And eu estou no mural do meu perfil
-		And eu estou no mural do meu perfil
 		And eu clico no botao novo post
 		When eu clico no botao Publicar sem preencher nenhum campo
 		Then eu vejo a mensagem de erro "Titulo em branco"
