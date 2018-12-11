@@ -2,7 +2,7 @@
 Feature: Grupo
 	As a usuario da rede social
 	I want to a possibilidade de criar, participar e gerenciar grupos
-	So that possibile assim maior interacao com os demais usuarios do sistema
+	So that possibilite assim maior interacao com os demais usuarios do sistema
 
 	Scenario: Criacao de grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
