@@ -34,7 +34,7 @@ Feature: Perfis externos
     When eu clico em adicionar novo perfil externo
     And preencho o campo de link com o link "https://www.facebook.com/junior.escott" e nao preencho o campo de nome
     And clico em salvar perfil externo
-	  Then eu vejo a mensagem de erro "Nome em branco"
+  	Then eu vejo a mensagem de erro "Nome em branco"
 
   Scenario: Adicionando perfil externo sem link
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -42,7 +42,7 @@ Feature: Perfis externos
     When eu clico em adicionar novo perfil externo
     And preencho o campo de nome com "Facebook" e nao preencho o campo de link
     And clico em salvar perfil externo
-	  Then eu vejo a mensagem de erro "Link em branco"
+  	Then eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Adicionando perfil externo em branco
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -50,8 +50,8 @@ Feature: Perfis externos
     When eu clico em adicionar novo perfil externo
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
-	  Then eu vejo a mensagem de erro "Nome em branco"
-	  And eu vejo a mensagem de erro "Link em branco"
+  	Then eu vejo a mensagem de erro "Nome em branco"
+  	And eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Editando perfil externo com nome invalido
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -78,20 +78,20 @@ Feature: Perfis externos
     When eu clico para editar o perfil externo com nome "Github"
     And eu nao preencho nenhum dos campos
     And clico em salvar perfil externo
-	  Then eu vejo a mensagem de erro "Nome em branco"
-	  And eu vejo a mensagem de erro "Link em branco"
+  	Then eu vejo a mensagem de erro "Nome em branco"
+	And eu vejo a mensagem de erro "Link em branco"
 
   Scenario: Editando um perfil externo de outro usuario
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     And o perfil do usuario "Mateus Baltazar" existe
     When eu tento editar o perfil externo do perfil do usuario "Mateus Baltazar"
-	  Then eu vejo a mensagem de erro "Acesso negado"
+  	Then eu vejo a mensagem de erro "Acesso negado"
 
   Scenario: Excluido um perfil externo de outro usuario
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     And o perfil do usuario "Mateus Baltazar" existe
     When eu tento excluir o perfil externo do usuario "Mateus Baltazar"
-	  Then eu vejo a mensagem de erro "Acesso negado"
+  	Then eu vejo a mensagem de erro "Acesso negado"
 
   Scenario: Acessando perfil externo de um perfil amigo
  	Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
@@ -106,12 +106,12 @@ Feature: Perfis externos
   Scenario: Editando perfil externo de um perfil inexistente
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     When eu tento editar o perfil externo do perfil de um usuario que nao existe
-	  Then eu vejo a mensagem de erro "Perfil inexistente"
+  	Then eu vejo a mensagem de erro "Perfil inexistente"
 
   Scenario: Excluindo perfil externo de um perfil inexistente
     Given eu estou logado no meu perfil da rede social com o email "carlosantonio@o-nucleo.com" e senha "rails123456"
     When eu tento excluir o perfil externo de um usuario que nao existe
-	  Then eu vejo a mensagem de erro "Perfil inexistente"
+  	Then eu vejo a mensagem de erro "Perfil inexistente"
 
   Scenario: Editar perfil externo sem estar logado na rede social
     Given eu estou na pagina inicial da rede
