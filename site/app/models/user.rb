@@ -71,10 +71,6 @@ end
    #, default_url: "/images/:style/missing.png"
 
    #Upload de apenas imagens (do tipo image)
-   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-
-
-
    # Validate content type
    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/, message: "Formato de foto invalido"
    # Validate filename
