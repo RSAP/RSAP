@@ -7,11 +7,8 @@ module DeviseHelper
 			:count => resource.errors.count,
 			:resource => resource.class.model_name.human.downcase)
 
-			#error_messages_for 'model', :header_message => "You have some errors that prevented saving this model"
-
-			# TODO: fazer for para retirar os duplicados
-
-			messages = removerRepetidas(messages)
+			#elimita mensagens de validacao inUteis
+			messages = filtro(messages)
 
 			html = <<-HTML
 			<div id="error_explanation">
@@ -27,7 +24,7 @@ module DeviseHelper
 			!resource.errors.empty?
 		end
 
-		def removerRepetidas(msgOriginal)
+		def filtro(msgOriginal)
 			#dividir num vetor
 			vetorA = msgOriginal.split('</li>')
 			#concatena com oq ue foi removido na divisao
@@ -43,7 +40,6 @@ module DeviseHelper
 			for i in vetorA
 				final << i
 			end
-
 
 			#retorna uma string
 			return final
