@@ -26,6 +26,7 @@ Then("eu vejo que existe um usuario chamado {string}") do |string|
 end
 
 And("eu clico para ver o perfil do usuario {string}") do |string|
+	expect(page).to have_content(string)
 	click_link 'Visualizar'
 end
 
@@ -110,6 +111,7 @@ Then ("eu vejo que o usuario {string} esta na lista de amizades") do |string|
 end
 
 And ("eu recuso a solicitacao do usuario {string}") do |string|
+	expect(page).to have_content(string)
 	click_link 'Recusar'
 end
 
@@ -135,7 +137,7 @@ And("o usuario {string} com email {string} e senha {string} existe") do |nome, e
 	deslogar()
 end
 
-And("o usuario {string} fez um pedido de amizade para o usuario {string}") do |user1, user2|
+And("o usuario {string} fez um pedido de amizade para o usuario {string}") do |_user1, _user2|
 	login('matheus@email.com', '123456')
 	visit '/user/1/buscarPessoas/2/pedidoAmizade'
 	deslogar()

@@ -52,7 +52,7 @@ class FriendshipsController < ApplicationController
 	end
 
 	def buscarAmizade
-		friendship = Friendship.find_by(id: params[:request_id])
+		Friendship.find_by(id: params[:request_id])
 	end
 
 	def update
