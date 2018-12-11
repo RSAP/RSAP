@@ -35,13 +35,43 @@ module DeviseHelper
 			#remove os repetidos
 			vetorA = vetorA.uniq
 
+			#remove msgs que n precisam
+			vetorA = removerNaoNecessarias(vetorA)
+
 			#Junta tudo em uma string novamente
 			final = ""
 			for i in vetorA
 				final << i
 			end
 
+
 			#retorna uma string
+			return final
+		end
+
+		def removerNaoNecessarias(msg)
+			#Banco de msgs que n precisam ser mostradas (lembrar: <li></li>)
+			semPrecisao = ['<li>has contents that are not what they are reported to be</li>',
+				 '<li>is invalid</li>']
+
+			final = []
+			for i in msg
+				igual = false
+				for k in semPrecisao
+					#Se for igual a alguma que n precisa
+					if i == k
+						igual = true
+					end
+				end
+				#Se aquel eh alguma que n precisa
+				if igual == true
+					next
+				end
+				if k == semPrecisao.last
+					final << i
+				end
+			end
+
 			return final
 		end
 
