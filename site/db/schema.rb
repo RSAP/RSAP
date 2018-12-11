@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181205003812) do
+ActiveRecord::Schema.define(version: 20181211031411) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 20181205003812) do
     t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "grupos", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grupos_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "grupo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grupo_id"], name: "index_grupos_users_on_grupo_id"
+    t.index ["user_id"], name: "index_grupos_users_on_user_id"
   end
 
   create_table "perfil_externos", force: :cascade do |t|
