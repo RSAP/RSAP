@@ -50,7 +50,7 @@ class PerfilExternosController < ApplicationController
   # DELETE /perfil_externos/1
   # DELETE /perfil_externos/1.json
   def destroy
-	 perfil =  PerfilExterno.find_by(params[:id])
+	 perfil =  PerfilExterno.find(params[:id])
 	 case perfil.nil?
 	 when true
 		 noticiar("Esse perfil não existe")

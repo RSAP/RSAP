@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+	match '/perfil_externo/destroy/:id' => 'perfil_externos#destroy', :as => :destroy_perfil, via: :get
+
 	resources :perfil_externos
 	root to: "pages#home"
 
@@ -16,7 +18,6 @@ Rails.application.routes.draw do
 
 	match '/perfil_externo/' => 'perfil_externos#show', via: :get
 
-	match '/perfil_externo/:id/destroy' => 'perfil_externos#destroy', via: :get
 
 	match 'user/:id/pedidosAmizade/aceitar/:request_id' => 'friendships#update', via: :get
 
