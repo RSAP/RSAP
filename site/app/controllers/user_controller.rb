@@ -34,12 +34,12 @@ class UserController < ApplicationController
 	def mural
 		@posts = Post.where(user_id: params[:id])
 	end
-
 	def index
 		@user = User.search(params[:search])
 	end
 
 	def viewUser
+		@user = buscarUsuario(params[:idUser])
 		@pendente = Friendship.all
 	end
 
