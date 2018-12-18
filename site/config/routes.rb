@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 	#provisOrio
 	match 'erro' => "user#erro", via: :get
 
+	match '/perfil_externo/' => 'perfil_externos#show', via: :get
+
+	match '/perfil_externo/:id/destroy' => 'perfil_externos#destroy', via: :get
+
 	match 'user/:id/pedidosAmizade/aceitar/:request_id' => 'friendships#update', via: :get
 
 	match 'user/:id/pedidosAmizade/rejeitar/:request_id' => 'friendships#destroy', via: :get

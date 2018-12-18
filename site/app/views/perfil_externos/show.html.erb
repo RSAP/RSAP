@@ -1,19 +1,35 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @perfil_externo.nome %>
-</p>
+<p><h1><%=current_user.nome%></h1><p>
+<p><strong>Perfis Externos</strong><p>
 
-<p>
-  <strong>Link:</strong>
-  <%= @perfil_externo.link %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @perfil_externo.user.getNick %>
-</p>
+<%= link_to 'Novo Perfil Externo', new_perfil_externo_path %> |
 
-<%= link_to 'Editar', edit_perfil_externo_path(@perfil_externo) %> |
-<%= link_to 'Voltar', perfil_externos_path %>
+<ul>
+    <% @perfil_externo.each do |p| %>
+		<% if (p.user_id.eql? current_user.id) %>
+			<p>
+		  		<strong>Nome:</strong>
+		  		<%= p.nome %>
+			</p>
+
+			<p>
+		  		<strong>Link:</strong>
+		  		<%= p.link %>
+			</p>
+
+
+			<p>
+				<strong>Editar:</strong>
+				<%= link_to 'Editar', edit_perfil_externo_path(p) %>|
+		  		<strong>Deletar:</strong>
+		  		<td><%= link_to 'Apagar', controller: "perfil_externos", action: "destroy", id: p.id %></td>
+			</p>
+	  		<% end %>
+		<%end%>
+
+
+
+</ul>
+
+<%= link_to "Voltar", controller: "user", action: "show", id: current_user.id%>

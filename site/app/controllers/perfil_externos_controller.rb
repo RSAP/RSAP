@@ -1,15 +1,10 @@
 class PerfilExternosController < ApplicationController
   before_action :set_perfil_externo, only: [:show, :edit, :update, :destroy]
 
-  # GET /perfil_externos
-  # GET /perfil_externos.json
-  def index
-    @perfil_externos = PerfilExterno.all
-  end
-
   # GET /perfil_externos/1
   # GET /perfil_externos/1.json
   def show
+	@perfil_externo = PerfilExterno.all
   end
 
   # GET /perfil_externos/new
@@ -55,17 +50,38 @@ class PerfilExternosController < ApplicationController
   # DELETE /perfil_externos/1
   # DELETE /perfil_externos/1.json
   def destroy
-    @perfil_externo.destroy
-    respond_to do |format|
-      format.html { redirect_to perfil_externos_url, notice: 'Perfil externo was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+	 perfil =  PerfilExterno.find_by(params[:id])
+	 case perfil.nil?
+	 when true
+		 noticiar("Esse perfil não existe")
+	 else
+		 case donoPerfil(perfil)
+		 when true
+     		perfil.destroy
+			noticiar("Deletado com sucesso")
+			redirect_back fallback_location: perfil_externo_path
+		else
+			noticiar("Você não tem permissão para isso")
+		end
+	end
   end
+
+  def noticiar mensagem
+	  flash[:notice] = mensagem
+  end
+
+def donoPerfil perfil
+	perfil.user_id.eql? current_user.id
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_perfil_externo
-      @perfil_externo = PerfilExterno.find(params[:id])
+		begin
+      		@perfil_externo = PerfilExterno.find_by(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			redirect_to "/perfil_externos/new"
+		end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
