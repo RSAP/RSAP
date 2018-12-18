@@ -46,7 +46,7 @@
 	<%end%>
 <% end %>
 
-<% if ( !((current_user.pending_friends).include? @user) && !((current_user.requested_friendships).include? @user) && !((current_user.received_friends).include? @user) && !((current_user.active_friends).include? @user)) %>
+<% if ( !((current_user.pending).include? @user) && !((current_user.friends).include? @user)) %>
 	<%= link_to "Adicionar aos amigos", controller: "friendships", action: "create", id: current_user.id, friend_id: @user.id%>
 <% end %>
 

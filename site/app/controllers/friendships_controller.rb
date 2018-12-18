@@ -30,11 +30,11 @@ class FriendshipsController < ApplicationController
 	end
 
 	def jaSaoAmigos user
-		((current_user.received_friends).include? user) || ((current_user.active_friends).include? user)
+		((current_user.friends).include? user)
 	end
 
 	def pedidoJaExiste user
-		((current_user.pending_friends).include? user) || ((current_user.requested_friendships).include? user)
+		((current_user.pending).include? user)
 
 	end
 
