@@ -1,15 +1,8 @@
-<h1>Grupo#index</h1>
-
-<p id="notice"><%= notice %></p>
-
 <h1>Grupos</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Descricao</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,8 +10,11 @@
   <tbody>
     <% @grupos.each do |grupo| %>
       <tr>
-        <td><%= grupo.getUsers %></td>
-        <td><%= grupo.descricao %></td>
+
+		<th>Nome:</th>
+        <td><%= grupo.nome %></td>
+		 <th>Descricao:</th>
+        <td><%= grupo.descricao %></td> <th> | </th>
         <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
         <td><%= link_to 'Editar', "/grupos/#{grupo.id}/edit" %></td>
         <td><%= link_to 'Apagar', "/grupos/#{grupo.id}", method: :delete, data: { confirm: 'Are you sure?' } %></td>
