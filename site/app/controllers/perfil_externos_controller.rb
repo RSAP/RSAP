@@ -4,9 +4,16 @@ class PerfilExternosController < ApplicationController
   # GET /perfil_externos/1
   # GET /perfil_externos/1.json
   def show
-	@perfil_externo = PerfilExterno.all
+	  if !(logado)
+		  @perfil_externo = PerfilExterno.all
+      else
+		 redirecionarDefault('/')
+	 end
   end
 
+  def logado
+	  current_user.nil?
+	end
   # GET /perfil_externos/new
   def new
     @perfil_externo = PerfilExterno.new
