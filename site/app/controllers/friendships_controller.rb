@@ -1,21 +1,17 @@
 class FriendshipsController < ApplicationController
 	def create
-		mesmaPessoa = mesmoUsuario
-		case mesmaPessoa
+		case mesmoUsuario
 		when true
 			noticiar("Voce nao pode solicitar amizade a si mesmo")
 		else
 			user = User.find_by(id: params[:friend_id])
-			encontrou = user.nil?
-			case encontrou
+			case user.nil?
 			when false
-				flag = pedidoJaExiste(user)
-				case flag
+				case pedidoJaExiste(user)
 				when true
 					noticiar("Voce nao pode solicitar amizade enquanto houver uma solitacao pendente")
 				else
-					amigos = jaSaoAmigos(user)
-					case amigos
+					case jaSaoAmigos(user)
 					when true
 						noticiar("Voce nao pode solicitar amizade de alguem que ja eh seu amigo")
 					else
@@ -35,11 +31,11 @@ class FriendshipsController < ApplicationController
 	end
 
 	def jaSaoAmigos user
-		((current_user.received_friends).include? user) || ((current_user.active_friends).include? user)
+		((current_user.friends).include? user)
 	end
 
 	def pedidoJaExiste user
-		((current_user.pending_friends).include? user) || ((current_user.requested_friendships).include? user)
+		((current_user.pending).include? user)
 
 	end
 
@@ -57,11 +53,9 @@ class FriendshipsController < ApplicationController
 
 	def update
 		friendship = buscarAmizade
-		existe = friendship.nil?
-		case existe
+		case friendship.nil?
 		when false
-			participa = usuarioParticipaAmizade(friendship)
-			case participa
+			case usuarioParticipaAmizade(friendship)
 			when true
 				friendship.update(accepted: true)
 				friendship.save
@@ -76,11 +70,9 @@ class FriendshipsController < ApplicationController
 
 	def destroy
 			friendship = buscarAmizade
-			existe = friendship.nil?
-			case existe
+			case friendship.nil?
 			when false
-				participa = usuarioParticipaAmizade(friendship)
-				case participa
+				case usuarioParticipaAmizade(friendship)
 				when true
 					friendship.destroy
 					friendship.save

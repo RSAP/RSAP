@@ -5,7 +5,7 @@
    <h3>Você está logado!!</h3>
    <%= link_to 'Deslogar', destroy_user_session_path, method: :delete %>
    <%= link_to "Ver Perfil", controller: "user", action: "show", id: current_user.id%>
-   <a href="/home">Home</a>
+   <a href="/home">Mural</a>
 <% else %>
    <%= link_to "Registrar-se", new_user_registration_path %>
    <%= link_to "Logar", new_user_session_path %>

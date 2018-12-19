@@ -1,0 +1,20 @@
+<h1> <%= @user.nome %> </h1>
+
+
+<% if !(@perfil_externo.nil?) %>
+<% @perfil_externo.each do |p| %>
+		<p>
+			<strong>Nome:</strong>
+			<%= p.nome %>
+		</p>
+
+		<p>
+			Link:
+			<%= p.link %>
+		</p>
+		<p>
+		</p>
+	<%end%>
+<%end%>
+
+<%= link_to 'Voltar', controller: "user", action: "viewUser", id: current_user.id, idUser: @user.id %><br>
