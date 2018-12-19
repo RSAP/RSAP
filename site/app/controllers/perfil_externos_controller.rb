@@ -22,12 +22,17 @@ class PerfilExternosController < ApplicationController
   # GET /perfil_externos/1/edit
   def edit
 	  begin
-	   @perfil_externo = PerfilExterno.find(params[:id])
-	   case donoPerfil(@perfil_externo)
+	   case logado
 	   when false
-			   noticiar("Você não pode fazer isso")
-			   redirect_to "/"
-	   end
+	   	@perfil_externo = PerfilExterno.find(params[:id])
+	   	case donoPerfil(@perfil_externo)
+	   	when false
+			   	noticiar("Você não pode fazer isso")
+			   	redirect_to "/"
+	   	end
+	else
+		redirecionarDefault('/')
+	end
 	   rescue ActiveRecord::RecordNotFound
 		   noticiar("Perfil externo inexistente")
 		   redirect_to "/"
