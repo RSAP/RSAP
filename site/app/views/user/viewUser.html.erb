@@ -13,16 +13,11 @@
 <ul>
 <% @pendente.each do |request| %>
 	<% if (((request.friend_id.eql? @user.id) || (request.friend_id.eql? current_user.id)) && (request.accepted == true)) %>
-    	<% current_user.active_friends.each do |friend| %>
+    	<% current_user.friends.each do |friend| %>
 			<% if (friend.eql? @user) %>
+				 <%= link_to "Perfis Externos", controller: "perfil_externos", action: "friend_perfil_externo", id: @user.id%>
        			 <p> Voces sao amigos </p>
 	   			<%= link_to "Desfazer amizade",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %> </td>
-			<% end %>
-		<% end %>
-		<% current_user.received_friends.each do |friend| %>
-			<% if (friend.eql? @user) %>
-	    		 <p> Voces sao amigos </p>
-	   			<%= link_to "Desfazer amizade",  controller: "friendships", action: "destroy", id: current_user.id, request_id: request.id %></td>
 			<% end %>
 		<% end %>
 	<% end %>

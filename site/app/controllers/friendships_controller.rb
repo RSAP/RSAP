@@ -15,7 +15,8 @@ class FriendshipsController < ApplicationController
 					when true
 						noticiar("Voce nao pode solicitar amizade de alguem que ja eh seu amigo")
 					else
-						current_user.friendships.build(friend_id: params[:friend_id]).save
+						friendship = current_user.friendships.build(friend_id: params[:friend_id])
+						friendship.save
 						noticiar("Pedido de amizade eviado.")
 					end
 				end

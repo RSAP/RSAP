@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
 	match '/perfil_externo/' => 'perfil_externos#show', via: :get
 
+	match 'user/buscarPessoas/:id/perfil_externo' => 'perfil_externos#friend_perfil_externo', via: :get
+
 
 	match 'user/:id/pedidosAmizade/aceitar/:request_id' => 'friendships#update', via: :get
 

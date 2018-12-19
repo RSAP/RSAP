@@ -6,6 +6,7 @@
 <%= link_to 'Novo Perfil Externo', new_perfil_externo_path %> |
 
 <ul>
+	<% if !(@perfil_externo.nil?) %>
     <% @perfil_externo.each do |p| %>
 		<% if (p.user_id.eql? current_user.id) %>
 			<p>
@@ -25,6 +26,7 @@
 			</p>
 	  		<% end %>
 		<%end%>
+	<%end%>
 
 
 

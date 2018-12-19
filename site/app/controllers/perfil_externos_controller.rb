@@ -23,6 +23,22 @@ class PerfilExternosController < ApplicationController
   def edit
   end
 
+
+  def friend_perfil_externo
+	  	  begin
+	  		@user = User.find(params[:id])
+		  case current_user.friends.include? @user
+		  when true
+	  			@perfil_externo = PerfilExterno.where(user_id: params[:id])
+		  else
+			  noticiar("Vocês não são amigos")
+		  end
+	  rescue ActiveRecord::RecordNotFound
+		  noticiar("Usuario não encontrado!")
+		  redirecionarDefault(perfil_externo_path)
+	  end
+  end
+
   # POST /perfil_externos
   # POST /perfil_externos.json
   def create
