@@ -47,9 +47,94 @@ class GrupoController < ApplicationController
 		end
 	end
 
+	##############################################################################
+	#############################SOLICITACOES#####################################
+	##############################################################################
+
+	def solicitarMinhaParticiao
+
+		grupo = Grupo.find_by(id: params[:idGrupo])
+		user = User.find_by(id: current_user.id)
+
+		if grupo.nil?
+			noticiar("Grupo nao existe")
+		end
+		if essa_solicitacao_existe(user, grupo)
+			noticiar("Já existe solicitacao pendente")
+		end
+		if eh_mebro_do_grupo(user, grupo)
+			noticiar("Voce já é membro do grupo")
+		end
+
+		grupo.addSolicitacao(user)
+		redirect_to grupos_path
+
+	end
+
+	def cancelarMinhaParticiao
+
+		grupo = Grupo.find_by(id: params[:idGrupo])
+		user = User.find_by(id: current_user.id)
+
+		if grupo.nil?
+			noticiar("Grupo nao existe")
+		end
+		if !(essa_solicitacao_existe(user, grupo))
+			noticiar("Já existe solicitacao pendente")
+		end
+		if eh_mebro_do_grupo(user, grupo)
+			noticiar("Voce já é membro do grupo")
+		end
+
+		grupo.removerSolicitacao(user)
+		redirect_to grupos_path
+
+	end
+
+	def rejeitarSolicitacao
+
+	end
+
+	def aceitarSolitacao
+
+	end
+
+	##############################################################################
+	#############################SOLICITACOES#####################################
+	##############################################################################
+
+
+
+
 	private
 	def grupo_params
 		params.require(:grupo).permit(:nome, :descricao)
 	end
+
+
+	##############################################################################
+	#############################SOLICITACOES#####################################
+	##############################################################################
+
+	def eh_moderador
+
+	end
+
+	def eh_mebro_do_grupo(user, grupo)
+
+	end
+
+	def essa_solicitacao_existe(user, grupo)
+
+	end
+
+	def noticiar(mensagem)
+		flash[:notice] = mensagem
+	end
+
+
+	##############################################################################
+	#############################SOLICITACOES#####################################
+	##############################################################################
 
 end
