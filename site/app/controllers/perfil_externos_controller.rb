@@ -21,13 +21,24 @@ class PerfilExternosController < ApplicationController
 
   # GET /perfil_externos/1/edit
   def edit
+	  begin
+	   @perfil_externo = PerfilExterno.find(params[:id])
+	   case donoPerfil(@perfil_externo)
+	   when false
+			   noticiar("Você não pode fazer isso")
+			   redirect_to "/"
+	   end
+	   rescue ActiveRecord::RecordNotFound
+		   noticiar("Perfil externo inexistente")
+		   redirect_to "/"
+	   end
   end
 
 
   def friend_perfil_externo
 	  	  begin
 	  		@user = User.find(params[:id])
-		  case current_user.friends.include? @user
+		  case amigos(@user)
 		  when true
 	  			@perfil_externo = PerfilExterno.where(user_id: params[:id])
 		  else
@@ -39,6 +50,10 @@ class PerfilExternosController < ApplicationController
 		  redirecionarDefault(perfil_externo_path)
 	  end
   end
+
+  	def amigos user
+		current_user.friends.include? user
+  	end
 
   # POST /perfil_externos
   # POST /perfil_externos.json
@@ -60,16 +75,14 @@ class PerfilExternosController < ApplicationController
   # PATCH/PUT /perfil_externos/1
   # PATCH/PUT /perfil_externos/1.json
   def update
-    respond_to do |format|
-      if @perfil_externo.update(perfil_externo_params)
-        format.html { redirect_to @perfil_externo, notice: 'Perfil externo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @perfil_externo }
-      else
-        format.html { render :edit }
-        format.json { render json: @perfil_externo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	  @perfil_externo = PerfilExterno.find(params[:id])
+   if @perfil_externo.update_attributes(perfil_externo_params)
+	   noticiar("Atualizado com sucesso!")
+	   redirect_to perfil_externo_path
+   end
+end
+
+
 
   # DELETE /perfil_externos/1
   # DELETE /perfil_externos/1.json

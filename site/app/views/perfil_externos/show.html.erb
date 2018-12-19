@@ -20,7 +20,7 @@
 			</p>
 			<p>
 				<strong>Editar:</strong>
-				<%= link_to 'Editar', edit_perfil_externo_path(p) %>|
+				<%= link_to 'Editar',controller: "perfil_externos", action: "edit", id: p.id %>|
 		  		<strong>Deletar:</strong>
 		  		<td><%= link_to 'Apagar', controller: "perfil_externos", action: "destroy", id: p.id %></td>
 			</p>
