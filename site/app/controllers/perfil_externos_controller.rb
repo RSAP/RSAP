@@ -32,6 +32,7 @@ class PerfilExternosController < ApplicationController
 	  			@perfil_externo = PerfilExterno.where(user_id: params[:id])
 		  else
 			  noticiar("Vocês não são amigos")
+			  redirecionarDefault(perfil_externo_path)
 		  end
 	  rescue ActiveRecord::RecordNotFound
 		  noticiar("Usuario não encontrado!")
