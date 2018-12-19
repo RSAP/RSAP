@@ -47,6 +47,21 @@ class GrupoController < ApplicationController
 		end
 	end
 
+	def gruposDe()
+		grupos = Grupo.all
+		grupos.each do |g|
+			users = g.getUsers()
+			users.each do |u|
+				if( u.getId == params[:id])
+					@grupo << g
+					break;
+				end
+			end
+		end
+		redirect_to grupos_path
+	end
+
+
 	private
 	def grupo_params
 		params.require(:grupo).permit(:nome, :descricao)
