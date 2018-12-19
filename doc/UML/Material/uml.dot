@@ -1,0 +1,18 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true, bgcolor="none"]
+	"Post" [shape=Mrecord, label="{Post|id :integer\ltitulo :varchar\lcategoria :varchar\ltexto :text\luser_id :integer\lcreated_at :datetime\lupdated_at :datetime\limagem_file_name :varchar\l}"]
+	"Grupo" [shape=Mrecord, label="{Grupo|id :integer\lnome :varchar\ldescricao :text\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Friendship" [shape=Mrecord, label="{Friendship|id :integer\luser_id :integer\lfriend_id :integer\laccepted :boolean\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"ApplicationRecord" []
+	"PerfilExterno" [shape=Mrecord, label="{PerfilExterno|id :integer\lnome :varchar\llink :varchar\luser_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"User" [shape=Mrecord, label="{User|id :integer\lnome :varchar\lemail :varchar\ldescricao :text\lencrypted_password :varchar\lcreated_at :datetime\lupdated_at :datetime\lavatar_file_name :varchar\l}"]
+	"ApplicationRecord" -> "Post" [label="", arrowhead="none", arrowtail="onormal"]
+	"ApplicationRecord" -> "Grupo" [label="", arrowhead="none", arrowtail="onormal"]
+	"ApplicationRecord" -> "Friendship" [label="", arrowhead="none", arrowtail="onormal"]
+	"ApplicationRecord" -> "PerfilExterno" [label="", arrowhead="none", arrowtail="onormal"]
+	"User" -> "Friendship" [arrowtail=odot, arrowhead=crow, dir=both color="#5579B4"]
+	"User" -> "Friendship" [label="received_friendships", arrowtail=odot, arrowhead=crow, dir=both color="#8B47DC"]
+	"ApplicationRecord" -> "User" [label="", arrowhead="none", arrowtail="onormal"]
+}
+
+
