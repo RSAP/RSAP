@@ -59,12 +59,16 @@ class PerfilExternosController < ApplicationController
 		 when true
      		perfil.destroy
 			noticiar("Deletado com sucesso")
-			redirect_back fallback_location: perfil_externo_path
+			redirecionarDefault(perfil_externo_path)
 		else
 			noticiar("Você não tem permissão para isso")
 		end
 	end
   end
+
+ 	def redirecionarDefault path
+		redirect_back fallback_location: path
+	end
 
   def noticiar mensagem
 	  flash[:notice] = mensagem
