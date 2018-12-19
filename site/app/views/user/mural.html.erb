@@ -2,7 +2,6 @@
 <%= link_to 'Novo Post', new_post_path %><br><br>
 
 <% @posts.each do |post| %>
-	<% @post = post %>
 	<tr>
 		<%= render 'post_render', post: @post %>
 		<td><%= link_to 'Show', post, id: "mostra-#{post.titulo}" %></td>

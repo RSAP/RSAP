@@ -92,6 +92,7 @@ end
   # DELETE /perfil_externos/1
   # DELETE /perfil_externos/1.json
   def destroy
+	 begin
 	 perfil =  PerfilExterno.find(params[:id])
 	 case perfil.nil?
 	 when true
@@ -104,7 +105,12 @@ end
 			redirecionarDefault(perfil_externo_path)
 		else
 			noticiar("Você não tem permissão para isso")
+			redirecionarDefault(perfil_externo_path)
 		end
+	end
+	rescue ActiveRecord::RecordNotFound
+		noticiar("Usuario não encontrado!")
+		redirecionarDefault(perfil_externo_path)
 	end
   end
 
@@ -117,7 +123,7 @@ end
   end
 
 def donoPerfil perfil
-	perfil.user_id.eql? current_user.id
+	current_user.id.eql? perfil.user_id
 end
 
   private
