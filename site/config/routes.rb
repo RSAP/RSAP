@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	match '/perfil_externo/destroy/:id' => 'perfil_externos#destroy', :as => :destroy_perfil, via: :patch
+	match '/perfil_externo/destroy/:id' => 'perfil_externos#destroy', :as => :destroy_perfil, via: :get
 
     match '/perfil_externo/:id/atualizar' => 'perfil_externos#edit', via: :get
 
