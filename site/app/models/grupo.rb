@@ -81,4 +81,14 @@ class Grupo < ApplicationRecord
 	end
 
 
+	#Busca grupo por nomes parecidos
+	def self.search(search)
+		if search
+			where(['nome LIKE ?', "%#{search}%"])
+		else
+			all
+		end
+	end
+
+
 end

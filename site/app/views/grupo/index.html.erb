@@ -8,7 +8,8 @@
   </thead>
 
   <tbody>
-    <% @grupos.each do |grupo| %>
+	  <%if @grupos.count > 0%>
+	    <% @grupos.each do |grupo| %>
       <tr>
 
 		<th>Nome:</th>
@@ -18,6 +19,10 @@
         <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
       </tr>
     <% end %>
+	<%else%>
+		<p>Você não participa de nenhum grupo!</p>
+	<%end%>
+
   </tbody>
 </table>
 
