@@ -9,3 +9,6 @@ match 'grupos/:id/edit/' => 'grupo#edit', via: :get
 match 'grupos/:id/' => 'grupo#show', via: :get
 
 match 'grupos/' => 'grupo#create', via: :post
+
+
+match 'gruposDe/:id' => 'grupo#gruposDe', via: :get
