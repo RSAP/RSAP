@@ -17,3 +17,7 @@ match 'grupos/' => 'grupo#create', via: :post
 
 
 match 'gruposDe/:id' => 'grupo#gruposDe', via: :get
+
+match 'grupos/:id/novoPost' => 'grupo#novoPost', via: :get
+
+match 'grupos/:id/salvarPost' => 'grupo#salvarPost', via: :post
