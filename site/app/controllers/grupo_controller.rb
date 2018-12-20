@@ -12,9 +12,15 @@ class GrupoController < ApplicationController
 	end
 
 	def show
+		@grupo = Grupo.find(params[:id])
+	end
+
+	def verMembros
+		@grupo = Grupo.find(params[:id])
 	end
 
 	def edit
+
 	end
 
 	def create
