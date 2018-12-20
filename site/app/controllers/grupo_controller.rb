@@ -56,7 +56,8 @@ class GrupoController < ApplicationController
 			return
 		end
 		if @grupo.save
-			format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
+			noticiar("Grupo criado com sucesso!")
+			redirecionar('/grupos')
 		else
 			render "new"
 		end
