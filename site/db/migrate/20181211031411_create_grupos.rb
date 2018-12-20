@@ -8,20 +8,20 @@ class CreateGrupos < ActiveRecord::Migration[5.1]
 		end
 
 		create_table :grupos_users, id: false do |t|
-			t.references :user, foreign_key: true
-			t.references :grupo, foreign_key: true
+			t.references :user, foreign_key: {on_delete: :cascade}
+			t.references :grupo, foreign_key: {on_delete: :cascade}
 			t.timestamps
 		end
 
 		create_table :moderadores, id: false do |t|
-			t.references :user, foreign_key: true
-			t.references :grupo, foreign_key: true
+			t.references :user, foreign_key: {on_delete: :cascade}
+			t.references :grupo, foreign_key: {on_delete: :cascade}
 			t.timestamps
 		end
 
 		create_table :solicitacoes_grupo, id: false do |t|
-			t.references :user, foreign_key: true
-			t.references :grupo, foreign_key: true
+			t.references :user, foreign_key: {on_delete: :cascade}
+			t.references :grupo, foreign_key: {on_delete: :cascade}
 			t.timestamps
 		end
 

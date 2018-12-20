@@ -82,7 +82,7 @@ class GrupoController < ApplicationController
 			when true
 				case maisDeUmMembro(grupo)
 				when false
-					buscarGrupo.removerDeTabelaGrupo(current_user)
+					buscarGrupo.removerDeTabelaGrupo
 					noticiar("Removido com sucesso!")
 					redirecionar(list_path)
 				else
