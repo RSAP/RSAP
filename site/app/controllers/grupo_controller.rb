@@ -4,12 +4,12 @@ class GrupoController < ApplicationController
 
 
 	def getUser(idUser)
-        begin
-            user = User.find(idUser)
-        rescue ActiveRecord::RecordNotFound
-            return nil
-        end
-    end
+		begin
+			user = User.find(idUser)
+		rescue ActiveRecord::RecordNotFound
+			return nil
+		end
+	end
 
 
 	def buscarGrupoNome
@@ -43,23 +43,23 @@ class GrupoController < ApplicationController
 
 	def buscarGrupo
 		begin
-		Grupo.find(params[:id])
-	rescue ActiveRecord::RecordNotFound
-		nil
+			Grupo.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			nil
 		end
 	end
 
 	def create
 		@grupo = Grupo.create(grupo_params)
-			if !(@grupo.valid?)
-	   				erro("Não utilize caracteres especiais, não deixe campos em branco!")
-	   			return
-			end
-			if @grupo.save
-				format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
-			else
-				render "new"
-			end
+		if !(@grupo.valid?)
+			erro("Não utilize caracteres especiais, não deixe campos em branco!")
+			return
+		end
+		if @grupo.save
+			format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
+		else
+			render "new"
+		end
 		@grupo.addUser(current_user)
 		@grupo.addModerador(current_user)
 	end
@@ -68,7 +68,7 @@ class GrupoController < ApplicationController
 		@grupo = Grupo.find(params[:id])
 		if @grupo.update_attributes(grupo_params)
 			if !(@grupo.valid?)
-					erro("Não utilize caracteres especiais, não deixe campos em branco!")
+				erro("Não utilize caracteres especiais, não deixe campos em branco!")
 				return
 			end
 
@@ -79,8 +79,6 @@ class GrupoController < ApplicationController
 				format.html { render :update }
 				format.json { render json: @grupo.errors, status: :unprocessable_entity }
 			end
-		else
-			erro("Você precisa de privilégios de administrador pra fazer isso")
 		end
 	end
 
@@ -146,7 +144,7 @@ class GrupoController < ApplicationController
 		@grupos = Array.new
 		todosGrupos.each do |g|
 			if(g.getUsers().include?(getUser(params[:id])))
-		 		@grupos.push(g) #append
+				@grupos.push(g) #append
 			end
 		end
 		render "grupo/index"
