@@ -1,4 +1,4 @@
-<h1>Editing Perfil Externo</h1>
+<h1>Editando Perfil Externo</h1>
 
 <%= form_for @perfil_externo do |f| %>
 
@@ -11,5 +11,5 @@
   <div><%= f.submit "Atualizar!" %></div>
  <% end %>
 
-<%= link_to 'Ver', @perfil_externo %> |
-<%= link_to 'Voltar', controller: "perfil_externos", action: "show"%>
+<td><%= link_to 'Ver', @perfil_externo %></td> |
+<td><%= link_to 'Voltar', "/grupos" %></td>
