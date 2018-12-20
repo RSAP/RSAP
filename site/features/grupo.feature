@@ -28,7 +28,7 @@ Feature: Grupo
 		When eu clico em Editar
 		And eu preencho o campo nome com "ES-2018.2" e descricao "Engenharia de Software"
 		And eu clico em Atualizar!
-		Then eu vejo o grupo agora tem nome "ES-2018.2" e descricao "Engenharia de Software"
+		Then eu vejo que o grupo agora tem nome "ES-2018.2" e descricao "Engenharia de Software"
 
 	Scenario: Editar grupo com campos invalidos
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
@@ -42,6 +42,7 @@ Feature: Grupo
 	Scenario: Deletar grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu crio um grupo com nome "PLP-EaD" e descricao "Educacao a Distancia"
+		And eu clico para ver o grupo
 		When eu clico em Apagar
 		And eu confirmo que quero apagar o grupo
 		Then eu vejo que o grupo foi apagado com sucesso
@@ -50,7 +51,7 @@ Feature: Grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu crio um grupo com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
 		And eu estou na pagina do meu perfil
-		When eu clico no botao Buscar Grupo
+		When eu clico no botao Buscar grupo
 		And eu preencho o campo de busca com nome "Matematica Discreta"
 		And eu clico em Buscar
 		Then eu vejo o grupo que criei com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
