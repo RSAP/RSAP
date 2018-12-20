@@ -366,6 +366,27 @@ class GrupoController < ApplicationController
 		@post.save
 		@post.fixarEmGrupo(@grupo.id)
 
+		redirect_to grupos_path
+
+	end
+
+
+
+	def listarPosts
+
+		@grupo = getGrupo(params[:id])
+
+		if @grupo.nil?
+			erro("Grupo nao existe")
+			return
+		end
+
+		@posts = @grupo.getPosts
+
+		if @posts.nil?
+			erro("Grupo nao tem posts")
+			return
+		end
 	end
 
 
