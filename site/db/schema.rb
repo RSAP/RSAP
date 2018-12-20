@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20181211031411) do
     t.index ["user_id"], name: "index_grupos_users_on_user_id"
   end
 
+  create_table "moderadores", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "grupo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grupo_id"], name: "index_moderadores_on_grupo_id"
+    t.index ["user_id"], name: "index_moderadores_on_user_id"
+  end
+
   create_table "perfil_externos", force: :cascade do |t|
     t.string "nome"
     t.string "link"
@@ -57,6 +66,15 @@ ActiveRecord::Schema.define(version: 20181211031411) do
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "solicitacoes_grupo", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "grupo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grupo_id"], name: "index_solicitacoes_grupo_on_grupo_id"
+    t.index ["user_id"], name: "index_solicitacoes_grupo_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

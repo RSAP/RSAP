@@ -1,1 +1,15 @@
-<h1>edit</h1>
+<h1>Editando Grupo</h1>
+
+<%= form_for :grupo do |f| %>
+
+  <div><%= f.label :nome %><br />
+  <%= f.text_field :nome %></div>
+
+  <div><%= f.label :descricao %><br />
+  <%= f.text_field :descricao %></div>
+
+  <div><%= f.submit "Atualizar!" %></div>
+ <% end %>
+
+
+<%= link_to 'Voltar', controller: "grupo", action: "show"%>

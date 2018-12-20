@@ -55,6 +55,14 @@ class Grupo < ApplicationRecord
 	end
 
 
+	def removerDeTabelaGrupo
+		execQuerry("DELETE FROM moderadores WHERE grupo_id = #{self.id}")
+		execQuerry("DELETE FROM grupos_users WHERE grupo_id = #{self.id}")
+		execQuerry("DELETE FROM solicitacoes_grupo WHere grupo_id = #{self.id}")
+		#TODO
+		execQuerry("DELETE FROM grupos WHERE id = #{self.id}")
+	end
+
 	private
 	def execQuerry(sql)
 		return ActiveRecord::Base.connection.exec_query(sql)

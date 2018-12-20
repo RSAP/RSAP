@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+	match '/perfil_externo/destroy/:id' => 'perfil_externos#destroy', :as => :destroy_perfil, via: :get
+
+    match '/perfil_externo/:id/atualizar' => 'perfil_externos#edit', via: :get
+
+	match '/perfil_externo/:id/atualizar/sucesso' => 'perfil_externos#update', :as => :update_perfil_externos, via: :post
+
 	resources :perfil_externos
 	root to: "pages#home"
 
@@ -13,6 +19,10 @@ Rails.application.routes.draw do
 
 	#provisOrio
 	match 'erro' => "user#erro", via: :get
+
+	match '/perfil_externo/' => 'perfil_externos#show', via: :get
+
+	match 'user/buscarPessoas/:id/perfil_externo' => 'perfil_externos#friend_perfil_externo', via: :get
 
 	match 'user/:id/pedidosAmizade/aceitar/:request_id' => 'friendships#update', via: :get
 

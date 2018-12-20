@@ -1,1 +1,10 @@
-<h1>show</h1>
+<p><h1><%= @grupo.nome %></h1></p>
+<p><strong><%= @grupo.descricao %></strong></p>
+
+<table>
+	<tr><%= link_to 'Editar', controller: "grupo", action: "edit", id: @grupo.id %></tr> |
+	<tr><%= link_to 'Apagar', "/grupos/#{@grupo.id}/deletar", data: { confirm: 'Are you sure?' } %></tr>
+</table>
+
+<td><%= link_to 'Membros', "/grupos/#{@grupo.id}/membros" %></td>
+<td><%= link_to 'Voltar', "/grupos" %></td>

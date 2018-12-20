@@ -1,6 +1,15 @@
-<h1>Editing Perfil Externo</h1>
+<h1>Edit Perfil Externo</h1>
 
-<%= render 'form', perfil_externo: @perfil_externo %>
+<%= form_for @perfil_externo do |f| %>
+
+  <div><%= f.label :nome %><br />
+  <%= f.text_field :nome %></div>
+
+  <div><%= f.label :link %><br />
+  <%= f.text_field :link %></div>
+
+  <div><%= f.submit "Atualizar!" %></div>
+ <% end %>
 
 <%= link_to 'Ver', @perfil_externo %> |
-<%= link_to 'Voltar', perfil_externos_path %>
+<%= link_to 'Voltar', controller: "perfil_externos", action: "show"%>
