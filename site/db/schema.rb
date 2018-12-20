@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20181211031411) do
     t.string "titulo"
     t.string "categoria"
     t.text "texto"
+    t.boolean "e_de_grupo", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,6 +76,15 @@ ActiveRecord::Schema.define(version: 20181211031411) do
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "posts_de_grupos", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "grupo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grupo_id"], name: "index_posts_de_grupos_on_grupo_id"
+    t.index ["post_id"], name: "index_posts_de_grupos_on_post_id"
   end
 
   create_table "solicitacoes_grupo", id: false, force: :cascade do |t|

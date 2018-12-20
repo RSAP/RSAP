@@ -1,0 +1,40 @@
+<%= form_for  @post, :url => { :action => "salvarPost" } do |form| %>
+<% if @post.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(post.errors.count, "error") %>
+			prohibited this post from being saved:</h2>
+
+		<ul>
+			<% post.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class="field">
+	<%= form.label :titulo %>
+	<%= form.text_field :titulo, id: :post_titulo %>
+</div>
+
+<div class="field">
+	<%= form.label :categoria %>
+	<%= form.select :categoria, options_for_select([ ["Simples", "Simples"], ["Questionario", "Questionario"], ["Imagem", "Imagem"], ["Slides", "Slides"], ["Arquivo", "Arquivo"], ["Link", "Link"], ["Youtube", "Youtube"], ], @post.categoria)%>
+	<%# #TODO: isso nao funciona e deveria funcionar :onchange => "mudarCategoria(this);" %>
+</div>
+
+<div class="field">
+	<%= form.label :texto %>
+	<%= form.text_area :texto, id: :post_texto %>
+</div>
+
+<%= form.hidden_field :user_id, :value => current_user.id %>
+
+<!-- Upload de imagem -->
+<div class="field" id="imagemCategoria">
+	<%= form.label :imagem %>
+	<%= form.file_field :imagem %>
+</div <div class="actions">
+<%= form.submit %>
+</div>
+<% end %>

@@ -8,7 +8,16 @@
 	  <%end%>
 	  <td><%= link_to 'Visualizar', controller: "user", action: "viewUser", id: current_user.id, idUser: user.id %></td>
 	  <td><%= link_to 'Remover Membro', "/grupos/removerUsuario/#{@grupo.id}/#{user.id}" %></td>
+	  <%if eh_moderador(current_user, @grupo)%>
+		  	<% if !eh_moderador(user, @grupo) %>
+		  		<td><%= link_to "Atribuir Moderação", "/grupos/#{@grupo.id}/addModerador/#{user.id}" %></td>
+			<% elsif (eh_moderador(user, @grupo)) %>
+				<td><%= link_to "Remover Moderação", "/grupos/#{@grupo.id}/removerModeracao/#{user.id}" %></td>
+		  	<% end %>
+	  <%end%>
   </tr>
 <% end %>
 
+<br>
+<br>
 <td><%= link_to 'Voltar', "/grupos/#{@grupo.id}" %></td>
