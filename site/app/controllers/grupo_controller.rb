@@ -12,6 +12,10 @@ class GrupoController < ApplicationController
     end
 
 
+	def buscarGrupoNome
+		@grupos = Grupo.search(params[:search])
+	end
+
 	def index
 		# @grupos = Grupo.search(params[:search]) #Para buscar por nome
 		@grupos = Grupo.all
