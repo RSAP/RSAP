@@ -70,10 +70,11 @@ Feature: Grupo
 		And eu crio um grupo com nome "BCC-CS:GO" e descricao "Bachareis em CS"
 		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" existe
 		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" envia pela primeira vez a solicitacao de entrada no grupo de nome "BCC-CS:GO"
+		And eu estou logado com email "paul0@gmail.com" e senha "shuashu@"
 		And eu estou na pagina de solicitacoes do grupo de nome "BCC-CS:GO"
 		When eu clico para aceitar a solicitacao do usuario de nome "Carlos Pimentel"
 		Then eu nao vejo que a solicitacao nao existe mais
-		And eu vejo que o usuario com nome "Carlos Pimentel" faz parte do grupo
+		And eu vejo que o usuario com nick "Carlux" faz parte do grupo
 
 	Scenario: Recusar solicitacao de entrada em grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
