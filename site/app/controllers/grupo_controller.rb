@@ -13,7 +13,6 @@ class GrupoController < ApplicationController
 
 
 	def index
-		# @grupos = Grupo.search(params[:search]) #Para buscar por nome
 		@grupos = Grupo.all
 	end
 
@@ -62,14 +61,18 @@ class GrupoController < ApplicationController
 
 	def update
 		@grupo = Grupo.find(params[:id])
-		if @grupo.update_attributes(grupo_params)
-			noticiar("Atualizado com sucesso!")
-			redirect_to grupos_path
-		else
-			respond_to do |format|
-				format.html { render :new }
-				format.json { render json: @grupo.errors, status: :unprocessable_entity }
+		if eh_moderador(current_user, @grupo)
+			if @grupo.update_attributes(grupo_params)
+				noticiar("Atualizado com sucesso!")
+				redirect_to grupos_path
+			else
+				respond_to do |format|
+					format.html { render :new }
+					format.json { render json: @grupo.errors, status: :unprocessable_entity }
+				end
 			end
+		else
+			erro("Você precisa de privilégios de administrador pra fazer isso")
 		end
 	end
 
@@ -99,7 +102,7 @@ class GrupoController < ApplicationController
 		end
 	end
 
-	def gruposDe()
+	def gruposDe
 		todosGrupos = Grupo.all
 		@grupos = Array.new
 		todosGrupos.each do |g|
@@ -123,17 +126,16 @@ class GrupoController < ApplicationController
 		end
 
 		if eh_moderador(current_user, grupo)
-			if grupo.getModeradores. length == 1
+			if grupo.getModeradores.length == 1
 				erro("Só tem vc de moderador, vc nao pode sair")
 				return
 			end
 			grupo.removerModerador(current_user)
 		end
 
-
 		if eh_mebro_do_grupo(current_user, grupo)
-			if grupo.getUsers. length == 1
-				erro("Só tem vc no grupo, vc nao pode sair")
+			if grupo.getUsers.length == 1
+				erro("Só tem vc no grupo, vc nao pode sair. Apague o grupo")
 				return
 			end
 			grupo.removerUser(current_user)
@@ -148,8 +150,52 @@ class GrupoController < ApplicationController
 	##############################################################################
 	##############################################################################
 
+	def atribuirNovoModerador
+		grupo  = getGrupo(params[:idGrupo])
+		user = getUser(params[:idNovoModerador])
+
+		if eh_moderador(current_user, grupo)
+			if eh_mebro_do_grupo(user, grupo)
+				if !eh_moderador(user, grupo)
+					grupo.addModerador(user)
+				else
+					erro("Esse usuário já é moderador.")
+					return
+				end
+			else
+				erro("Esse usuário não é membro do grupo!")
+				return
+			end
+		else
+			erro("Você não tem privilégio para realizar essa ação!")
+			return
+		end
+		redirect_to root_path
+	end
 
 
+	def removerModeracao
+		grupo  = getGrupo(params[:idGrupo])
+		user = getUser(params[:idModerador])
+
+		if eh_moderador(current_user, grupo)
+			if eh_mebro_do_grupo(user, grupo)
+				if eh_moderador(user, grupo)
+					grupo.removerModerador(user)
+				else
+					erro("Esse usuário Não é moderador; Não da pra remover um moderador que não é moderador k")
+					return
+				end
+			else
+				erro("Esse usuário não é membro do grupo!")
+				return
+			end
+		else
+			erro("Você não tem privilégio para realizar essa ação!")
+			return
+		end
+		redirect_to root_path
+	end
 
 
 
@@ -211,7 +257,6 @@ class GrupoController < ApplicationController
 
 		grupo.removerSolicitacao(user)
 		redirect_to grupos_path
-
 	end
 
 	def rejeitarSolicitacao
@@ -225,21 +270,16 @@ class GrupoController < ApplicationController
 			return
 		end
 
-
 		if condicoesParaManusearPedidos(user, grupo)
 			grupo.removerSolicitacao(user)
 			noticiar("Solitacao de #{user.getNick} rejeitada")
 			redirect_to grupos_path
 			return
 		end
-
-
 		redirect_to grupos_path
 	end
 
 	def aceitarSolitacao
-
-
 		grupo = getGrupo(params[:idGrupo])
 		user = getUser(params[:idDeQuem])
 
@@ -257,8 +297,6 @@ class GrupoController < ApplicationController
 			return
 		end
 	end
-
-
 
 	def solicitacoes
 		@grupo = getGrupo(params[:idGrupo])
@@ -281,7 +319,6 @@ class GrupoController < ApplicationController
 	##############################################################################
 	##############################################################################
 	##############################################################################
-
 
 
 	#################### DAQUI PRA BAIXO É TUDO PRIVADO ##########################
@@ -348,18 +385,10 @@ class GrupoController < ApplicationController
 	##############################################################################
 	##############################################################################
 
-
 	def erro(messagem)
 		@msg = messagem
 		render 'erro/erro'
 	end
-
-	############## DAQUI PRA BAIXO É TUDO HELPER PRA USAR NA VIEW ############
-
-
-	helper_method :eh_mebro_do_grupo
-	helper_method :eh_moderador
-	helper_method :essa_solicitacao_existe
 
 	def redirecionarDefault path
 		redirect_back fallback_location: path
@@ -375,12 +404,19 @@ class GrupoController < ApplicationController
 
 	def souAdmin grupo
 		user = grupo.getModeradores
-	 	user.include? current_user
+		user.include? current_user
 	end
 
 	def maisDeUmMembro grupo
 		grupo.getUsers.length > 1
 	end
+
+
+	############## DAQUI PRA BAIXO É TUDO HELPER PRA USAR NA VIEW ############
+
+	helper_method :eh_mebro_do_grupo
+	helper_method :eh_moderador
+	helper_method :essa_solicitacao_existe
 
 
 end
