@@ -129,6 +129,7 @@ class PerfilExternosController < ApplicationController
 		end
 	end
 
+
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def perfil_externo_params
 		params.require(:perfil_externo).permit(:nome, :link, :user_id)

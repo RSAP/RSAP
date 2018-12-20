@@ -1,0 +1,8 @@
+<% @solicitantes.each do |solicitante| %>
+	<tr>
+		<td><%= solicitante.getNick %></td>
+		<td><%= solicitante.descricao %></td>
+		<td><%= link_to 'Aceitar', "/grupos/aceitarSolitacao/#{@grupo.id}/#{solicitante.id}" %></td>
+		<td><%= link_to 'Rejeitar', "/grupos/rejeitarSolicitacao/#{@grupo.id}/#{solicitante.id}" %></td>
+	</tr>
+<% end %>

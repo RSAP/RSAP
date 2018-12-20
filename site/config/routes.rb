@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 	end
 
 	draw :rotas_grupo
+	draw :rotas_grupo_solicitacoes
+
 
 
 end
