@@ -3,6 +3,15 @@ class GrupoController < ApplicationController
 	#TODO: todas as checageens de grupo, creio que o model já ta todo ok
 
 
+	def getUser(idUser)
+        begin
+            user = User.find(idUser)
+        rescue ActiveRecord::RecordNotFound
+            return nil
+        end
+    end
+
+
 	def index
 		@grupos = Grupo.all
 	end
@@ -48,17 +57,14 @@ class GrupoController < ApplicationController
 	end
 
 	def gruposDe()
-		grupos = Grupo.all
-		grupos.each do |g|
-			users = g.getUsers()
-			users.each do |u|
-				if( u.getId == params[:id])
-					@grupo << g
-					break;
-				end
+		todosGrupos = Grupo.all
+		@grupos = Array.new
+		todosGrupos.each do |g|
+			if(g.getUsers().include?(getUser(params[:id])))
+		 		@grupos.push(g) #append
 			end
 		end
-		redirect_to grupos_path
+		render "grupo/index"
 	end
 
 

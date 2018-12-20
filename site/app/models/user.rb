@@ -84,6 +84,10 @@ class User < ApplicationRecord
 		return self.id
 	end
 
+	def getEmail
+		return self.email
+	end
+
 	def getNick
 		return self.email.split('@')[0].capitalize
 	end
