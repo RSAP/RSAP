@@ -18,10 +18,8 @@
 		 <th>Descricao:</th>
         <td><%= grupo.descricao %></td> <th> | </th>
         <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
-        
+
         	<% if eh_moderador(current_user, grupo) %>
-					<td><%= link_to 'Editar', "/grupos/#{grupo.id}/edit" %></td>
-					<td><%= link_to 'Apagar', "/grupos/#{grupo.id}", method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<% end %>
 
 				<% if eh_mebro_do_grupo(current_user, grupo) %>
@@ -33,9 +31,9 @@
 					<% else %>
 						<td>Solicitacao enviada</td>
 					<% end %>
-      
+
 				<% end %>
-        
+
       </tr>
     <% end %>
 	<%else%>
@@ -48,4 +46,3 @@
 <br>
 
 <%= link_to 'Novo Grupo', '/grupos/new' %>
-
