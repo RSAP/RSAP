@@ -1,0 +1,24 @@
+<ul>
+<%= form_tag grupo_busca_path, :action => 'buscarGrupoNome' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Buscando", :value => "Buscar", :name => "buscar"  %>
+      </p>
+  <% end %>
+</ul>
+
+<ul>
+
+	<% if !(@grupos.nil?) %>
+	<% @grupos.each do |grupo| %>
+	<li>
+		<tr>
+			<td> <%= grupo.nome %> </td>
+			<td> <%= grupo.descricao %> </td>
+			<td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
+		</tr>
+	</li>
+	<% end %>
+</ul>
+<%end%>
+<td><%= link_to 'Voltar', "/grupos" %></td>

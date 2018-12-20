@@ -12,6 +12,10 @@ class GrupoController < ApplicationController
     end
 
 
+	def buscarGrupoNome
+		@grupos = Grupo.search(params[:search])
+	end
+
 	def index
 		@grupos = Grupo.all
 	end
@@ -85,7 +89,7 @@ class GrupoController < ApplicationController
 			when true
 				case maisDeUmMembro(grupo)
 				when false
-					buscarGrupo.removerDeTabelaGrupo(current_user)
+					buscarGrupo.removerDeTabelaGrupo
 					noticiar("Removido com sucesso!")
 					redirecionar(list_path)
 				else
