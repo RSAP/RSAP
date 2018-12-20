@@ -54,6 +54,14 @@ class Grupo < ApplicationRecord
 		removerDeTabela(user, 'solicitacoes_grupo')
 	end
 
+	def self.search(search)
+		if search
+			where(['nome LIKE ?', "%#{search}%"])
+		else
+			all
+		end
+	end
+
 
 	def removerDeTabelaGrupo
 		execQuerry("DELETE FROM grupos WHERE id = #{self.id}")
@@ -75,16 +83,5 @@ class Grupo < ApplicationRecord
 	def pegarDaTabela(coluna, tabela)
 		return execQuerry("SELECT #{coluna} FROM #{tabela} WHERE grupo_id = #{self.id}")
 	end
-
-
-	#Busca grupo por nomes parecidos
-	def self.search(search)
-		if search
-			where(['nome LIKE ?', "%#{search}%"])
-		else
-			all
-		end
-	end
-
 
 end
