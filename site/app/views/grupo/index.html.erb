@@ -15,15 +15,20 @@
   </thead>
 
   <tbody>
-    <% @grupos.each do |grupo| %>
-      <tr>
-        <td><%= grupo.getUsers %></td>
-        <td><%= grupo.descricao %></td>
-        <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
-        <td><%= link_to 'Editar', "/grupos/#{grupo.id}/edit" %></td>
-        <td><%= link_to 'Apagar', "/grupos/#{grupo.id}", method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+	  <%if @grupos.count > 0%>
+	    <% @grupos.each do |grupo| %>
+	      <tr>
+	        <td><%= grupo.getUsers %></td>
+	        <td><%= grupo.descricao %></td>
+	        <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
+	        <td><%= link_to 'Editar', "/grupos/#{grupo.id}/edit" %></td>
+	        <td><%= link_to 'Apagar', "/grupos/#{grupo.id}", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	      </tr>
+	    <% end %>
+	<%else%>
+		<p>Você não participa de nenhum grupo!</p>
+	<%end%>
+
   </tbody>
 </table>
 
