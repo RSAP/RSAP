@@ -2,13 +2,14 @@ class Grupo < ApplicationRecord
 
 	#TODO: FALTA A IMAGEM DO GRUPO, MAS PAPERCLIP RESOLVE RAPIDIN
 
-	validates :nome, presence: { message: "Nome em branco"},
-		length: { in: 4..130, too_short: "Nome deve ter pelo menos 4 caracteres",
-		too_long: "Nome deve ter no maximo 130 caracteres"},
-		format: { with: /\A[a-zA-Z\s]+\z/, message: "Nome nao pode conter caracteres especiais ou numeros" }
-	validates :descricao, presence: { message: "Descricao em branco"},
-		length: { in: 4..130, too_short: "Descricao deve ter pelo menos 4 caracteres",
-		too_long: "Descricao deve ter no maximo 130 caracteres"}
+	validates :nome, :presence, length: { minimum: 3 }
+	# ,
+	# 	length: { in: 4..130, too_short: "Nome deve ter pelo menos 4 caracteres",
+	# 	too_long: "Nome deve ter no maximo 130 caracteres"},
+	# 	format: { with: /\A[a-zA-Z\s]+\z/, message: "Nome nao pode conter caracteres especiais ou numeros" }
+	# validates :descricao, presence: { message: "Descricao em branco"},
+	# 	length: { in: 4..130, too_short: "Descricao deve ter pelo menos 4 caracteres",
+	# 	too_long: "Descricao deve ter no maximo 130 caracteres"}
 
 
 
