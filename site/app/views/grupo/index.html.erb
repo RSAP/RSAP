@@ -19,21 +19,6 @@
         <td><%= grupo.descricao %></td> <th> | </th>
         <td><%= link_to 'Ver', "/grupos/#{grupo.id}" %></td>
 
-        	<% if eh_moderador(current_user, grupo) %>
-				<% end %>
-
-				<% if eh_mebro_do_grupo(current_user, grupo) %>
-					<td><%= link_to 'Quero sair', "/grupos/sair/#{grupo.id}", data: { confirm: 'Are you sure?' } %></td>
-				<% else %>
-
-					<% if !essa_solicitacao_existe(current_user, grupo) %>
-						<td><%= link_to 'Quero entrar', "/grupos/solicitar/#{grupo.id}", data: { confirm: 'Are you sure?' } %></td>
-					<% else %>
-						<td>Solicitacao enviada</td>
-					<% end %>
-
-				<% end %>
-
       </tr>
     <% end %>
 	<%else%>

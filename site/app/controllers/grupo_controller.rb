@@ -50,36 +50,71 @@ class GrupoController < ApplicationController
 	end
 
 	def create
-		@grupo = Grupo.new(grupo_params)
-		respond_to do |format|
+		@grupo = Grupo.create(grupo_params)
+			if !(@grupo.valid?)
+	   				erro("Não utilize caracteres especiais, não deixe campos em branco!")
+	   			return
+			end
 			if @grupo.save
 				format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
 			else
-				format.html { render :new }
-				format.json { render json: @grupo.errors, status: :unprocessable_entity }
+				render "new"
 			end
-		end
 		@grupo.addUser(current_user)
 		@grupo.addModerador(current_user)
 	end
 
 	def update
 		@grupo = Grupo.find(params[:id])
-		if eh_moderador(current_user, @grupo)
-			if @grupo.update_attributes(grupo_params)
-				noticiar("Atualizado com sucesso!")
-				redirect_to grupos_path
-			else
-				respond_to do |format|
-					format.html { render :new }
-					format.json { render json: @grupo.errors, status: :unprocessable_entity }
-				end
+		if @grupo.update_attributes(grupo_params)
+			if !(@grupo.valid?)
+					erro("Não utilize caracteres especiais, não deixe campos em branco!")
+				return
+			end
+
+			noticiar("Atualizado com sucesso!")
+			redirect_to grupos_path
+		else
+			respond_to do |format|
+				format.html { render :update }
+				format.json { render json: @grupo.errors, status: :unprocessable_entity }
 			end
 		else
 			erro("Você precisa de privilégios de administrador pra fazer isso")
 		end
 	end
 
+	def removerUsuario
+		user = getUser(params[:idDeQuem])
+		case user.nil?
+		when false
+			grupo = buscarGrupo
+			case grupo.nil?
+			when false
+				case souAdmin(grupo)
+				when true
+					case grupo.getUsers.include? user
+					when true
+						grupo.removerUser(user)
+						noticiar("Usuario Removido!")
+						redirecionarDefault(list_path)
+					else
+						noticiar("Não é membro do grupo!")
+						redirecionarDefault(list_path)
+					end
+				else
+					noticiar("Você não tem permissão para isso!")
+					redirecionarDefault(list_path)
+				end
+			else
+				noticiar("Grupo não existe!")
+				redirecionarDefault(list_path)
+			end
+		else
+			noticiar("Usuario não existe!")
+			redirecionarDefault(list_path)
+		end
+	end
 
 	def destroy
 		grupo = buscarGrupo
