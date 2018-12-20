@@ -14,9 +14,6 @@ match 'grupos/new/' => 'grupo#new',  via: :get
 match 'grupos/:id/edit/' => 'grupo#edit', via: :get
 match 'grupos/:id/' => 'grupo#show', :as => :grupo_ver, via: :get
 
-match 'grupos/:id/edit/' => 'grupo#update', :as => :att_grupo, via: :post
-
-
 
 match "grupos/sair/:idGrupo/" => "grupo#sair", via: :get
 
