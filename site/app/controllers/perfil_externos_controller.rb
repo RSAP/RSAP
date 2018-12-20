@@ -86,8 +86,8 @@ class PerfilExternosController < ApplicationController
 			redirect_to perfil_externo_path
 		else
 		respond_to do |format|
-				json.extract! post, :id, :titulo, :categoria, :texto, :user_id, :created_at, :updated_at
-				json.url post_url(post, format: :json)
+			format.html { render :new }
+			format.json { render json: @perfil_externo.errors, status: :unprocessable_entity }
 		end
 		end
 	end

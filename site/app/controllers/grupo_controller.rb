@@ -30,7 +30,7 @@ class GrupoController < ApplicationController
 
 	def buscarGrupo
 		begin
-		grupo = Grupo.find(params[:id])
+		Grupo.find(params[:id])
 	rescue ActiveRecord::RecordNotFound
 		nil
 		end
