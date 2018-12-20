@@ -3,13 +3,25 @@
 <ul>
 	<li>
 		<%= link_to "Buscar um usuario", controller: "user", action: "index", id: current_user.id%>
-	 </li>
- <li>
-	 <%= link_to "Pedidos pendentes", controller: "user", action: "list", id: current_user.id%>
-  </li>
-  <li>
-	<%= link_to "Ver amigos", controller: "user", action: "listFriends", id: current_user.id%>
-   </li>
+	</li>
+ 	<li>
+	 	<%= link_to "Pedidos pendentes", controller: "user", action: "list", id: current_user.id%>
+  	</li>
+  	<li>
+		<%= link_to "Ver amigos", controller: "user", action: "listFriends", id: current_user.id%>
+   	</li>
+</ul>
+
+<ul>
+	<li>
+		<%= link_to "Buscar grupo", controller: "grupo", action: "index" %>
+	</li>
+	<li>
+		<%= link_to "Meus grupos", controller: "grupo", action: "gruposDe" %>
+	</li>
+	<li>
+		<%= link_to "Criar Grupo", controller: "grupo", action: "new" %>
+	</li>
 </ul>
 
 <%= link_to "Ver perfis externos", controller: "perfil_externos", action: "show"%>

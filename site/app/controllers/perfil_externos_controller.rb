@@ -84,6 +84,11 @@ class PerfilExternosController < ApplicationController
 		if @perfil_externo.update_attributes(perfil_externo_params)
 			noticiar("Atualizado com sucesso!")
 			redirect_to perfil_externo_path
+		else
+		respond_to do |format|
+			format.html { render :new }
+			format.json { render json: @perfil_externo.errors, status: :unprocessable_entity }
+		end
 		end
 	end
 
@@ -114,18 +119,6 @@ class PerfilExternosController < ApplicationController
 		end
 	end
 
-	def redirecionarDefault path
-		redirect_back fallback_location: path
-	end
-
-	def noticiar mensagem
-		flash[:notice] = mensagem
-	end
-
-	def donoPerfil perfil
-		current_user.id.eql? perfil.user_id
-	end
-
 	private
 	# Use callbacks to share common setup or constraints between actions.
 	def set_perfil_externo
@@ -136,8 +129,21 @@ class PerfilExternosController < ApplicationController
 		end
 	end
 
+
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def perfil_externo_params
 		params.require(:perfil_externo).permit(:nome, :link, :user_id)
+	end
+
+	def redirecionarDefault path
+		redirect_back fallback_location: path
+	end
+
+	def noticiar mensagem
+		flash[:notice] = mensagem
+	end
+
+	def donoPerfil perfil
+		current_user.id.eql? perfil.user_id
 	end
 end

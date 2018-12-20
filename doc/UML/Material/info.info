@@ -1,0 +1,13 @@
+Para editar .dot online:
+	https://dreampuf.github.io/GraphvizOnline/
+
+Foi utilizado o programa railroady para gerar o .dot
+Link git: 
+	https://github.com/preston/railroady
+
+
+Pegar diagrama Models: 
+	railroady -M
+
+Pegar diagrama Controllers:
+	railroady -C
