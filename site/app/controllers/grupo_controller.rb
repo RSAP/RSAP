@@ -20,11 +20,20 @@ class GrupoController < ApplicationController
 	end
 
 	def edit
-
+		@grupo = buscarGrupo
+		case @grupo.nil?
+		when true
+			noticiar("Esse grupo não existe")
+			redirecionarDefault(list_path)
+		end
 	end
 
 	def buscarGrupo
+		begin
 		grupo = Grupo.find(params[:id])
+	rescue ActiveRecord::RecordNotFound
+		nil
+		end
 	end
 
 	def create
@@ -34,6 +43,7 @@ class GrupoController < ApplicationController
 				format.html { redirect_to grupos_url, notice: 'Grupo was successfully created.' }
 			else
 				format.html { render :new }
+				format.json { render json: @grupo.errors, status: :unprocessable_entity }
 			end
 		end
 		@grupo.addUser(current_user)
@@ -41,19 +51,23 @@ class GrupoController < ApplicationController
 	end
 
 	def update
-		respond_to do |format|
-			if @grupo.update(grupo_params)
-				format.html { redirect_to  grupos_url, notice: 'Grupo was successfully updated.' }
-			else
-				format.html { render :edit }
+		@grupo = Grupo.find(params[:id])
+		if @grupo.update_attributes(grupo_params)
+			noticiar("Atualizado com sucesso!")
+			redirect_to grupos_path
+		else
+			respond_to do |format|
+				format.html { render :new }
+				format.json { render json: @grupo.errors, status: :unprocessable_entity }
 			end
 		end
 	end
 
 
 	def destroy
-		begin
-			grupo = buscarGrupo
+		grupo = buscarGrupo
+		case grupo.nil?
+		when false
 			case souAdmin(grupo)
 			when true
 				case maisDeUmMembro(grupo)
@@ -69,7 +83,7 @@ class GrupoController < ApplicationController
 				noticiar("Você não é administrador do grupo")
 				redirecionarDefault(list_path)
 			end
-		rescue ActiveRecord::RecordNotFound
+		else
 			noticiar("Esse grupo não existe")
 			redirecionar(list_path)
 		end

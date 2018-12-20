@@ -2,7 +2,7 @@
 <p><strong><%= @grupo.descricao %></strong></p>
 
 <table>
-	<tr><%= link_to 'Editar', controller: "grupos", action: "edit", id: @grupo.id %></tr> |
+	<tr><%= link_to 'Editar', controller: "grupo", action: "edit", id: @grupo.id %></tr> |
 	<tr><%= link_to 'Apagar', "/grupos/#{@grupo.id}/deletar", data: { confirm: 'Are you sure?' } %></tr>
 </table>
 
