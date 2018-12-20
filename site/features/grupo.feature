@@ -7,19 +7,17 @@ Feature: Grupo
 	Scenario: Criacao de grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu estou na pagina do meu perfil
-		When eu clico no botao Grupos
-		And eu clico no botao Novo Grupo
+		When eu clico no botao Criar Grupo
 		And eu preencho o campo nome com "ES-2018.2" e descricao "Engenharia de Software"
-		And eu clico no botao Criar
+		And eu clico no botao Create Grupo
 		Then eu vejo que o grupo com nome "ES-2018.2" e descricao "Engenharia de Software" foi criado
 
 	Scenario: Criar grupo com campos invalidos
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu estou na pagina do meu perfil
-		When eu clico no botao Grupos
-		And eu clico no botao Novo Grupo
+		When eu clico no botao Criar Grupo
 		And eu preencho o campo nome com "ES" e nao preencho o campo descricao
-		And eu clico em Confirmar edicao
+		And eu clico no botao Create Grupo
 		Then eu vejo a mensagem de erro "Nome muito curto"
 		And eu vejo a mensagem de erro "Descricao em branco"
 
@@ -29,7 +27,7 @@ Feature: Grupo
 		And eu estou na pagina principal do grupo de nome "ES-2018.3"
 		When eu clico em Editar
 		And eu preencho o campo nome com "ES-2018.2" e descricao "Engenharia de Software"
-		And eu clico em Confirmar edicao
+		And eu clico em Atualizar!
 		Then eu vejo o grupo agora tem nome "ES-2018.2" e descricao "Engenharia de Software"
 
 	Scenario: Editar grupo com campos invalidos
@@ -37,7 +35,7 @@ Feature: Grupo
 		And eu crio um grupo com nome "ES-2018.3" e descricao "Engenharia de Sotwar"
 		When eu clico em Editar
 		And eu nao preencho o campo nome e preencho o campo descricao com "ES"
-		And eu clico em Confirmar edicao
+		And eu clico em Atualizar!
 		Then eu vejo a mensagem de erro "Nome em branco"
 		And eu vejo a mensagem de erro "Descricao muito curta"
 
@@ -52,7 +50,7 @@ Feature: Grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu crio um grupo com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
 		And eu estou na pagina do meu perfil
-		When eu clico no botao Grupos
+		When eu clico no botao Buscar Grupo
 		And eu preencho o campo de busca com nome "Matematica Discreta"
 		And eu clico em Buscar
 		Then eu vejo o grupo que criei com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
@@ -62,8 +60,7 @@ Feature: Grupo
 		And eu participo de um grupo com nome "Criptografia RSA"
 		And eu crio um grupo com nome "Matematica Discreta" e descricao "Prof Gersonilo ; Discreta"
 		And eu estou na pagina do meu perfil
-		When eu clico no botao Grupos
-		And eu clico no botao Meus grupos
+		When eu clico no botao Meus grupos
 		Then eu vejo o grupo com nome "Matematica Discreta"
 		And eu vejo o grupo com nome "Criptografia RSA"
 
