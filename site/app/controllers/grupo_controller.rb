@@ -12,15 +12,19 @@ class GrupoController < ApplicationController
 	end
 
 	def show
-		@grupo = Grupo.find(params[:id])
+		@grupo = buscarGrupo
 	end
 
 	def verMembros
-		@grupo = Grupo.find(params[:id])
+		@grupo = buscarGrupo
 	end
 
 	def edit
 
+	end
+
+	def buscarGrupo
+		grupo = Grupo.find(params[:id])
 	end
 
 	def create
@@ -33,6 +37,7 @@ class GrupoController < ApplicationController
 			end
 		end
 		@grupo.addUser(current_user)
+		@grupo.addModerador(current_user)
 	end
 
 	def update
@@ -47,9 +52,26 @@ class GrupoController < ApplicationController
 
 
 	def destroy
-		@grupo.destroy
-		respond_to do |format|
-			format.html { redirect_to '/home', notice: 'Grupo was successfully destroyed.' }
+		begin
+			grupo = buscarGrupo
+			case souAdmin(grupo)
+			when true
+				case maisDeUmMembro(grupo)
+				when false
+					buscarGrupo.removerDeTabelaGrupo(current_user)
+					noticiar("Removido com sucesso!")
+					redirecionar(list_path)
+				else
+					noticiar("Erro: Grupo possui mais de um membro!")
+					redirecionarDefault(list_path)
+				end
+			else
+				noticiar("Você não é administrador do grupo")
+				redirecionarDefault(list_path)
+			end
+		rescue ActiveRecord::RecordNotFound
+			noticiar("Esse grupo não existe")
+			redirecionar(list_path)
 		end
 	end
 
@@ -57,5 +79,27 @@ class GrupoController < ApplicationController
 	def grupo_params
 		params.require(:grupo).permit(:nome, :descricao)
 	end
+
+	def redirecionarDefault path
+		redirect_back fallback_location: path
+	end
+
+	def redirecionar path
+		redirect_to path
+	end
+
+	def noticiar mensagem
+		flash[:notice] = mensagem
+	end
+
+	def souAdmin grupo
+		user = grupo.getModeradores
+	 	user.include? current_user
+	end
+
+	def maisDeUmMembro grupo
+		grupo.getUsers.length > 1
+	end
+
 
 end
