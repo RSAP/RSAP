@@ -40,7 +40,7 @@ class GrupoController < ApplicationController
 		@grupo = Grupo.new(grupo_params)
 		respond_to do |format|
 			if @grupo.save
-				format.html { redirect_to grupos_url, notice: 'Grupo was successfully created.' }
+				format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
 			else
 				format.html { render :new }
 				format.json { render json: @grupo.errors, status: :unprocessable_entity }

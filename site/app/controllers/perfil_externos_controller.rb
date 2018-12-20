@@ -84,6 +84,11 @@ class PerfilExternosController < ApplicationController
 		if @perfil_externo.update_attributes(perfil_externo_params)
 			noticiar("Atualizado com sucesso!")
 			redirect_to perfil_externo_path
+		else
+		respond_to do |format|
+				json.extract! post, :id, :titulo, :categoria, :texto, :user_id, :created_at, :updated_at
+				json.url post_url(post, format: :json)
+		end
 		end
 	end
 
