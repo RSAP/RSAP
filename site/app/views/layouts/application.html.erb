@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rsap</title>
-    <%= csrf_meta_tags %>
+<head>
+	<title>Rsap</title>
+	<%= csrf_meta_tags %>
 
 
 	<%= javascript_tag "interpretador.js" %>
 	<%= javascript_tag "prims.js" %>
 	<%= stylesheet_link_tag "prism.css" %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-	  <%= current_user.getNick %>
-     <%= render 'layouts/alerts' %>
-    <%= yield %>
-  </body>
+<body>
+	<% if current_user %>
+		<%= current_user.getNick %>
+	<% end %>
+	<%= render 'layouts/alerts' %>
+	<%= yield %>
+</body>
 </html>
