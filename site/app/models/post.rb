@@ -18,4 +18,9 @@ class Post < ApplicationRecord
 		ActiveRecord::Base.connection.exec_query("INSERT INTO posts_de_grupos VALUES (NULL, #{self.id}, #{idGrupo}, '#{Time.now.getutc}', '#{Time.now.getutc}')")
 	end
 
+	def getAutor
+		ids = ActiveRecord::Base.connection.exec_query("SELECT user_id FROM posts WHERE id=#{self.id}").rows
+		return User.find(ids)
+	end
+
 end

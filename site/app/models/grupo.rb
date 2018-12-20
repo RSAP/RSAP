@@ -11,6 +11,21 @@ class Grupo < ApplicationRecord
 		too_long: "Descricao deve ter no maximo 130 caracteres"}
 
 
+
+	def getPosts
+		postsIds = pegarDaTabela('post_id', 'posts_de_grupos')
+
+		if postsIds.empty?
+			return nul
+		end
+
+		@posts = Post.find(postsIds.rows)
+
+	end
+
+
+
+
 	#MEBROS
 	def getUsers
 		userIds = pegarDaTabela('user_id', 'grupos_users')

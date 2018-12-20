@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+  <tr>
+	<td><%= post.titulo %></td>
+	<td><%= post.categoria %></td>
+	<td><%= post.texto %></td>
+	<td><%= post.user.getNick %></td>
+	<td><%= link_to 'Show', post %></td>
+	<td><%= link_to 'Edit', edit_post_path(post) %></td>
+	<td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
