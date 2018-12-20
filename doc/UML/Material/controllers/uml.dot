@@ -1,0 +1,18 @@
+digraph controllers_diagram {
+	graph[overlap=false, splines=true, bgcolor="none"]
+	"PerfilExternosController" [shape=Mrecord, label="{PerfilExternosController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\lperfil_externo_params\lset_perfil_externo\l}"]
+	"ApplicationController" [shape=Mrecord, label="{ApplicationController|\l|configure_permitted_parameters\l|_layout\l}"]
+	"PostsController" [shape=Mrecord, label="{PostsController|create\ldestroy\ledit\lnew\lshow\lupdate\l|\l|_layout\lcheck_current_user\lpost_nao_achado\lpost_params\lset_post\l}"]
+	"FriendshipsController" [shape=Mrecord, label="{FriendshipsController|buscarAmizade\lcreate\ldestroy\ljaSaoAmigos\lmesmoUsuario\lnoticiar\lpedidoJaExiste\lupdate\lusuarioParticipaAmizade\l|\l|_layout\l}"]
+	"PagesController" [shape=Mrecord, label="{PagesController|home\l|\l|_layout\l}"]
+	"UserController" [shape=Mrecord, label="{UserController|create\lhome\lindex\llist\llistFriends\lmural\lshow\lupdate\lviewUser\l|\l|_layout\lerro\lsendToHome\luser_params\l}"]
+	"GrupoController" [shape=Mrecord, label="{GrupoController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\lgrupo_params\l}"]
+
+    "ApplicationController" -> "PerfilExternosController" [label="", arrowhead="none", arrowtail="onormal"]
+    "ApplicationController" -> "PostsController" [label="", arrowhead="none", arrowtail="onormal"]
+    "ApplicationController" -> "FriendshipsController" [label="", arrowhead="none", arrowtail="onormal"]
+    "ApplicationController" -> "UserController" [label="", arrowhead="none", arrowtail="onormal"]
+    "ApplicationController" -> "GrupoController" [label="", arrowhead="none", arrowtail="onormal"]
+    "ApplicationController" -> "PagesController" [label="", arrowhead="none", arrowtail="onormal"]
+    
+}
