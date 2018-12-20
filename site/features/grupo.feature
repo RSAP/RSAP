@@ -71,8 +71,7 @@ Feature: Grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu crio um grupo com nome "BCC-CS:GO" e descricao "Bachareis em CS"
 		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" existe
-		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" envia pela primeira vez a solicitacao
-			de entrada no grupo de nome "BCC-CS:GO"
+		And o usuario com nome "Carlos Pimentel" e email "carlux@yahoo.com.br" envia pela primeira vez a solicitacao de entrada no grupo de nome "BCC-CS:GO"
 		And eu estou na pagina de solicitacoes do grupo de nome "BCC-CS:GO"
 		When eu clico para aceitar a solicitacao do usuario de nome "Carlos Pimentel"
 		Then eu nao vejo que a solicitacao nao existe mais
@@ -82,8 +81,7 @@ Feature: Grupo
 		Given eu estou logado no sistema com nome "Paulo", email "paul0@gmail.com" e senha "shuashu@"
 		And eu crio um grupo com nome "BCC-CS:GO" e descricao "Bachareis em CS"
 		And o usuario com nome "Matheus Carlos" e email "methius@outlook.com.br" existe
-		And o usuario com nome "Matheus Carlos" e email "methius@outlook.com.br" envia pela primeira vez a solicitacao
-			de entrada no grupo de nome "BCC-CS:GO"
+		And o usuario com nome "Matheus Carlos" e email "methius@outlook.com.br" envia pela primeira vez a solicitacao de entrada no grupo de nome "BCC-CS:GO"
 		And eu estou na pagina de solicitacoes do grupo de nome "BCC-CS:GO"
 		When eu clico para recusar a solicitacao do usuario de nome "Matheus Carlos"
 		Then eu nao vejo que a solicitacao nao existe mais
@@ -138,8 +136,7 @@ Feature: Grupo
 		And o grupo com nome "Tutoria de Fisica" e descricao "Fisica - 2018.2" existe
 		And o usuario com nome "Laisy Ferreira" e email "laisyriscafaca@live.com" existe
 		And o usuario "Laisy Ferreira" faz parte do grupo "Tutoria de Fisica"
-		And o usuario "Laisy Ferreira" fez um post no grupo "Tutoria de Fisica" com titulo "Atividade" e
-			texto "Questoes de 1 a 21 da pagina 523"
+		And o usuario "Laisy Ferreira" fez um post no grupo "Tutoria de Fisica" com titulo "Atividade" e texto "Questoes de 1 a 21 da pagina 523"
 		And eu participo do grupo "Tutoria de Fisica"
 		When eu estou na pagina inicial do grupo
 		Then eu vejo o post que o usuario "Laisy Ferreira" fez com titulo "Atividade" e texto "Questoes de 1 a 21 da pagina 523"
