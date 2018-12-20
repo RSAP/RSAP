@@ -195,10 +195,27 @@ class GrupoController < ApplicationController
 			redirect_to grupos_path
 			return
 		end
+	end
 
+
+
+	def solicitacoes
+		@grupo = getGrupo(params[:idGrupo])
+		if @grupo.nil?
+			erro("Grupo nao existe")
+			return
+		end
+
+		if !(eh_moderador(current_user, @grupo))
+			erro("Voce nao é moderador do grupo")
+			return
+		end
+
+		@solicitantes = @grupo.getSolicitacoes
 
 
 	end
+
 
 	##############################################################################
 	##############################################################################
