@@ -51,15 +51,16 @@ class GrupoController < ApplicationController
 	end
 
 	def create
-		@grupo = Grupo.new(grupo_params)
-		respond_to do |format|
+		@grupo = Grupo.create(grupo_params)
+			if !(@grupo.valid?)
+	   				erro("Não utilize caracteres especiais, não deixe campos em branco!")
+	   			return
+			end
 			if @grupo.save
 				format.html { redirect_to grupos_url, notice: 'Grupo criado com sucesso.' }
 			else
-				format.html { render :new }
-				format.json { render json: @grupo.errors, status: :unprocessable_entity }
+				render "new"
 			end
-		end
 		@grupo.addUser(current_user)
 		@grupo.addModerador(current_user)
 	end
@@ -67,11 +68,16 @@ class GrupoController < ApplicationController
 	def update
 		@grupo = Grupo.find(params[:id])
 		if @grupo.update_attributes(grupo_params)
+			if !(@grupo.valid?)
+					erro("Não utilize caracteres especiais, não deixe campos em branco!")
+				return
+			end
+
 			noticiar("Atualizado com sucesso!")
 			redirect_to grupos_path
 		else
 			respond_to do |format|
-				format.html { render :new }
+				format.html { render :update }
 				format.json { render json: @grupo.errors, status: :unprocessable_entity }
 			end
 		end

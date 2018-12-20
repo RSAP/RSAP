@@ -12,6 +12,15 @@
 
 ActiveRecord::Schema.define(version: 20181211031411) do
 
+  create_table "amizades", force: :cascade do |t|
+    t.integer "id_usuario"
+    t.integer "id_amigo"
+    t.string "create"
+    t.string "destroy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
