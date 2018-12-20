@@ -1,18 +1,22 @@
+
 digraph controllers_diagram {
 	graph[overlap=false, splines=true, bgcolor="none"]
-	"PerfilExternosController" [shape=Mrecord, label="{PerfilExternosController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\lperfil_externo_params\lset_perfil_externo\l}"]
+	"PerfilExternosController" [shape=Mrecord, label="{PerfilExternosController|amigos\lcreate\ldestroy\ledit\lfriend_perfil_externo\llogado\lnew\lshow\lupdate\l|\l|_layout\ldonoPerfil\lnoticiar\lperfil_externo_params\lredirecionarDefault\lset_perfil_externo\l}"]
 	"ApplicationController" [shape=Mrecord, label="{ApplicationController|\l|configure_permitted_parameters\l|_layout\l}"]
 	"PostsController" [shape=Mrecord, label="{PostsController|create\ldestroy\ledit\lnew\lshow\lupdate\l|\l|_layout\lcheck_current_user\lpost_nao_achado\lpost_params\lset_post\l}"]
 	"FriendshipsController" [shape=Mrecord, label="{FriendshipsController|buscarAmizade\lcreate\ldestroy\ljaSaoAmigos\lmesmoUsuario\lnoticiar\lpedidoJaExiste\lupdate\lusuarioParticipaAmizade\l|\l|_layout\l}"]
 	"PagesController" [shape=Mrecord, label="{PagesController|home\l|\l|_layout\l}"]
-	"UserController" [shape=Mrecord, label="{UserController|create\lhome\lindex\llist\llistFriends\lmural\lshow\lupdate\lviewUser\l|\l|_layout\lerro\lsendToHome\luser_params\l}"]
-	"GrupoController" [shape=Mrecord, label="{GrupoController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\lgrupo_params\l}"]
+	"UserController" [shape=Mrecord, label="{UserController|buscarUsuario\lcreate\lhome\lindex\llist\lmural\lshow\lupdate\lviewUser\l|\l|_layout\lerro\lsendToHome\luser_params\l}"]
+	"GrupoController" [shape=Mrecord, label="{GrupoController|aceitarSolitacao\latribuirNovoModerador\lbuscarGrupo\lbuscarGrupoNome\lcancelarMinhaSolicitacao\lcreate\ldestroy\ledit\lgruposDe\lindex\llistarPosts\lnew\lnovoPost\lrejeitarSolicitacao\lremoverModeracao\lremoverUsuario\lsair\lsalvarPost\lshow\lsolicitacoes\lsolicitarMinhaParticipacao\lupdate\lverMembros\l|\l|_layout\lcondicoesParaManusearPedidos\leh_mebro_do_grupo\leh_moderador\lerro\lessa_solicitacao_existe\lgetGrupo\lgetUser\lgrupo_params\lmaisDeUmMembro\lnoticiar\lpost_params\lredirecionar\lredirecionarDefault\lsouAdmin\l}"]
 
+    
     "ApplicationController" -> "PerfilExternosController" [label="", arrowhead="none", arrowtail="onormal"]
     "ApplicationController" -> "PostsController" [label="", arrowhead="none", arrowtail="onormal"]
     "ApplicationController" -> "FriendshipsController" [label="", arrowhead="none", arrowtail="onormal"]
     "ApplicationController" -> "UserController" [label="", arrowhead="none", arrowtail="onormal"]
     "ApplicationController" -> "GrupoController" [label="", arrowhead="none", arrowtail="onormal"]
     "ApplicationController" -> "PagesController" [label="", arrowhead="none", arrowtail="onormal"]
+
     
 }
+
