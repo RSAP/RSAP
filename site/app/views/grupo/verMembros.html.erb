@@ -7,6 +7,7 @@
 	     <div> <p>Foto: <img src="https://image.flaticon.com/icons/svg/50/50050.svg" style="width:80px;height:80px" > </div>
 	  <%end%>
 	  <td><%= link_to 'Visualizar', controller: "user", action: "viewUser", id: current_user.id, idUser: user.id %></td>
+	  <td><%= link_to 'Remover Membro', "/grupos/removerUsuario/#{@grupo.id}/#{user.id}" %></td>
   </tr>
 <% end %>
 

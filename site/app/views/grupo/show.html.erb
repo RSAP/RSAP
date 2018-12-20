@@ -3,7 +3,22 @@
 
 <table>
 	<tr><%= link_to 'Editar', controller: "grupo", action: "edit", id: @grupo.id %></tr> |
-	<tr><%= link_to 'Apagar', "/grupos/#{@grupo.id}/deletar", data: { confirm: 'Are you sure?' } %></tr>
+	<tr><%= link_to 'Apagar', "/grupos/#{@grupo.id}/deletar", data: { confirm: 'Tem certeza?' } %></tr>
+	<tr><% if eh_moderador(current_user, @grupo) %>
+		<% end %>
+
+		<% if eh_mebro_do_grupo(current_user, @grupo) %>
+			<td><%= link_to 'Quero sair', "/grupos/sair/#{@grupo.id}", data: { confirm: 'Tem certeza?' } %></td>
+		<% else %>
+
+			<% if !essa_solicitacao_existe(current_user, @grupo) %>
+				<td><%= link_to 'Quero entrar', "/grupos/solicitar/#{@grupo.id}", data: { confirm: 'Tem certeza?' } %></td>
+			<% else %>
+				<td>Solicitacao enviada</td>
+				<td><%= link_to 'Cancelar', "/grupos/cancelarSolicitacao/#{@grupo.id}", data: { confirm: 'Tem certeza?' } %></td>
+			<% end %></tr>
+
+		<% end %>
 </table>
 
 <td><%= link_to 'Membros', "/grupos/#{@grupo.id}/membros" %></td>

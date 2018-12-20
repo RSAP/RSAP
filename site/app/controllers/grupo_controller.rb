@@ -77,6 +77,37 @@ class GrupoController < ApplicationController
 		end
 	end
 
+	def removerUsuario
+		user = getUser(params[:idDeQuem])
+		case user.nil?
+		when false
+			grupo = buscarGrupo
+			case grupo.nil?
+			when false
+				case souAdmin(grupo)
+				when true
+					case grupo.getUsers.include? user
+					when true
+						grupo.removerUser(user)
+						noticiar("Usuario Removido!")
+						redirecionarDefault(list_path)
+					else
+						noticiar("Não é membro do grupo!")
+						redirecionarDefault(list_path)
+					end
+				else
+					noticiar("Você não tem permissão para isso!")
+					redirecionarDefault(list_path)
+				end
+			else
+				noticiar("Grupo não existe!")
+				redirecionarDefault(list_path)
+			end
+		else
+			noticiar("Usuario não existe!")
+			redirecionarDefault(list_path)
+		end
+	end
 
 	def destroy
 		grupo = buscarGrupo
