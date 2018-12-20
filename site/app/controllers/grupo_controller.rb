@@ -325,11 +325,67 @@ class GrupoController < ApplicationController
 	##############################################################################
 
 
+	##############################################################################
+	##################################POST########################################
+	##############################################################################
+
+
+	def novoPost
+
+		@post = Post.new
+		@post.e_de_grupo = true
+
+		@grupo = getGrupo(params[:id])
+
+		if @grupo.nil?
+			erro("Grupo nao existe")
+			return
+		end
+
+	end
+
+
+
+	def salvarPost
+
+		@grupo = getGrupo(params[:id])
+
+		if @grupo.nil?
+			erro("Grupo nao existe")
+			return
+		end
+
+		@post = Post.create(post_params)
+
+		if !(@post.valid?)
+			erro("Post invalido")
+			return
+		end
+
+		@post.e_de_grupo = true
+		@post.save
+		@post.fixarEmGrupo(@grupo.id)
+
+	end
+
+
+
+	##############################################################################
+	##############################################################################
+	##############################################################################
+
+
+
+
 	#################### DAQUI PRA BAIXO É TUDO PRIVADO ##########################
 
 	private
 	def grupo_params
 		params.require(:grupo).permit(:nome, :descricao)
+	end
+
+	def post_params
+		params.require(:post).permit(:titulo, :categoria, :texto, :user_id, :imagem)
 	end
 
 	##############################################################################

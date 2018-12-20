@@ -14,4 +14,8 @@ class Post < ApplicationRecord
 		return self.imagem.url
 	end
 
+	def fixarEmGrupo(idGrupo)
+		ActiveRecord::Base.connection.exec_query("INSERT INTO posts_de_grupos VALUES (NULL, #{self.id}, #{idGrupo}, '#{Time.now.getutc}', '#{Time.now.getutc}')")
+	end
+
 end
